@@ -1,0 +1,109 @@
+<po-page-default p-title="Busca avançada"
+    p-subtitle="Investigação precisa em arquivos completos com múltiplos modos de busca e contexto de linha.">
+    <po-modal #detailModal p-title="Detalhe do match" [p-primary-action]="closeDetailAction">
+        @if (selectedMatch; as match) {
+        <div class="modal-detail">
+            <div><strong>Linha</strong>{{ match.line_number }}</div>
+            <div><strong>Timestamp</strong>{{ match.timestamp ?? '-' }}</div>
+            <div><strong>Conteúdo</strong>{{ match.content }}</div>
+            <div><strong>Destaque</strong>{{ match.highlighted_content }}</div>
+        </div>
+        }
+    </po-modal>
+
+    <div class="page-grid">
+        @if (errorMessage) {
+        <div class="error-box">{{ errorMessage }}</div>
+        }
+
+        <div class="two-columns advanced-top-grid">
+            <po-widget p-title="Parâmetros da busca">
+                <div class="page-grid">
+                    <div class="file-picker">
+                        <label for="searchLogFile">Arquivo de log</label>
+                        <input id="searchLogFile" type="file" accept=".log,.txt,.out"
+                            (change)="onLogFileSelected($event)" />
+                        <span class="helper-text">O endpoint usa upload multipart com o arquivo completo.</span>
+                    </div>
+
+                    <div class="two-columns">
+                        <po-input name="searchPattern" [(ngModel)]="searchPattern" p-label="Padrão"
+                            p-placeholder="Procedure, erro, regex..."></po-input>
+                        <po-select name="searchType" [ngModel]="searchType" (ngModelChange)="searchType = $event"
+                            p-label="Tipo de busca" [p-options]="searchTypeOptions"></po-select>
+                    </div>
+
+                    <span class="helper-text">{{ selectedSearchTypeDescription }}</span>
+
+                    <po-checkbox name="caseSensitive" [(ngModel)]="caseSensitive"
+                        p-label="Diferenciar maiúsculas/minúsculas"></po-checkbox>
+
+                    <div class="quick-actions">
+                        @for (pattern of quickPatterns; track pattern) {
+                        <button type="button" class="quick-chip" (click)="applyQuickPattern(pattern)">{{ pattern
+                            }}</button>
+                        }
+                    </div>
+
+                    <div class="action-row">
+                        <po-button p-kind="primary" p-label="Buscar" (p-click)="executeSearch(detailModal)"
+                            [p-disabled]="loading"></po-button>
+                        <po-dropdown p-label="Ações" [p-actions]="searchActions"></po-dropdown>
+                    </div>
+                </div>
+            </po-widget>
+
+            <po-widget p-title="Guia rápido">
+                <div class="page-grid">
+                    <po-info p-label="Procedure"
+                        p-value="Busca por nomes de programas, procedures e ocorrências literais."></po-info>
+                    <po-info p-label="Literal" p-value="Ideal para mensagens copiadas do log."></po-info>
+                    <po-info p-label="Regex" p-value="Use para padrões variáveis como códigos e datas."></po-info>
+
+                    @if (recentPatterns.length > 0) {
+                    <div>
+                        <strong>Buscas recentes</strong>
+                        <div class="quick-actions top-gap">
+                            @for (pattern of recentPatterns; track trackRecentPattern(pattern)) {
+                            <button type="button" class="quick-chip quick-chip--subtle"
+                                (click)="selectRecentPattern(pattern)">{{ pattern }}</button>
+                            }
+                        </div>
+                    </div>
+                    }
+                </div>
+            </po-widget>
+        </div>
+
+        @if (resultSummary.length > 0) {
+        <div class="cards-grid">
+            @for (item of resultSummary; track item.label) {
+            <po-widget [p-title]="item.label">
+                <div class="widget-stat widget-stat--small">{{ item.value }}</div>
+            </po-widget>
+            }
+        </div>
+        }
+
+        <po-widget p-title="Resultados detalhados">
+            @if (matches.length === 0) {
+            <p class="helper-text">Os resultados encontrados serão exibidos aqui.</p>
+            } @else {
+            <div class="info-box">{{ matches.length }} match(es) encontrados.</div>
+            <po-table [p-columns]="matchColumns" [p-items]="tableItems"></po-table>
+
+            <div class="detail-list">
+                @for (match of matches.slice(0, 10); track match.line_number) {
+                <div class="detail-item">
+                    <div>
+                        <strong>Linha {{ match.line_number }}</strong>
+                        <div class="helper-text">{{ match.highlighted_content }}</div>
+                    </div>
+                    <po-button p-label="Detalhes" (p-click)="openMatchDetail(match, detailModal)"></po-button>
+                </div>
+                }
+            </div>
+            }
+        </po-widget>
+    </div>
+</po-page-default>

@@ -1,0 +1,302 @@
+<po-page-default p-title="Comparacao de Versao"
+    p-subtitle="Suba o extrato do cliente para comparar com as versoes oficiais do repositorio corporativo.">
+    <div class="page-grid" data-testid="version-compare-page">
+        @if (errorMessage) {
+        <div class="feedback feedback--error" data-testid="error-msg">{{ errorMessage }}</div>
+        }
+
+        @if (successMessage) {
+        <div class="feedback feedback--success" data-testid="success-msg">{{ successMessage }}</div>
+        }
+
+        <!-- UPLOAD -->
+        <po-widget p-title="Carregar extrato do cliente" data-testid="upload-widget">
+            <div class="page-grid">
+                <div class="compact-intro">
+                    <div>
+                        <span class="eyebrow">Leitura orientada pelo backend</span>
+                        <h3>Comparacao com o repositorio corporativo</h3>
+                        <p>Envie o extrato de versao do cliente. O backend ira identificar a versao do produto,
+                            localizar os fontes oficiais no repositorio e comparar versao a versao.</p>
+                    </div>
+                </div>
+
+                <div class="file-picker">
+                    <label for="extFile">Extrato do cliente (.log / .txt)</label>
+                    <input #versionCompareInput class="file-picker__native" id="extFile" type="file" accept=".log,.txt"
+                        (change)="onFileSelected($event)" data-testid="file-input" />
+                    <div class="file-picker__control">
+                        <po-button p-label="Selecionar arquivo" p-icon="po-icon-upload"
+                            (p-click)="versionCompareInput.click()"></po-button>
+                        <span class="file-picker__filename">{{ file?.name || uploadedFilename || 'Nenhum arquivo selecionado' }}</span>
+                    </div>
+                    <span class="helper-text">Arquivo gerado pelo ambiente do cliente contendo programas executados e
+                        suas versoes.</span>
+                </div>
+
+                <div class="upload-summary">
+                    <div class="upload-summary__item">
+                        <span class="upload-summary__label">Arquivo</span>
+                        <strong>{{ file?.name || uploadedFilename || 'Nenhum selecionado' }}</strong>
+                    </div>
+                    <div class="upload-summary__item">
+                        <span class="upload-summary__label">Ultima analise</span>
+                        <strong>{{ analyzedAt || '-' }}</strong>
+                    </div>
+                </div>
+
+                <div class="action-row">
+                    <po-button p-label="Recarregar indice" (p-click)="reloadIndex()"
+                        [p-disabled]="loading" data-testid="reload-btn"></po-button>
+                    <po-button p-kind="primary" p-label="Comparar versoes" (p-click)="runCompare()"
+                        [p-disabled]="loading || !file" data-testid="compare-btn"></po-button>
+                    <po-button p-label="Limpar" (p-click)="clearSession()"
+                        [p-disabled]="loading || !hasResult" data-testid="clear-btn"></po-button>
+                </div>
+
+                @if (loading) {
+                <div class="loading-panel" data-testid="loading">
+                    <po-loading-overlay [p-screen-lock]="false"></po-loading-overlay>
+                    <div class="loading-panel__copy">
+                        <strong>{{ loadingMessage }}</strong>
+                        <span>As informacoes serao exibidas assim que o backend concluir o processamento.</span>
+                    </div>
+                </div>
+                }
+            </div>
+        </po-widget>
+
+        @if (result && result.index_warning) {
+        <div class="feedback feedback--warning" data-testid="index-warning">
+            {{ result.index_warning }}
+        </div>
+        }
+
+        @if (hasResult) {
+        <!-- RESUMO -->
+        <div class="cards-grid cards-grid--summary" data-testid="summary-cards">
+            @for (card of summaryCards; track card.label) {
+            <button type="button" class="summary-card-button" (click)="onSummaryCardClick(card.section)"
+                [class.summary-card-button--active]="activeDetailSection === card.section">
+                <span class="summary-card__label">{{ card.label }}</span>
+                <span class="summary-card__value">{{ card.value }}</span>
+            </button>
+            }
+        </div>
+
+        <!-- HEADER DO EXTRATO -->
+        @if (result && result.header) {
+        <po-widget p-title="Informacoes do extrato" data-testid="header-widget">
+            <div class="header-grid">
+                <div class="header-item">
+                    <span class="header-item__label">Versao produto</span>
+                    <strong>{{ result.header.versao_produto_completa || result.header.versao_produto || '-' }}</strong>
+                </div>
+                <div class="header-item">
+                    <span class="header-item__label">Empresa</span>
+                    <strong>{{ result.header.empresa || '-' }}</strong>
+                </div>
+                <div class="header-item">
+                    <span class="header-item__label">Progress</span>
+                    <strong>{{ result.header.progress || '-' }}</strong>
+                </div>
+                <div class="header-item">
+                    <span class="header-item__label">Criado por</span>
+                    <strong>{{ result.header.criado_por || '-' }}</strong>
+                </div>
+                <div class="header-item">
+                    <span class="header-item__label">Criado em</span>
+                    <strong>{{ result.header.criado_em || '-' }}</strong>
+                </div>
+            </div>
+        </po-widget>
+        }
+
+        <po-divider></po-divider>
+
+        <!-- RESULTADO DA COMPARACAO -->
+        <po-widget p-title="Resultado da comparacao" data-testid="comparison-widget">
+            <po-tabs>
+                <po-tab [p-label]="tabLabel('Desatualizados', desatualizadosRows.length)">
+                    @if (desatualizadosRows.length > 0) {
+                    <div class="table-shell">
+                        <po-table [p-columns]="compColumns" [p-items]="previewDesatualizadosRows"></po-table>
+                    </div>
+                    @if (desatualizadosRows.length > previewDesatualizadosRows.length) {
+                    <div class="table-preview-footer">
+                        <span class="helper-text">Mostrando uma previa. O detalhamento completo esta abaixo.</span>
+                        <button type="button" class="table-link-button" (click)="onSummaryCardClick('desatualizados')">
+                            Ver todos os desatualizados
+                        </button>
+                    </div>
+                    }
+                    } @else {
+                    <p class="helper-text">Nenhum programa desatualizado encontrado.</p>
+                    }
+                </po-tab>
+
+                <po-tab [p-label]="tabLabel('OK', okRows.length)">
+                    @if (okRows.length > 0) {
+                    <div class="table-shell">
+                        <po-table [p-columns]="okColumns" [p-items]="previewOkRows"></po-table>
+                    </div>
+                    @if (okRows.length > previewOkRows.length) {
+                    <div class="table-preview-footer">
+                        <span class="helper-text">Mostrando uma previa. O detalhamento completo esta abaixo.</span>
+                        <button type="button" class="table-link-button" (click)="onSummaryCardClick('ok')">
+                            Ver todos os programas OK
+                        </button>
+                    </div>
+                    }
+                    } @else {
+                    <p class="helper-text">Nenhum programa com versao OK para exibir.</p>
+                    }
+                </po-tab>
+
+                <po-tab [p-label]="tabLabel('Adiantado/Custom.', adiantadoRows.length)">
+                    @if (adiantadoRows.length > 0) {
+                    <div class="table-shell">
+                        <po-table [p-columns]="compColumns" [p-items]="previewAdiantadoRows"></po-table>
+                    </div>
+                    @if (adiantadoRows.length > previewAdiantadoRows.length) {
+                    <div class="table-preview-footer">
+                        <span class="helper-text">Mostrando uma previa. O detalhamento completo esta abaixo.</span>
+                        <button type="button" class="table-link-button" (click)="onSummaryCardClick('adiantado')">
+                            Ver todos os programas adiantados/customizados
+                        </button>
+                    </div>
+                    }
+                    } @else {
+                    <p class="helper-text">Nenhum programa adiantado ou customizado.</p>
+                    }
+                </po-tab>
+            </po-tabs>
+        </po-widget>
+
+        <po-divider></po-divider>
+
+        <po-widget p-title="Detalhamento completo" data-testid="detail-widget">
+            <div class="detail-nav">
+                @for (section of detailSections; track section.key) {
+                <button type="button" class="detail-nav__button" (click)="onSummaryCardClick(section.key)"
+                    [class.detail-nav__button--active]="activeDetailSection === section.key">
+                    <span>{{ section.label }}</span>
+                    @if (section.kind === 'table') {
+                    <strong>{{ section.rows?.length ?? 0 }}</strong>
+                    }
+                </button>
+                }
+            </div>
+
+            <div class="detail-sections">
+                @for (section of detailSections; track section.key) {
+                <section class="detail-section" [class.detail-section--active]="activeDetailSection === section.key"
+                    [attr.id]="section.domId" tabindex="-1">
+                    <po-widget [p-title]="section.label">
+                        <div class="section-header">
+                            <div class="section-header__copy">
+                                <p class="section-intro section-intro--compact">{{ section.description }}</p>
+                            </div>
+                            @if (section.kind === 'table') {
+                            <span class="section-counter">{{ section.rows?.length ?? 0 }} registros</span>
+                            }
+                        </div>
+
+                        @if (section.kind === 'info') {
+                        <div class="header-grid">
+                            <div class="header-item">
+                                <span class="header-item__label">Versao produto</span>
+                                <strong>{{ result?.header?.versao_produto_completa || result?.header?.versao_produto || result?.product_version || '-' }}</strong>
+                            </div>
+                            <div class="header-item">
+                                <span class="header-item__label">Empresa</span>
+                                <strong>{{ result?.header?.empresa || '-' }}</strong>
+                            </div>
+                            <div class="header-item">
+                                <span class="header-item__label">Progress</span>
+                                <strong>{{ result?.header?.progress || '-' }}</strong>
+                            </div>
+                            <div class="header-item">
+                                <span class="header-item__label">Criado por</span>
+                                <strong>{{ result?.header?.criado_por || '-' }}</strong>
+                            </div>
+                            <div class="header-item">
+                                <span class="header-item__label">Criado em</span>
+                                <strong>{{ result?.header?.criado_em || '-' }}</strong>
+                            </div>
+                            <div class="header-item">
+                                <span class="header-item__label">Arquivo analisado</span>
+                                <strong>{{ uploadedFilename || file?.name || '-' }}</strong>
+                            </div>
+                            <div class="header-item">
+                                <span class="header-item__label">Ultima analise</span>
+                                <strong>{{ analyzedAt || '-' }}</strong>
+                            </div>
+                        </div>
+
+                        <!-- Informacoes de Bases de Dados/Aliases ocultadas nesta tela por decisao de produto. -->
+                        } @else {
+                        @if ((section.rows?.length ?? 0) > 0) {
+                        <div class="table-shell">
+                            <po-table [p-columns]="section.columns || []"
+                                [p-items]="getVisibleRows(section.key, section.rows || [])"></po-table>
+                        </div>
+
+                        <div class="table-footer">
+                            <span class="helper-text">{{ visibleRowsLabel(section.key, section.rows || []) }}</span>
+                            <div class="table-footer__actions">
+                                @if (hasMoreRows(section.key, section.rows || [])) {
+                                <po-button p-kind="tertiary" p-icon="po-icon-arrow-down"
+                                    (p-click)="loadMoreRows(section.key, section.rows || [])"
+                                    title="Carregar mais"></po-button>
+                                }
+                                @if (canCollapseRows(section.key, section.rows || [])) {
+                                <po-button p-kind="tertiary" p-icon="po-icon-arrow-top"
+                                    (p-click)="resetVisibleRows(section.key)"
+                                    title="Mostrar menos"></po-button>
+                                }
+                            </div>
+                        </div>
+                        } @else {
+                        <p class="helper-text">{{ section.emptyMessage }}</p>
+                        }
+                        }
+                    </po-widget>
+                </section>
+                }
+            </div>
+        </po-widget>
+
+        <!-- STATUS DO INDICE -->
+        @if (status) {
+        <po-widget p-title="Status do repositorio" data-testid="index-status-widget">
+            <div class="header-grid">
+                <div class="header-item">
+                    <span class="header-item__label">Diretorio</span>
+                    <strong>{{ status.base_lib_directory }}</strong>
+                </div>
+                <div class="header-item">
+                    <span class="header-item__label">Acessivel</span>
+                    <po-tag [p-value]="status.directory_exists ? 'Sim' : 'Nao'"
+                        [p-type]="status.directory_exists ? TAG_SUCCESS : TAG_DANGER"></po-tag>
+                </div>
+                <div class="header-item">
+                    <span class="header-item__label">Versoes indexadas</span>
+                    <strong>{{ status.total_versoes }}</strong>
+                </div>
+                <div class="header-item">
+                    <span class="header-item__label">Programas indexados</span>
+                    <strong>{{ status.total_programas_indexados }}</strong>
+                </div>
+            </div>
+        </po-widget>
+        }
+        } @else {
+        <po-widget p-title="Aguardando extrato">
+            <div class="empty-state" data-testid="empty-state">
+                Envie o extrato de versao do cliente para iniciar a comparacao.
+            </div>
+        </po-widget>
+        }
+    </div>
+</po-page-default>

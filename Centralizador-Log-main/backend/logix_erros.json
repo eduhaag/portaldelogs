@@ -1,0 +1,1652 @@
+[
+  {
+    "pattern": "DANFE.*(erro|falha).*(PDF|gera(ç|c)ão do arquivo PDF)",
+    "description": "Erro ao imprimir o DANFE: houve falha na geração do arquivo PDF.",
+    "category": "NFE/DANFE",
+    "severity": "Médio",
+    "example": "NFE: Houve um erro na geração do arquivo PDF ao imprimir o DANFE.",
+    "solution": "Verificar quebras de linha/caracteres especiais na descrição do item ou informações complementares; checar permissões de sobrescrita do diretório do DANFE; excluir PDF/TXT anteriores e reimprimir.",
+    "tag": "DANFE",
+    "source": "Central de Atendimento TOTVS - NFE: Houve um erro na geração do arquivo PDF (DANFE)"
+  },
+  {
+    "pattern": "Falha no acesso ao Logix.*(usu(á|a)rio|perfil)",
+    "description": "Falha no acesso ao Logix para determinado usuário.",
+    "category": "Framework/Segurança",
+    "severity": "Médio",
+    "example": "FRW: Falha no acesso ao Logix para o usuário X na empresa Y.",
+    "solution": "Corrigir falhas de atalhos no desktop de menu do Logix. Executar SQL recomendado pela TOTVS substituindo [usuario] e [empresa] para normalizar o acesso.",
+    "tag": "Acesso",
+    "source": "Central de Atendimento TOTVS - FRW: Falha no acesso ao Logix para determinado usuário"
+  },
+  {
+    "pattern": "(valida(ç|c)[aã]o|schema).*(XML).*(nfe_err\\.txt)",
+    "description": "Erros de validação de schema XML geram arquivo de erros 'chave_de_acesso-nfe_err.txt'.",
+    "category": "NFE/Schema",
+    "severity": "Médio",
+    "example": "Arquivo 43190812345678901234550010000012345678901234-nfe_err.txt gerado com inconsistências de schema.",
+    "solution": "Abrir o arquivo *_nfe_err.txt no diretório dos XML para identificar o nó/atributo inválido e ajustar os dados da nota.",
+    "tag": "Schema",
+    "source": "Central de Atendimento TOTVS - NFE: Como verificar os erros de validação de schema XML"
+  },
+  {
+    "pattern": "Rejei(ç|c)[aã]o\\s*999|Erro n[ãa]o catalogado",
+    "description": "Rejeição 999 (Erro não catalogado) ao transmitir NF-e.",
+    "category": "NFE/SEFAZ",
+    "severity": "Médio",
+    "example": "Rejeição 999: Erro não catalogado",
+    "solution": "Verificar preenchimentos da NF-e/estrutura do XML; pode indicar indisponibilidade/erro na aplicação da SEFAZ. Tentar novamente e checar status do serviço.",
+    "tag": "SEFAZ",
+    "source": "Central de Atendimento TOTVS - NFE: Rejeição 999 - Erro não catalogado"
+  },
+  {
+    "pattern": "Erro de processamento.*(atualiza(ç|c)[aã]o|pacote).*12\\.1\\.\\d+",
+    "description": "Erro de processamento durante atualização do pacote do Logix.",
+    "category": "Framework/Atualização",
+    "severity": "Alto",
+    "example": "Console de atualização: ocorreram erros durante o processamento ao tentar aplicar a atualização 12.1.2403.",
+    "solution": "Rever logs do console de atualização, dependências e pré-requisitos do pacote; aplicar correções conforme artigo da TOTVS e repetir a atualização.",
+    "tag": "Atualização",
+    "source": "Central de Atendimento TOTVS - FRW: Erro de processamento durante atualização do pacote 12.1.2403"
+  },
+  {
+    "pattern": "replica(ç|c)[aã]o.*Nota fiscal.*(s[ée]rie).*(existente|duplicada)",
+    "description": "Erro de integração/replicação: nota fiscal de produto com série única já existente.",
+    "category": "FAT/Integração",
+    "severity": "Médio",
+    "example": "Erro de replicação: NF com série única já existente na empresa.",
+    "solution": "Enviar a NF para histórico no VDP2242 e reexecutar a replicação no VDP0838.",
+    "tag": "Replicação",
+    "source": "Central de Atendimento TOTVS - FAT: Erro de integração replicação - série única já existente"
+  },
+  {
+    "pattern": "VDP20000.*(Consist(ê|e)ncia|Consistir)|VDP20023",
+    "description": "Pedido apresenta inconsistências/erros ao aprovar.",
+    "category": "PED/Vendas",
+    "severity": "Médio",
+    "example": "Ao aprovar pedido, o sistema informa que o pedido tem erro.",
+    "solution": "Executar VDP20000 (Consistir) ou VDP20023 para detalhar e corrigir as mensagens no próprio pedido.",
+    "tag": "Pedido",
+    "source": "Central de Atendimento TOTVS - PED VDP20000: Consistências x Erros"
+  },
+  {
+    "pattern": "Relacionamento\\s*([Aa]rea|[Ll]inha|[Mm]ercado|Classe|CC).*(n[aã]o cadastrado)",
+    "description": "Erro de relacionamento Área x Linha x Mercado x Classe x CC não cadastrado (frete SUP0580).",
+    "category": "SUP/Frete",
+    "severity": "Médio",
+    "example": "R_erros: Relacionamento Área X linha X Mercado X Classe X CC não cadastrado.",
+    "solution": "Conferir dados no SUP0580 (conTa_aen) e cadastrar no SUP9480/SUP20170; alternativamente desmarcar parâmetro de consistência no SUP8780 e consistir o frete.",
+    "tag": "AEN/CC",
+    "source": "Central de Atendimento TOTVS - SUP: Relacionamento AEN x CC não cadastrado no SUP0580"
+  },
+  {
+    "pattern": "Erro\\s*004.*Lote ainda n[aã]o transmitido|verifique.*status.*SEFAZ",
+    "description": "NF-e com Erro 004: lote ainda não transmitido.",
+    "category": "NFE/Transmissão",
+    "severity": "Médio",
+    "example": "Erro 004 - Lote ainda não transmitido - verifique status SEFAZ.",
+    "solution": "Reconfigurar TSS no VDP10076/VDP9109 para todas as empresas; reenviar a NF; se persistir, verificar disponibilidade do serviço SEFAZ.",
+    "tag": "TSS",
+    "source": "Central de Atendimento TOTVS - NFE: Erro 004 - Lote ainda não transmitido"
+  },
+  {
+    "pattern": "Nota fiscal j[aá] existente.*(fornecedor).*SUP3760",
+    "description": "Nota fiscal já existente para o fornecedor (SUP3760).",
+    "category": "SUP/Entradas",
+    "severity": "Baixo",
+    "example": "SUP3760: Nota fiscal já existente para este fornecedor. Deseja continuar?",
+    "solution": "Responder 'Sim' para gerar consistência e, em seguida, assumir o erro na opção assUmir_erros do SUP3760.",
+    "tag": "Duplicidade NF",
+    "source": "Central de Atendimento TOTVS - SUP: Nota fiscal já existente para este fornecedor (SUP3760)"
+  },
+  {
+    "pattern": "Chave de acesso n[aã]o informada.*SUP3760",
+    "description": "Chave de acesso não informada na entrada (SUP3760).",
+    "category": "SUP/Entradas",
+    "severity": "Médio",
+    "example": "Erro: Chave de acesso não informada (SUP3760).",
+    "solution": "Informar a chave no SUP3760 (7_inf_compl_nf > nf_eletrônica). Ajustar parâmetro LOG00086 conforme gravidade (consiste_chave_acesso_nf_entr).",
+    "tag": "Chave de Acesso",
+    "source": "Central de Atendimento TOTVS - SUP: Chave de acesso não informada no SUP3760"
+  },
+  {
+    "pattern": "TSS.*APW.*Call Failed.*Missing or Invalid response job",
+    "description": "Erro TSS: APW Call Failed - Missing or Invalid response job.",
+    "category": "TSS/Integração",
+    "severity": "Alto",
+    "example": "TSS: APW Call Failed - Missing or Invalid response job.",
+    "solution": "Verificar configurações no appserver.ini; revalidar alterações e reiniciar serviços conforme orientação.",
+    "tag": "TSS/APW",
+    "source": "Central de Atendimento TOTVS - NFE/TSS: APW Call Failed - Missing or Invalid response job"
+  },
+  {
+    "pattern": "TSS.*erro de POST|HTTP POST.*(falha|erro)",
+    "description": "Não está enviando NF-e: erro de POST no console do TSS.",
+    "category": "TSS/Comunicação",
+    "severity": "Médio",
+    "example": "Console TSS: erro de POST ao enviar NF-e.",
+    "solution": "Checar comunicação com a Internet e disponibilidade da SEFAZ; validar conectividade e certificados.",
+    "tag": "TSS/POST",
+    "source": "Central de Atendimento TOTVS - NFE: Não está enviando as notas e ocorre erro de POST no TSS"
+  },
+  {
+    "pattern": "MRP.*(mensagens|alerta|erro).*MAN6176|MAN10297",
+    "description": "Mensagens do MRP (erros/alertas) para ajustes de parâmetros e ordens.",
+    "category": "MAN/MRP",
+    "severity": "Médio",
+    "example": "Consulta Mensagens do MRP apresenta alertas de falta de parâmetros.",
+    "solution": "Utilizar rotina vigente (MAN10297) para revisar parâmetros e ordens; ajustar conforme mensagens exibidas.",
+    "tag": "MRP",
+    "source": "TDN TOTVS - Consulta Mensagens do MRP (MAN6176/MAN10297)"
+  },
+  {
+    "pattern": "ERR0003.*Incompatibilidade.*(Smartclient|Application Server)",
+    "description": "Incompatibilidade de versão entre Smartclient e Application Server.",
+    "category": "FRW/Acesso",
+    "severity": "Alto",
+    "example": "ERR0003: Incompatibilidade de versão entre TOTVS Smartclient e TOTVS Application Server",
+    "solution": "Sincronizar versões (cliente x servidor). Atualizar para a mesma build.",
+    "tag": "ERR0003_Versao",
+    "source": "Logs do Logix / FRW"
+  },
+  {
+    "pattern": "SMARTCLIENT.*(falha|finalizado|encontrou um erro)",
+    "description": "Smartclient encerra inesperadamente ao iniciar sessão.",
+    "category": "FRW/Acesso",
+    "severity": "Alto",
+    "example": "SMARTCLIENT encontrou um erro e será finalizado.",
+    "solution": "Revisar atalhos/menu do usuário; limpar configurações problemáticas e refazer perfil.",
+    "tag": "SMARTCLIENT_Falha",
+    "source": "Logs do Logix / FRW"
+  },
+  {
+    "pattern": "AUTHENTICATION:\\s*USER NOT AUTHORIZED",
+    "description": "Falha de autenticação em integrações EAI.",
+    "category": "FRW/Integração",
+    "severity": "Alto",
+    "example": "AUTHENTICATION: USER NOT AUTHORIZED",
+    "solution": "Incluir usuário/senha na requisição; se aceitável, SECURITY=0 no appserver.",
+    "tag": "EAI_AUTH",
+    "source": "Logs do Logix / FRW"
+  },
+  {
+    "pattern": "array out of bounds.*ISVALIDBUILD",
+    "description": "Erro ISVALIDBUILD na inicialização de job (array out of bounds).",
+    "category": "FRW/Job",
+    "severity": "Alto",
+    "example": "array out of bounds on ISVALIDBUILD",
+    "solution": "Aplicar patches/fix compatíveis com a versão; revisar build.",
+    "tag": "ISVALIDBUILD_Array",
+    "source": "Logs do Logix / FRW"
+  },
+  {
+    "pattern": "FORM statement error number -1322",
+    "description": "Relatório não consegue abrir arquivo de saída (FORM -1322).",
+    "category": "FRW/Relatório",
+    "severity": "Médio",
+    "example": "FORM statement error number -1322. A report output file cannot be opened.",
+    "solution": "Checar diretório/permissões/espaco em disco e parametrização de saída.",
+    "tag": "FORM_-1322",
+    "source": "Logs do Logix / FRW"
+  },
+  {
+    "pattern": "n[aã]o (é )?poss[íi]vel inserir valor nulo.*tran_arg_relatorio",
+    "description": "Inserção nula em tabela de argumentos de relatório.",
+    "category": "FRW/Relatório",
+    "severity": "Médio",
+    "example": "Não é possível inserir valor nulo na tabela tran_arg_relatorio",
+    "solution": "Configurar parâmetros/impressores; garantir campos obrigatórios preenchidos.",
+    "tag": "TranArgRelatorio_NULL",
+    "source": "Logs do Logix / FRW"
+  },
+  {
+    "pattern": "Error Profile file does not exist|profile.*inv[aá]lido",
+    "description": "Arquivo de profile ausente ou inválido (logixprofile/totvsprofile).",
+    "category": "FRW/Configuração",
+    "severity": "Médio",
+    "example": "Error Profile file does not exist or is invalid",
+    "solution": "Recriar/copiar profile e definir FGLPROFILE; reiniciar appserver.",
+    "tag": "Profile_Invalid",
+    "source": "Logs do Logix / FRW"
+  },
+  {
+    "pattern": "QT_ACCESSIBILITY|QT_USE_NATIVE_WINDOWS.*(UI|render|janela).*erro",
+    "description": "Artefato visual na UI (quadrado “XXX”/renderização anômala).",
+    "category": "FRW/UI",
+    "severity": "Baixo",
+    "example": "Logix apresentando um quadrado com XXX na tela",
+    "solution": "Ajustar/remover variáveis QT_* que interferem no rendering.",
+    "tag": "UI_Render_QT",
+    "source": "Logs do Logix / FRW"
+  },
+  {
+    "pattern": "ORA-01400",
+    "description": "Tentativa de inserir NULL em coluna obrigatória.",
+    "category": "Infra/Oracle",
+    "severity": "Alto",
+    "example": "ORA-01400: CANNOT INSERT NULL INTO (\"LOGIX\".\"TABELA\".\"COLUNA\")",
+    "solution": "Identificar coluna obrigatória e origem do NULL; ajustar entrada/código.",
+    "tag": "ORA_01400",
+    "source": "Logs Oracle/Cliente Logix"
+  },
+  {
+    "pattern": "ORA-00054",
+    "description": "Recurso ocupado por outra sessão (NOWAIT).",
+    "category": "Infra/Oracle",
+    "severity": "Médio",
+    "example": "ORA-00054: resource busy and acquire with NOWAIT specified",
+    "solution": "Encerrar sessão bloqueadora ou executar fora do pico; remover NOWAIT se aplicável.",
+    "tag": "ORA_00054",
+    "source": "Logs Oracle/Cliente Logix"
+  },
+  {
+    "pattern": "ORA-12154",
+    "description": "Não foi possível resolver o identificador de conexão (TNS).",
+    "category": "Infra/Oracle",
+    "severity": "Alto",
+    "example": "ORA-12154: TNS:could not resolve the connect identifier specified",
+    "solution": "Revisar tnsnames.ora, variáveis ORACLE_HOME/LDAP, string de conexão.",
+    "tag": "ORA_12154",
+    "source": "Logs Oracle/Cliente Logix"
+  },
+  {
+    "pattern": "ORA-12541",
+    "description": "Falha de conexão: listener não responde.",
+    "category": "Infra/Oracle",
+    "severity": "Alto",
+    "example": "ORA-12541: TNS:no listener",
+    "solution": "Verificar serviço LISTENER e firewall; validar host/porta.",
+    "tag": "ORA_12541",
+    "source": "Logs Oracle/Cliente Logix"
+  },
+  {
+    "pattern": "ORA-28000",
+    "description": "Conta bloqueada no Oracle.",
+    "category": "Infra/Oracle",
+    "severity": "Alto",
+    "example": "ORA-28000: the account is locked",
+    "solution": "Desbloquear usuário e revisar políticas de senha.",
+    "tag": "ORA_28000",
+    "source": "Logs Oracle/Cliente Logix"
+  },
+  {
+    "pattern": "ORA-28002",
+    "description": "Senha vai expirar/expirada.",
+    "category": "Infra/Oracle",
+    "severity": "Médio",
+    "example": "ORA-28002: the password will expire within X days",
+    "solution": "Trocar senha; ajustar profile de expiração.",
+    "tag": "ORA_28002",
+    "source": "Logs Oracle/Cliente Logix"
+  },
+  {
+    "pattern": "ORA-01017",
+    "description": "Usuário/senha inválidos.",
+    "category": "Infra/Oracle",
+    "severity": "Alto",
+    "example": "ORA-01017: invalid username/password; logon denied",
+    "solution": "Corrigir credenciais/schemas; validar NLS e case sensitivity.",
+    "tag": "ORA_01017",
+    "source": "Logs Oracle/Cliente Logix"
+  },
+  {
+    "pattern": "HTTP\\s*4\\d{2}",
+    "description": "Erro HTTP 4xx na comunicação com serviços externos/SEFAZ/TSS.",
+    "category": "Infra/Rede",
+    "severity": "Médio",
+    "example": "HTTP 403 ao consultar status serviço",
+    "solution": "Verificar credenciais, rota e proxies.",
+    "tag": "HTTP_4xx",
+    "source": "Logs do sistema/serviços"
+  },
+  {
+    "pattern": "HTTP\\s*5\\d{2}",
+    "description": "Erro HTTP 5xx (falha no servidor remoto).",
+    "category": "Infra/Rede",
+    "severity": "Médio",
+    "example": "HTTP 500 ao enviar XML",
+    "solution": "Verificar disponibilidade/retentativas; abrir chamado no provedor.",
+    "tag": "HTTP_5xx",
+    "source": "Logs do sistema/serviços"
+  },
+  {
+    "pattern": "Connection timed out|timed out|timeout",
+    "description": "Timeout de conexão.",
+    "category": "Infra/Rede",
+    "severity": "Médio",
+    "example": "Timeout ao transmitir lote NF-e",
+    "solution": "Aumentar timeout, validar rede e estabilidade do serviço.",
+    "tag": "NET_Timeout",
+    "source": "Logs do sistema/serviços"
+  },
+  {
+    "pattern": "Connection refused",
+    "description": "Conexão recusada.",
+    "category": "Infra/Rede",
+    "severity": "Médio",
+    "example": "Connection refused ao acessar serviço TSS",
+    "solution": "Checar serviço local/porta/firewall.",
+    "tag": "NET_Refused",
+    "source": "Logs do sistema/serviços"
+  },
+  {
+    "pattern": "Rejei(ç|c)[aã]o\\s*204\\b",
+    "description": "Duplicidade de NF-e.",
+    "category": "NFE/SEFAZ",
+    "severity": "Médio",
+    "example": "Rejeição 204: Duplicidade de NF-e",
+    "solution": "Consultar situação da NF-e; inutilizar ou referenciar a existente.",
+    "tag": "NFE_204",
+    "source": "SEFAZ (documentação pública)"
+  },
+  {
+    "pattern": "Rejei(ç|c)[aã]o\\s*215\\b",
+    "description": "Falha no schema: XML malformado.",
+    "category": "NFE/SEFAZ",
+    "severity": "Médio",
+    "example": "Rejeição 215: Falha no schema XML",
+    "solution": "Validar XML contra XSD; corrigir tags/atributos.",
+    "tag": "NFE_215",
+    "source": "SEFAZ (documentação pública)"
+  },
+  {
+    "pattern": "Rejei(ç|c)[aã]o\\s*217\\b",
+    "description": "NF-e inexistente na base da SEFAZ.",
+    "category": "NFE/SEFAZ",
+    "severity": "Médio",
+    "example": "Rejeição 217: NF-e inexistente",
+    "solution": "Confirmar chave de acesso e ambiente (homologação/produção).",
+    "tag": "NFE_217",
+    "source": "SEFAZ (documentação pública)"
+  },
+  {
+    "pattern": "Rejei(ç|c)[aã]o\\s*539\\b",
+    "description": "Divergência entre total da NF-e e somatório dos itens.",
+    "category": "NFE/SEFAZ",
+    "severity": "Médio",
+    "example": "Rejeição 539: Total da NF-e difere dos itens",
+    "solution": "Ajustar cálculos/aritmética e casas decimais.",
+    "tag": "NFE_539",
+    "source": "SEFAZ (documentação pública)"
+  },
+  {
+    "pattern": "Rejei(ç|c)[aã]o\\s*999\\b",
+    "description": "Erro não catalogado (SEFAZ).",
+    "category": "NFE/SEFAZ",
+    "severity": "Médio",
+    "example": "Rejeição 999: Erro não catalogado",
+    "solution": "Repetir operação; checar status do serviço e integridade do XML.",
+    "tag": "NFE_999",
+    "source": "SEFAZ (documentação pública)"
+  },
+  {
+    "pattern": "TSS.*APW.*Call Failed.*Missing or Invalid response job",
+    "description": "APW/TSS: job de resposta inválido/ausente.",
+    "category": "TSS/Comunicação",
+    "severity": "Alto",
+    "example": "TSS: APW Call Failed - Missing or Invalid response job",
+    "solution": "Rever appserver.ini e serviços; validar fila de jobs.",
+    "tag": "TSS_APW_Invalid",
+    "source": "Logs TSS"
+  },
+  {
+    "pattern": "erro de POST|HTTP POST.*(falha|erro)",
+    "description": "TSS não envia documentos por falha em HTTP POST.",
+    "category": "TSS/Comunicação",
+    "severity": "Médio",
+    "example": "Console TSS: erro de POST",
+    "solution": "Verificar conectividade/SSL/certificados; reconfigurar TSS.",
+    "tag": "TSS_POST_Fail",
+    "source": "Logs TSS"
+  },
+  {
+    "pattern": "SUP34204.*C[oó]digo do item.*n[aã]o cadastrado",
+    "description": "Monitor de Integração SUP34204: item inexistente no cadastro.",
+    "category": "SUP/Integração",
+    "severity": "Médio",
+    "example": "SUP34204 - Código do item (XYZ) não cadastrado.",
+    "solution": "Relacionar/criar item via MAN10021 ou regras no SUP34202.",
+    "tag": "SUP_ItemNaoCadastrado",
+    "source": "Logs SUP"
+  },
+  {
+    "pattern": "Nota fiscal j[aá] existente.*fornecedor.*SUP3760",
+    "description": "Alerta de duplicidade de NF de fornecedor no SUP3760.",
+    "category": "SUP/Entradas",
+    "severity": "Baixo",
+    "example": "SUP3760: Nota fiscal já existente para este fornecedor.",
+    "solution": "Assumir erro quando aplicável; revisar processo para evitar duplicidade.",
+    "tag": "SUP_Duplicidade_NF",
+    "source": "Logs SUP"
+  },
+  {
+    "pattern": "Chave de acesso n[aã]o informada.*SUP3760",
+    "description": "Chave de acesso não informada na entrada.",
+    "category": "SUP/Entradas",
+    "severity": "Médio",
+    "example": "SUP3760: Chave de acesso não informada.",
+    "solution": "Informar chave no cadastro da NF e revisar parâmetro de consistência.",
+    "tag": "SUP_ChaveAusente",
+    "source": "Logs SUP"
+  },
+  {
+    "pattern": "Relacionamento.*AEN.*CC.*n[aã]o cadastrado",
+    "description": "Relacionamento Área/Linha/Mercado/Classe/CC não cadastrado.",
+    "category": "SUP/Frete",
+    "severity": "Médio",
+    "example": "Relacionamento AEN x CC não cadastrado.",
+    "solution": "Cadastrar relacionamento correto ou ajustar parâmetro de consistência.",
+    "tag": "SUP_AEN_CC",
+    "source": "Logs SUP"
+  },
+  {
+    "pattern": "Local inv[aá]lido.*VDP0746",
+    "description": "Local de estoque inválido na solicitação de faturamento.",
+    "category": "FAT/Solicitação",
+    "severity": "Médio",
+    "example": "VDP0746: Local inválido",
+    "solution": "Validar locais/itens (SUP0170/SUP50001); selecionar local compatível.",
+    "tag": "FAT_LocalInvalido",
+    "source": "Logs FAT"
+  },
+  {
+    "pattern": "Par[aâ]metro do item n[aã]o cadastrado.*MAN10021",
+    "description": "Item sem configuração de parâmetro (tipo item).",
+    "category": "FAT/Item",
+    "severity": "Médio",
+    "example": "Parâmetro do item não cadastrado (MAN10021).",
+    "solution": "Preencher tipo do item na aba Comercial e refazer faturamento.",
+    "tag": "FAT_ParamItem",
+    "source": "Logs FAT/MAN"
+  },
+  {
+    "pattern": "Configura[çc][aã]o Fiscal n[aã]o encontrada.*tributo",
+    "description": "Configuração fiscal ausente para o tributo.",
+    "category": "FAT/Configuração Fiscal",
+    "severity": "Médio",
+    "example": "Configuração Fiscal não encontrada para o tributo.",
+    "solution": "Cadastrar regra no VDP10068/VDP0696 conforme chaves fiscais.",
+    "tag": "FAT_ConfigFiscalAusente",
+    "source": "Logs FAT"
+  },
+  {
+    "pattern": "N[aã]o existem notas de entrada com FCI.*saldo suficiente",
+    "description": "Saldo de FCI insuficiente para o item faturado.",
+    "category": "FAT/FCI",
+    "severity": "Médio",
+    "example": "Não existem notas de entrada com FCI com saldo suficiente para atender o item.",
+    "solution": "Ajustar configuração de ICMS/FCI e garantir notas de entrada com FCI.",
+    "tag": "FAT_FCI_SemSaldo",
+    "source": "Logs FAT"
+  },
+  {
+    "pattern": "Remessa para terceiros.*n[aã]o cadastrado.*VDP0746",
+    "description": "Remessa para terceiros não configurada para o item/solicitação.",
+    "category": "FAT/Remessa",
+    "severity": "Médio",
+    "example": "VDP0746: Remessa para terceiros do item não cadastrado.",
+    "solution": "Informar dados de remessa na solicitação; ajustar natureza operação.",
+    "tag": "FAT_RemessaNaoCadastrada",
+    "source": "Logs FAT"
+  },
+  {
+    "pattern": "VDP20000.*Consist[êe]ncia|VDP20023",
+    "description": "Pedido apresenta inconsistências ao aprovar.",
+    "category": "PED/Vendas",
+    "severity": "Médio",
+    "example": "VDP20000: pedido com mensagens de inconsistência.",
+    "solution": "Executar consistências e corrigir campos conforme mensagens detalhadas.",
+    "tag": "PED_Consistencia",
+    "source": "Logs PED"
+  },
+  {
+    "pattern": "MRP.*(mensagens|alerta|erro)",
+    "description": "Alertas/erros do MRP indicando parâmetros/ordens a ajustar.",
+    "category": "MAN/MRP",
+    "severity": "Médio",
+    "example": "Mensagens do MRP exibem alertas de falta de parâmetros.",
+    "solution": "Revisar parâmetros e ordens na rotina de mensagens do MRP.",
+    "tag": "MRP_Mensagens",
+    "source": "Logs MAN"
+  },
+  {
+    "pattern": "Item n[aã]o encontrado.*MAN10021|MAN10021.*Item n[aã]o cadastrado",
+    "description": "Item não cadastrado no MAN10021.",
+    "category": "MAN/Cadastro",
+    "severity": "Médio",
+    "example": "Item não encontrado (MAN10021).",
+    "solution": "Cadastrar/relacionar item conforme estrutura de produtos.",
+    "tag": "MAN_ItemNaoCadastrado",
+    "source": "Logs MAN"
+  },
+  {
+    "pattern": "ERRO\\s*\\d{3,5}\\b",
+    "description": "Erro genérico com código numérico no log.",
+    "category": "Geral/Aplicação",
+    "severity": "Médio",
+    "example": "ERRO 12345: operação não concluída",
+    "solution": "Consultar tabela de códigos e rastrear stacktrace.",
+    "tag": "GEN_ErroNum",
+    "source": "Padrões de log"
+  },
+  {
+    "pattern": "ALERTA\\s*\\d{3,5}\\b",
+    "description": "Alerta genérico com código numérico no log.",
+    "category": "Geral/Aplicação",
+    "severity": "Baixo",
+    "example": "ALERTA 20401: configuração ausente",
+    "solution": "Revisar configuração; avaliar impacto.",
+    "tag": "GEN_AlertaNum",
+    "source": "Padrões de log"
+  },
+  {
+    "pattern": "Falha\\s*c[oó]d\\s*[:=]\\s*\\d{3,5}",
+    "description": "Falha com código registrado no log.",
+    "category": "Geral/Aplicação",
+    "severity": "Médio",
+    "example": "Falha cod=503",
+    "solution": "Tratar conforme grupo do código (4xx/5xx/DB).",
+    "tag": "GEN_FalhaCod",
+    "source": "Padrões de log"
+  },
+  {
+    "pattern": "SQLException.*\\b\\d{5}\\b",
+    "description": "Exceção SQL com código de erro.",
+    "category": "Infra/DB",
+    "severity": "Médio",
+    "example": "SQLException 23502: null value in column",
+    "solution": "Ajustar dados obrigatórios/constraints.",
+    "tag": "SQL_Exception",
+    "source": "Padrões de log"
+  },
+  {
+    "pattern": "ORA-01555",
+    "description": "Snapshot too old: rollback segment/undo insuficiente.",
+    "category": "Infra/Oracle",
+    "severity": "Médio",
+    "example": "ORA-01555: snapshot too old: rollback segment number with name \"_SYSSMU1$\" too small",
+    "solution": "Aumentar UNDO_RETENTION/tamanho do UNDO; otimizar queries longas.",
+    "tag": "ORA_01555",
+    "source": "Logs Oracle/Cliente Logix"
+  },
+  {
+    "pattern": "ORA-01652",
+    "description": "Unable to extend temp segment (TEMP insuficiente).",
+    "category": "Infra/Oracle",
+    "severity": "Alto",
+    "example": "ORA-01652: unable to extend temp segment by 128 in tablespace TEMP",
+    "solution": "Aumentar TEMP; liberar espaço; revisar operações em lote.",
+    "tag": "ORA_01652",
+    "source": "Logs Oracle/Cliente Logix"
+  },
+  {
+    "pattern": "ORA-12514",
+    "description": "Listener não conhece o serviço solicitado (service_name).",
+    "category": "Infra/Oracle",
+    "severity": "Alto",
+    "example": "ORA-12514: TNS:listener does not currently know of service requested",
+    "solution": "Confirmar SERVICE_NAME e registro no listener.",
+    "tag": "ORA_12514",
+    "source": "Logs Oracle/Cliente Logix"
+  },
+  {
+    "pattern": "ORA-22992",
+    "description": "Cannot use LOB locators selected from remote tables.",
+    "category": "Infra/Oracle",
+    "severity": "Médio",
+    "example": "ORA-22992: cannot use LOB locators selected from remote tables",
+    "solution": "Evitar operações LOB via DBLINK; copiar dados localmente.",
+    "tag": "ORA_22992",
+    "source": "Logs Oracle/Cliente Logix"
+  },
+  {
+    "pattern": "Rejei(ç|c)[aã]o\\s*386\\b",
+    "description": "CFOP de devolução incompatível com operação.",
+    "category": "NFE/SEFAZ",
+    "severity": "Médio",
+    "example": "Rejeição 386: CFOP de devolução inválido",
+    "solution": "Ajustar CFOP/natureza conforme operação.",
+    "tag": "NFE_386",
+    "source": "SEFAZ (documentação pública)"
+  },
+  {
+    "pattern": "Rejei(ç|c)[aã]o\\s*386\\b",
+    "description": "Grupo de ICMS incompatível com CSOSN do emitente.",
+    "category": "NFE/SEFAZ",
+    "severity": "Médio",
+    "example": "Rejeição 386: Grupo nulo/incompatível com CSOSN",
+    "solution": "Revisar CST/CSOSN x regime.",
+    "tag": "NFE_386B",
+    "source": "SEFAZ (documentação pública)"
+  },
+  {
+    "pattern": "Rejei(ç|c)[aã]o\\s*225\\b",
+    "description": "Falha no schema: número do documento inválido.",
+    "category": "NFE/SEFAZ",
+    "severity": "Médio",
+    "example": "Rejeição 225: Falha no Schema",
+    "solution": "Ajustar número/formato; validar XSD.",
+    "tag": "NFE_225",
+    "source": "SEFAZ (documentação pública)"
+  },
+  {
+    "pattern": "Rejei(ç|c)[aã]o\\s*577\\b",
+    "description": "Total do ICMS difere do somatório por item.",
+    "category": "NFE/SEFAZ",
+    "severity": "Médio",
+    "example": "Rejeição 577: Total ICMS diverge",
+    "solution": "Recalcular tributos e casas decimais.",
+    "tag": "NFE_577",
+    "source": "SEFAZ (documentação pública)"
+  },
+  {
+    "pattern": "SUP34204",
+    "description": "Erro no monitor de integração SUP34204 (variação de causa).",
+    "category": "SUP/Monitores",
+    "severity": "Médio",
+    "example": "SUP34204 - erro de integração",
+    "solution": "Usar opções de conferência/relacionamentos e reprocessar.",
+    "tag": "SUP34204_Generic",
+    "source": "Logs SUP"
+  },
+  {
+    "pattern": "SUP0580",
+    "description": "Frete SUP0580 com relacionamentos AEN/CC ausentes.",
+    "category": "SUP/Monitores",
+    "severity": "Médio",
+    "example": "SUP0580 - Relacionamento AEN x CC não cadastrado",
+    "solution": "Cadastrar relacionamentos; ajustar parâmetro.",
+    "tag": "SUP0580_AEN_CC",
+    "source": "Logs SUP"
+  },
+  {
+    "pattern": "SUP3760",
+    "description": "Mensagens de consistência na entrada de NF.",
+    "category": "SUP/Monitores",
+    "severity": "Médio",
+    "example": "SUP3760 - Consistências de NF de entrada",
+    "solution": "Ajustar campos obrigatórios conforme mensagens.",
+    "tag": "SUP3760_Generic",
+    "source": "Logs SUP"
+  },
+  {
+    "pattern": "VDP0746",
+    "description": "Solicitação de faturamento com inconsistências.",
+    "category": "PED/Vendas",
+    "severity": "Médio",
+    "example": "VDP0746 - Inconsistências na solicitação",
+    "solution": "Abrir itens/campos e corrigir mensagens; reprocessar.",
+    "tag": "VDP0746_Generic",
+    "source": "Logs PED/FAT"
+  },
+  {
+    "pattern": "VDP20000",
+    "description": "Consistir pedido com mensagens.",
+    "category": "PED/Vendas",
+    "severity": "Médio",
+    "example": "VDP20000 - Pedido com mensagens de consistência",
+    "solution": "Executar consistências e corrigir campos.",
+    "tag": "VDP20000_Generic",
+    "source": "Logs PED/FAT"
+  },
+  {
+    "pattern": "VDP20023",
+    "description": "Mensagens detalhadas do pedido.",
+    "category": "PED/Vendas",
+    "severity": "Médio",
+    "example": "VDP20023 - Mensagens do pedido",
+    "solution": "Ajustar dados conforme detalhamento.",
+    "tag": "VDP20023_Generic",
+    "source": "Logs PED/FAT"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*1001\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Baixo",
+    "example": "ERRO 1001: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_1001",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*1002\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 1002: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_1002",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*1003\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Baixo",
+    "example": "ERRO 1003: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_1003",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*1010\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 1010: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_1010",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*1011\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Baixo",
+    "example": "ERRO 1011: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_1011",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*1020\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 1020: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_1020",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*1100\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 1100: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_1100",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*1200\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 1200: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_1200",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*1300\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 1300: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_1300",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*1400\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 1400: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_1400",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*1500\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 1500: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_1500",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*1600\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 1600: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_1600",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*1700\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 1700: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_1700",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*1800\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 1800: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_1800",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*1900\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 1900: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_1900",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*2001\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Baixo",
+    "example": "ERRO 2001: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_2001",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*2002\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 2002: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_2002",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*2003\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Baixo",
+    "example": "ERRO 2003: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_2003",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*2010\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 2010: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_2010",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*2020\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 2020: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_2020",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*2040\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 2040: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_2040",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*2100\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 2100: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_2100",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*2200\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 2200: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_2200",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*2300\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 2300: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_2300",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*2400\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 2400: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_2400",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*2500\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 2500: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_2500",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*2600\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 2600: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_2600",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*2700\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 2700: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_2700",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*2800\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 2800: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_2800",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*2900\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 2900: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_2900",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*3001\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Baixo",
+    "example": "ERRO 3001: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_3001",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*3002\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 3002: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_3002",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*3003\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Baixo",
+    "example": "ERRO 3003: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_3003",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*3010\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 3010: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_3010",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*3020\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 3020: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_3020",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*3040\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 3040: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_3040",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*3100\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 3100: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_3100",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*3200\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 3200: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_3200",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*3300\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 3300: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_3300",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*3400\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 3400: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_3400",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*3500\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 3500: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_3500",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*3600\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 3600: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_3600",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*3700\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 3700: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_3700",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*3800\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 3800: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_3800",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "(ERRO|ALERTA)\\s*3900\\b",
+    "description": "Entrada de log com código numérico padronizado.",
+    "category": "Geral/Logs",
+    "severity": "Médio",
+    "example": "ERRO 3900: mensagem registrada no log",
+    "solution": "Consultar documentação/código para o significado específico; tratar conforme severidade.",
+    "tag": "LOG_3900",
+    "source": "Padrão genérico de códigos de log"
+  },
+  {
+    "pattern": "ORA-01400: CANNOT INSERT NULL INTO .*LOG_DADOS_SESSAO_LOGIX.*SID",
+    "description": "Tentativa de inserir NULL no SID da sessão do Logix causando falha de login.",
+    "category": "FRW/Autenticação",
+    "severity": "Alto",
+    "example": "ORA-01400: CANNOT INSERT NULL INTO (\"LOGIX\".\"LOG_DADOS_SESSAO_LOGIX\".\"SID\")",
+    "solution": "Aplicar view paliativa ou atualizar Oracle para versão suportada; seguir artigo da TOTVS.",
+    "tag": "ORA_01400_SID",
+    "source": "TOTVS Central de Atendimento (ORA-01400)"
+  },
+  {
+    "pattern": "ERR0003: Incompatibilidade de vers.*Smartclient.*Application Server",
+    "description": "Incompatibilidade de versão entre SmartClient e AppServer impede acesso.",
+    "category": "FRW/Acesso",
+    "severity": "Alto",
+    "example": "ERR0003: Incompatibilidade de versão entre TOTVS Smartclient e TOTVS Application Server",
+    "solution": "Atualizar SmartClient/AppServer para a mesma build; verificar sequência de atualização.",
+    "tag": "ERR0003_Versao",
+    "source": "TOTVS Central de Atendimento (Incompatibilidade de versão)"
+  },
+  {
+    "pattern": "SMARTCLIENT.*encontrou um erro e ser[aá] finalizado",
+    "description": "SmartClient encerra abruptamente ao iniciar sessão para alguns usuários.",
+    "category": "FRW/Cliente",
+    "severity": "Alto",
+    "example": "SMARTCLIENT encontrou um erro e será finalizado",
+    "solution": "Remover atalhos inválidos, limpar perfil do usuário e recriar entradas de menu.",
+    "tag": "SMARTCLIENT_Crash",
+    "source": "TOTVS Central de Atendimento / Fóruns"
+  },
+  {
+    "pattern": "Valor NULL para coluna obrigat.*LOG_ACS_USU_PROG",
+    "description": "Erro ao gravar log de acesso por campo EMPRESA nulo na tabela LOG_ACS_USU_PROG.",
+    "category": "FRW/Auditoria",
+    "severity": "Médio",
+    "example": "Valor NULL para coluna obrigatória da tabela LOG_ACS_USU_PROG.",
+    "solution": "Executar LOG00098 para incluir registro com empresa/sistema/ambiente corretamente.",
+    "tag": "LOG_ACS_USU_PROG_NULL",
+    "source": "TOTVS Central de Atendimento (LOG_ACS_USU_PROG)"
+  },
+  {
+    "pattern": "APW Call Failed - Missing or Invalid response job",
+    "description": "Erro APW/TSS: chamada APW falhou por job de resposta inválido ou ausente.",
+    "category": "FRW/TSS",
+    "severity": "Alto",
+    "example": "TSS APW Call Failed - Missing or Invalid response job []",
+    "solution": "Revisar appserver.ini do TSS, validar configurações e reiniciar serviços TSS.",
+    "tag": "TSS_APW_CallFailed",
+    "source": "TOTVS Central de Atendimento (TSS APW Call Failed)"
+  },
+  {
+    "pattern": "Error Profile file does not exist or is invalid",
+    "description": "Profile do cliente (logixprofile/totvsprofile) ausente ou inválido.",
+    "category": "FRW/Configuração",
+    "severity": "Médio",
+    "example": "Error Profile file does not exist or is invalid",
+    "solution": "Restaurar profile válido e definir FGLPROFILE; reiniciar AppServer.",
+    "tag": "Profile_Missing_Invalid",
+    "source": "TOTVS Central de Atendimento (Profile inválido)"
+  },
+  {
+    "pattern": "WebApp.*reason:\\s*CONTEXT NOT FOUND",
+    "description": "Erro no WebApp que impede carregamento da tela de login.",
+    "category": "FRW/WebApp",
+    "severity": "Médio",
+    "example": "reason: CONTEXT NOT FOUND",
+    "solution": "Analisar logs do WebApp, inis e reiniciar o serviço; abrir chamado se persistir.",
+    "tag": "WEBAPP_ContextNotFound",
+    "source": "Fóruns/Comunidade TOTVS"
+  },
+  {
+    "pattern": "OBF0030.*VALOR NULL PARA COLUNA OBRIGATORIA DE TABELA",
+    "description": "Erro OBF0030/OBF processing: valor NULL em coluna obrigatória do conversor.",
+    "category": "FRW/OBF",
+    "severity": "Médio",
+    "example": "Erro VALOR NULL PARA COLUNA OBRIGATÓRIA DE TABELA no processamento OBF0030",
+    "solution": "Executar procedimentos SQL indicados para limpeza do conversor/ajuste do processamento.",
+    "tag": "OBF_VALOR_NULL",
+    "source": "TOTVS Central de Atendimento (OBF0030)"
+  },
+  {
+    "pattern": "LG-FRW.*Incompatibilidade com a vers.*servidor",
+    "description": "Erro de conexão por divergência de builds entre cliente e servidor Logix.",
+    "category": "FRW/Acesso",
+    "severity": "Alto",
+    "example": "Mensagem de incompatibilidade entre Smartclient e AppServer",
+    "solution": "Atualizar ambos os componentes para builds compatíveis seguindo sequência de pacotes.",
+    "tag": "LG_FRW_VersionMismatch",
+    "source": "TOTVS Central de Atendimento"
+  },
+  {
+    "pattern": "Unable to open lock file|lock file.*cannot be created",
+    "description": "Falha ao criar/abrir arquivo lock (jobs/relatórios), possivelmente permissão/antivírus.",
+    "category": "FRW/Arquivo",
+    "severity": "Médio",
+    "example": "Unable to create lock file /path/to/lockfile",
+    "solution": "Verificar permissões, antivirus e políticas de criação de arquivos no diretório.",
+    "tag": "LOCKFILE_CREATE_FAIL",
+    "source": "Fóruns / Suporte"
+  },
+  {
+    "pattern": "Cannot open connection to server.*TSS|TSS.*Connection refused",
+    "description": "Conexão com TSS recusada ou indisponível.",
+    "category": "FRW/TSS",
+    "severity": "Alto",
+    "example": "Connection refused at TSS host:port",
+    "solution": "Checar serviço TSS, firewall, e endpoints configurados.",
+    "tag": "TSS_ConnectionRefused",
+    "source": "TOTVS / Fóruns"
+  },
+  {
+    "pattern": "EXCEPTION.*(NullPointerException|AccessViolation)",
+    "description": "Exceção de aplicação registrada em logs (NullPointer, AccessViolation etc.).",
+    "category": "FRW/Runtime",
+    "severity": "Alto",
+    "example": "Unhandled exception: NullPointerException at module X",
+    "solution": "Analisar stacktrace, reproduzir erro em ambiente de teste e aplicar correção no código.",
+    "tag": "Runtime_Exception",
+    "source": "Fóruns / Relatórios de bug"
+  },
+  {
+    "pattern": "Job.*terminated with exit code \\d+|Job.*killed",
+    "description": "Job do Logix foi finalizado com código de saída indicando falha.",
+    "category": "FRW/Job",
+    "severity": "Médio",
+    "example": "Job XYZ terminated with exit code 1",
+    "solution": "Rever logs do job, possíveis timeouts e recursos (memo/IO); reexecutar.",
+    "tag": "Job_Terminated",
+    "source": "Fóruns / Suporte"
+  },
+  {
+    "pattern": "Performance profiler|Profiler generated.*log",
+    "description": "Geração de profiler indica problemas de desempenho em módulos FRW.",
+    "category": "FRW/Performance",
+    "severity": "Médio",
+    "example": "Profiler generated at /tmp/profiler.log",
+    "solution": "Analisar profiler, otimizar queries/rotinas e aplicar índices quando necessário.",
+    "tag": "Profiler_Perf",
+    "source": "TDN / Suporte TOTVS"
+  },
+  {
+    "pattern": "Deadlock detected|ORA-00060: deadlock detected",
+    "description": "Deadlock detectado no banco impactando processos FRW.",
+    "category": "FRW/DB",
+    "severity": "Alto",
+    "example": "ORA-00060: deadlock detected while waiting for resource",
+    "solution": "Investigar bloqueios, identificar sessões conflitantes e ajustar transações.",
+    "tag": "DB_Deadlock",
+    "source": "DB/TOTVS Central de Atendimento"
+  },
+  {
+    "pattern": "ORA-01555: snapshot too old",
+    "description": "ORA-01555 indica rollback segment/undo insuficiente durante consultas longas.",
+    "category": "FRW/DB",
+    "severity": "Médio",
+    "example": "ORA-01555: snapshot too old: rollback segment number with name ...",
+    "solution": "Aumentar UNDO_RETENTION, otimizar queries e reduzir duração de transações.",
+    "tag": "ORA_01555",
+    "source": "Oracle Docs / TOTVS"
+  },
+  {
+    "pattern": "ORA-01652: unable to extend temp segment",
+    "description": "Tablespace TEMP sem espaço suficiente para operações de ordenação/tempo.",
+    "category": "FRW/DB",
+    "severity": "Alto",
+    "example": "ORA-01652: unable to extend temp segment by ... in tablespace TEMP",
+    "solution": "Aumentar tablespace TEMP ou liberar espaço temporário.",
+    "tag": "ORA_01652",
+    "source": "Oracle Docs / TOTVS"
+  },
+  {
+    "pattern": "ORA-12514|ORA-12541|ORA-12154",
+    "description": "Erros TNS/listener e resolução de serviço em conexões com Oracle.",
+    "category": "FRW/DB",
+    "severity": "Alto",
+    "example": "ORA-12541: TNS:no listener",
+    "solution": "Verificar listener, tnsnames.ora e parâmetros de conexão.",
+    "tag": "ORA_TNS_ERRORS",
+    "source": "Oracle Docs / TOTVS"
+  },
+  {
+    "pattern": "Permission denied.*open\\\\(|fopen\\\\(|CreateFile.*Access is denied",
+    "description": "Erro de permissão ao abrir/grav ar arquivos pelo processo FRW.",
+    "category": "FRW/Arquivo",
+    "severity": "Médio",
+    "example": "Permission denied: cannot open /var/log/app/output.txt",
+    "solution": "Ajustar permissões/usuário do serviço e políticas de segurança.",
+    "tag": "FILE_PERMISSION_DENIED",
+    "source": "Fóruns / Suporte"
+  },
+  {
+    "pattern": "SSL.*certificate.*expired|certificate.*not valid",
+    "description": "Erro SSL/Certificado ao comunicar com serviços externos (SEFAZ/TSS).",
+    "category": "FRW/Segurança",
+    "severity": "Alto",
+    "example": "SSLHandshakeException: certificate expired",
+    "solution": "Atualizar certificado, cadeia de confiança e configurar truststore.",
+    "tag": "SSL_Cert_Error",
+    "source": "Fóruns / TOTVS"
+  },
+  {
+    "pattern": "Timeout while waiting for response|Read timed out",
+    "description": "Timeouts em chamadas a serviços externos impactando fluxos FRW.",
+    "category": "FRW/Comunicação",
+    "severity": "Médio",
+    "example": "Read timed out while waiting for SEFAZ response",
+    "solution": "Aumentar timeout, reter e tentar novamente, validar latência de rede.",
+    "tag": "NET_Timeout_FRW",
+    "source": "Fóruns / Suporte"
+  },
+  {
+    "pattern": "Cannot allocate memory|OutOfMemoryError|ENOMEM",
+    "description": "Falha por falta de memória no processo (OOM).",
+    "category": "FRW/Infra",
+    "severity": "Alto",
+    "example": "java.lang.OutOfMemoryError: Java heap space",
+    "solution": "Aumentar recursos (RAM), ajustar JVM/parametros e limitar concorrência.",
+    "tag": "OUT_OF_MEMORY",
+    "source": "Fóruns / Infra"
+  },
+  {
+    "pattern": "SQLState.*23502|constraint.*not null violation",
+    "description": "Violação de constraint NOT NULL/PK durante insert/update de dados.",
+    "category": "FRW/DB",
+    "severity": "Médio",
+    "example": "ERROR: null value in column \"id\" violates not-null constraint",
+    "solution": "Verificar origem dos dados e aplicar correções/preenchimento de campos obrigatórios.",
+    "tag": "SQL_NOTNULL_VIOLATION",
+    "source": "DB/Fóruns"
+  },
+  {
+    "pattern": "Unable to load library.*Cannot find module|DLL load failed",
+    "description": "Falha ao carregar biblioteca nativa necessária ao cliente/servidor.",
+    "category": "FRW/Infra",
+    "severity": "Médio",
+    "example": "Unable to load library 'libtotvs.so': Cannot find module",
+    "solution": "Instalar dependências nativas e ajustar PATH/LD_LIBRARY_PATH.",
+    "tag": "LIB_LOAD_FAIL",
+    "source": "Fóruns / Suporte"
+  },
+  {
+    "pattern": "Traceback.*at com.totvs|Stacktrace.*ADVPL",
+    "description": "Stacktrace em logs indicando erro em rotina ADVPL/Java/Totvs.",
+    "category": "FRW/Runtime",
+    "severity": "Alto",
+    "example": "Traceback (most recent call last): ... at com.totvs.xxx",
+    "solution": "Isolar stacktrace, identificar chamada e corrigir a rotina ou aplicar patch.",
+    "tag": "STACKTRACE_ADVPL",
+    "source": "Fóruns / TDN"
+  },
+  {
+    "pattern": "Job .* stuck in queue|stalled job",
+    "description": "Job/processo enfileirado sem execução (stalled) no ambiente FRW.",
+    "category": "FRW/Job",
+    "severity": "Médio",
+    "example": "Job 12345 stuck in queue for more than 2 hours",
+    "solution": "Verificar worker threads, reiniciar serviço de filas e analisar bloqueios.",
+    "tag": "JOB_STUCK",
+    "source": "Fóruns / Suporte"
+  },
+  {
+    "pattern": "Error loading form .* not found|Form not found",
+    "description": "Formulário/GUI não encontrado na carga do cliente.",
+    "category": "FRW/UI",
+    "severity": "Médio",
+    "example": "Error loading form 'MYFORM' - not found",
+    "solution": "Verificar deploy dos fontes, paths de recursos e rebuild do cliente.",
+    "tag": "FORM_NOT_FOUND",
+    "source": "Fóruns / Suporte"
+  },
+  {
+    "pattern": "Email.*SMTP.*Authentication failed|553 5.7.1",
+    "description": "Falha no envio de e-mails por autenticação SMTP ou bloqueio.",
+    "category": "FRW/Integracao",
+    "severity": "Médio",
+    "example": "553 5.7.1 Authentication required",
+    "solution": "Configurar credenciais corretas e permissões no servidor SMTP.",
+    "tag": "SMTP_AUTH_FAIL",
+    "source": "Fóruns / Suporte"
+  },
+  {
+    "pattern": "Resource temporarily unavailable|EMFILE: too many open files",
+    "description": "Limite de descriptors de arquivo atingido (EMFILE).",
+    "category": "FRW/Infra",
+    "severity": "Médio",
+    "example": "Error: EMFILE, too many open files",
+    "solution": "Aumentar ulimit/nr_open e revisar vazamentos de file handles.",
+    "tag": "EMFILE_TOO_MANY_FILES",
+    "source": "Infra / FÓruns"
+  },
+  {
+    "pattern": "Invalid configuration parameter .* in appserver.ini",
+    "description": "Parâmetro inválido no arquivo de configuração appserver.ini causa falhas.",
+    "category": "FRW/Configuração",
+    "severity": "Médio",
+    "example": "Invalid configuration parameter 'XYZ' in appserver.ini",
+    "solution": "Reverter alterações recentes e validar parâmetros segundo documentação.",
+    "tag": "APPSERVER_INI_INVALID_PARAM",
+    "source": "TOTVS / Fóruns"
+  },
+  {
+    "pattern": "Error opening database|database file is encrypted|bad password",
+    "description": "Erro ao abrir arquivo de banco ou base criptografada com senha incorreta.",
+    "category": "FRW/DB",
+    "severity": "Alto",
+    "example": "Error opening database: file is encrypted or password is incorrect",
+    "solution": "Validar credenciais e parâmetros de criptografia; restaurar backup se necessário.",
+    "tag": "DB_OPEN_ENCRYPTED",
+    "source": "DB / TOTVS"
+  },
+  {
+    "pattern": "Logrotate.*permission denied|cannot move log file",
+    "description": "Falha na rotação de logs por falta de permissão ou arquivo em uso.",
+    "category": "FRW/Logs",
+    "severity": "Baixo",
+    "example": "logrotate: cannot move old log to /var/log/app/log.1: Permission denied",
+    "solution": "Ajustar usuário responsável e permissões de diretório.",
+    "tag": "LOGROTATE_FAIL",
+    "source": "Infra / FÓruns"
+  },
+  {
+    "pattern": "Cannot load plugin .*undefined symbol",
+    "description": "Plugin nativo falha ao carregar por símbolo indefinido.",
+    "category": "FRW/Infra",
+    "severity": "Médio",
+    "example": "Cannot load plugin 'xyz.so': undefined symbol: abc",
+    "solution": "Recompilar plugin com compatibilidade ABI ou instalar versão correta.",
+    "tag": "PLUGIN_LOAD_FAIL",
+    "source": "Fóruns / Suporte"
+  },
+  {
+    "pattern": "Error while parsing configuration XML|Malformed XML configuration",
+    "description": "Arquivo de configuração XML malformado impede inicialização.",
+    "category": "FRW/Configuração",
+    "severity": "Médio",
+    "example": "Error parsing configuration XML at line 23: unexpected token",
+    "solution": "Validar e corrigir XML; usar ferramentas de lint para XML antes do deploy.",
+    "tag": "XML_CONFIG_PARSE_ERROR",
+    "source": "Fóruns / Suporte"
+  },
+  {
+    "pattern": "Unexpected end of stream|Premature end of file",
+    "description": "Conexão ou arquivo foi encerrado antes do previsto (stream).",
+    "category": "FRW/Comunicação",
+    "severity": "Médio",
+    "example": "Unexpected end of stream while reading response",
+    "solution": "Verificar estabilidade de rede e intermediários (proxy/load balancer).",
+    "tag": "PREMATURE_EOF",
+    "source": "Fóruns / Suporte"
+  },
+  {
+    "pattern": "Memory leak detected.*process size grows",
+    "description": "Indicação de vazamento de memória no processo FRW.",
+    "category": "FRW/Performance",
+    "severity": "Alto",
+    "example": "Process XYZ memory usage increases until restart",
+    "solution": "Coletar heap/VM dumps e analisar para encontrar causa do leak.",
+    "tag": "MEMORY_LEAK",
+    "source": "Fóruns / TDN"
+  },
+  {
+    "pattern": "Cannot create directory.*no such file or directory",
+    "description": "Falha ao criar diretório necessário para logs/temp/output.",
+    "category": "FRW/Arquivo",
+    "severity": "Médio",
+    "example": "mkdir: cannot create directory '/opt/totvs/data/out': No such file or directory",
+    "solution": "Criar diretório e ajustar permissões/owners.",
+    "tag": "MKDIR_FAIL",
+    "source": "Infra / Suporte"
+  },
+  {
+    "pattern": "Unexpected token.*in JSON at position",
+    "description": "Erro ao parsear JSON de configuração ou payload.",
+    "category": "FRW/Integração",
+    "severity": "Médio",
+    "example": "Unexpected token < in JSON at position 0",
+    "solution": "Validar payloads/JSON e configurar encoder/decoder corretamente.",
+    "tag": "JSON_PARSE_ERROR",
+    "source": "Fóruns / Suporte"
+  },
+  {
+    "pattern": "SocketException.*Connection reset by peer",
+    "description": "Conexão TCP fechada abruptamente pelo peer, causando falha.",
+    "category": "FRW/Comunicação",
+    "severity": "Médio",
+    "example": "java.net.SocketException: Connection reset by peer",
+    "solution": "Investigar estabilidade e políticas de keepalive entre endpoints.",
+    "tag": "SOCKET_RESET",
+    "source": "Fóruns / Infra"
+  },
+  {
+    "pattern": "Could not create SSL context|SSLContext initialization failed",
+    "description": "Falha ao inicializar contexto SSL; pode impedir comunicação segura.",
+    "category": "FRW/Security",
+    "severity": "Alto",
+    "example": "Could not create SSL context: no available TLS provider",
+    "solution": "Instalar bibliotecas TLS e configurar corretamente os providers.",
+    "tag": "SSL_CONTEXT_FAIL",
+    "source": "Fóruns / Suporte"
+  },
+  {
+    "pattern": "ModuleNotFoundError: No module named 'something'",
+    "description": "Módulo Python/Lib ausente em ambiente de integração Web/ETL.",
+    "category": "FRW/Infra",
+    "severity": "Médio",
+    "example": "ModuleNotFoundError: No module named 'requests'",
+    "solution": "Instalar dependências Python necessárias no ambiente.",
+    "tag": "PY_MODULE_MISSING",
+    "source": "Fóruns / Infra"
+  },
+  {
+    "pattern": "Too many connections to the database|maximum number of connections exceeded",
+    "description": "Número máximo de conexões atinge limite e novas conexões são recusadas.",
+    "category": "FRW/DB",
+    "severity": "Alto",
+    "example": "FATAL: remaining connection slots are reserved, too many connections",
+    "solution": "Aumentar max_connections ou gerenciar pool de conexões.",
+    "tag": "DB_MAX_CONNECTIONS",
+    "source": "DB / Suporte"
+  },
+  {
+    "pattern": "Lock wait timeout exceeded; try restarting transaction",
+    "description": "Tempo de espera por lock excedido (MySQL/Postgres), abortando transação.",
+    "category": "FRW/DB",
+    "severity": "Médio",
+    "example": "ERROR 1205: Lock wait timeout exceeded; try restarting transaction",
+    "solution": "Investigar transações longas e reduzir escopo de locks.",
+    "tag": "DB_LOCK_WAIT_TIMEOUT",
+    "source": "DB / FÓruns"
+  },
+  {
+    "pattern": "Configuration file not found: .*log4j2.xml|logback.xml",
+    "description": "Arquivo de configuração de logs ausente, causando comportamento default/verbose.",
+    "category": "FRW/Logs",
+    "severity": "Baixo",
+    "example": "Configuration file not found: log4j2.xml",
+    "solution": "Provisionar arquivo de configuração de logging adequado.",
+    "tag": "LOG_CONFIG_MISSING",
+    "source": "Infra / FÓruns"
+  },
+  {
+    "pattern": "Error executing SQL script .* at line \\d+",
+    "description": "Erro ao executar script SQL (update/migration) durante deploy.",
+    "category": "FRW/DB",
+    "severity": "Médio",
+    "example": "Error executing SQL script VDP_patch.sql at line 230: column not found",
+    "solution": "Revisar script, corrigir sintaxe e aplicar em ambiente de homologação.",
+    "tag": "SQL_SCRIPT_ERROR",
+    "source": "Suporte / TDN"
+  },
+  {
+    "pattern": "Invalid user session|session expired or invalid",
+    "description": "Sessão inválida/expirada detectada durante operações FRW.",
+    "category": "FRW/Sessão",
+    "severity": "Médio",
+    "example": "Session expired: invalid token",
+    "solution": "Reautenticar o usuário e revisar timeouts de sessão.",
+    "tag": "SESSION_INVALID",
+    "source": "FÓruns / TOTVS"
+  },
+  {
+    "pattern": "ERR_CONNECTION_RESET|ERR_CONNECTION_REFUSED",
+    "description": "Erros de conexão HTTP/Browser afetando WebApp ou integrações.",
+    "category": "FRW/Comunicação",
+    "severity": "Médio",
+    "example": "ERR_CONNECTION_RESET while loading webapp resources",
+    "solution": "Checar proxies, certificados e políticas de rede.",
+    "tag": "HTTP_CONN_RESET",
+    "source": "Fóruns / Infra"
+  },
+  {
+    "pattern": "UDF.*function not found|User defined function .* missing",
+    "description": "Função definida pelo usuário ausente no banco, causando falha em consultas.",
+    "category": "FRW/DB",
+    "severity": "Médio",
+    "example": "ERROR: function my_udf(text) does not exist",
+    "solution": "Criar função UDF ou ajustar chamadas para funções existentes.",
+    "tag": "UDF_MISSING",
+    "source": "DB / FÓruns"
+  },
+  {
+    "pattern": "Failed to initialize module .* permission denied",
+    "description": "Módulo do framework falha iniciando por permissão insuficiente.",
+    "category": "FRW/Infra",
+    "severity": "Médio",
+    "example": "Failed to initialize module 'mod_abc' permission denied",
+    "solution": "Garantir usuário apropriado e permissões de execução.",
+    "tag": "MODULE_INIT_PERM",
+    "source": "Infra / Suporte"
+  },
+  {
+    "pattern": "Missing resource bundle|locale.*not found",
+    "description": "Bundle de recursos (i18n) ausente impede carga de UI localizada.",
+    "category": "FRW/UI",
+    "severity": "Baixo",
+    "example": "Missing resource bundle for locale 'pt_BR'",
+    "solution": "Incluir arquivos de tradução adequados no deploy.",
+    "tag": "RESOURCE_BUNDLE_MISSING",
+    "source": "Fóruns / Suporte"
+  }
+]

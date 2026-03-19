@@ -1,0 +1,1552 @@
+[
+  {
+    "pattern": "CFOP\\s*5101\\s*(inv(á|a)lido|n(ã|a)o\\s*permitido)",
+    "description": "CFOP 5101 incompatível com a natureza/finalidade ou UF.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição CFOP 5101 não permitido para UF AM",
+    "solution": "Ajustar natureza/CFOP, operação (entrada/saída), UF e regime tributário; reemitir.",
+    "tag": "CFOP",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "CFOP\\s*5102\\s*(inv(á|a)lido|n(ã|a)o\\s*permitido)",
+    "description": "CFOP 5102 incompatível com a natureza/finalidade ou UF.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição CFOP 5102 não permitido para UF PR",
+    "solution": "Ajustar natureza/CFOP, operação (entrada/saída), UF e regime tributário; reemitir.",
+    "tag": "CFOP",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "CFOP\\s*5103\\s*(inv(á|a)lido|n(ã|a)o\\s*permitido)",
+    "description": "CFOP 5103 incompatível com a natureza/finalidade ou UF.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição CFOP 5103 não permitido para UF SP",
+    "solution": "Ajustar natureza/CFOP, operação (entrada/saída), UF e regime tributário; reemitir.",
+    "tag": "CFOP",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "CFOP\\s*5401\\s*(inv(á|a)lido|n(ã|a)o\\s*permitido)",
+    "description": "CFOP 5401 incompatível com a natureza/finalidade ou UF.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição CFOP 5401 não permitido para UF MG",
+    "solution": "Ajustar natureza/CFOP, operação (entrada/saída), UF e regime tributário; reemitir.",
+    "tag": "CFOP",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "CFOP\\s*5403\\s*(inv(á|a)lido|n(ã|a)o\\s*permitido)",
+    "description": "CFOP 5403 incompatível com a natureza/finalidade ou UF.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição CFOP 5403 não permitido para UF RJ",
+    "solution": "Ajustar natureza/CFOP, operação (entrada/saída), UF e regime tributário; reemitir.",
+    "tag": "CFOP",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "CFOP\\s*5405\\s*(inv(á|a)lido|n(ã|a)o\\s*permitido)",
+    "description": "CFOP 5405 incompatível com a natureza/finalidade ou UF.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição CFOP 5405 não permitido para UF MG",
+    "solution": "Ajustar natureza/CFOP, operação (entrada/saída), UF e regime tributário; reemitir.",
+    "tag": "CFOP",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "CFOP\\s*5104\\s*(inv(á|a)lido|n(ã|a)o\\s*permitido)",
+    "description": "CFOP 5104 incompatível com a natureza/finalidade ou UF.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição CFOP 5104 não permitido para UF PR",
+    "solution": "Ajustar natureza/CFOP, operação (entrada/saída), UF e regime tributário; reemitir.",
+    "tag": "CFOP",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "CFOP\\s*6101\\s*(inv(á|a)lido|n(ã|a)o\\s*permitido)",
+    "description": "CFOP 6101 incompatível com a natureza/finalidade ou UF.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição CFOP 6101 não permitido para UF MT",
+    "solution": "Ajustar natureza/CFOP, operação (entrada/saída), UF e regime tributário; reemitir.",
+    "tag": "CFOP",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "CFOP\\s*6102\\s*(inv(á|a)lido|n(ã|a)o\\s*permitido)",
+    "description": "CFOP 6102 incompatível com a natureza/finalidade ou UF.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição CFOP 6102 não permitido para UF PE",
+    "solution": "Ajustar natureza/CFOP, operação (entrada/saída), UF e regime tributário; reemitir.",
+    "tag": "CFOP",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "CFOP\\s*6108\\s*(inv(á|a)lido|n(ã|a)o\\s*permitido)",
+    "description": "CFOP 6108 incompatível com a natureza/finalidade ou UF.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição CFOP 6108 não permitido para UF SP",
+    "solution": "Ajustar natureza/CFOP, operação (entrada/saída), UF e regime tributário; reemitir.",
+    "tag": "CFOP",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "(CST|CSOSN)\\s*00\\s*(inv(á|a)lido|incompa)",
+    "description": "CST/CSOSN 00 incompatível com CFOP/regime tributário.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Incompatibilidade CST 00 x CFOP",
+    "solution": "Alinhar CST/CSOSN ao regime (SN/Normal) e natureza. Revisar regra fiscal do item.",
+    "tag": "ICMS",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "(CST|CSOSN)\\s*10\\s*(inv(á|a)lido|incompa)",
+    "description": "CST/CSOSN 10 incompatível com CFOP/regime tributário.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Incompatibilidade CST 10 x CFOP",
+    "solution": "Alinhar CST/CSOSN ao regime (SN/Normal) e natureza. Revisar regra fiscal do item.",
+    "tag": "ICMS",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "(CST|CSOSN)\\s*20\\s*(inv(á|a)lido|incompa)",
+    "description": "CST/CSOSN 20 incompatível com CFOP/regime tributário.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Incompatibilidade CST 20 x CFOP",
+    "solution": "Alinhar CST/CSOSN ao regime (SN/Normal) e natureza. Revisar regra fiscal do item.",
+    "tag": "ICMS",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "(CST|CSOSN)\\s*30\\s*(inv(á|a)lido|incompa)",
+    "description": "CST/CSOSN 30 incompatível com CFOP/regime tributário.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Incompatibilidade CST 30 x CFOP",
+    "solution": "Alinhar CST/CSOSN ao regime (SN/Normal) e natureza. Revisar regra fiscal do item.",
+    "tag": "ICMS",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "(CST|CSOSN)\\s*40\\s*(inv(á|a)lido|incompa)",
+    "description": "CST/CSOSN 40 incompatível com CFOP/regime tributário.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Incompatibilidade CST 40 x CFOP",
+    "solution": "Alinhar CST/CSOSN ao regime (SN/Normal) e natureza. Revisar regra fiscal do item.",
+    "tag": "ICMS",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "(CST|CSOSN)\\s*41\\s*(inv(á|a)lido|incompa)",
+    "description": "CST/CSOSN 41 incompatível com CFOP/regime tributário.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Incompatibilidade CST 41 x CFOP",
+    "solution": "Alinhar CST/CSOSN ao regime (SN/Normal) e natureza. Revisar regra fiscal do item.",
+    "tag": "ICMS",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "(CST|CSOSN)\\s*50\\s*(inv(á|a)lido|incompa)",
+    "description": "CST/CSOSN 50 incompatível com CFOP/regime tributário.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Incompatibilidade CST 50 x CFOP",
+    "solution": "Alinhar CST/CSOSN ao regime (SN/Normal) e natureza. Revisar regra fiscal do item.",
+    "tag": "ICMS",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "(CST|CSOSN)\\s*51\\s*(inv(á|a)lido|incompa)",
+    "description": "CST/CSOSN 51 incompatível com CFOP/regime tributário.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Incompatibilidade CST 51 x CFOP",
+    "solution": "Alinhar CST/CSOSN ao regime (SN/Normal) e natureza. Revisar regra fiscal do item.",
+    "tag": "ICMS",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "(CST|CSOSN)\\s*60\\s*(inv(á|a)lido|incompa)",
+    "description": "CST/CSOSN 60 incompatível com CFOP/regime tributário.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Incompatibilidade CST 60 x CFOP",
+    "solution": "Alinhar CST/CSOSN ao regime (SN/Normal) e natureza. Revisar regra fiscal do item.",
+    "tag": "ICMS",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "(CST|CSOSN)\\s*70\\s*(inv(á|a)lido|incompa)",
+    "description": "CST/CSOSN 70 incompatível com CFOP/regime tributário.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Incompatibilidade CST 70 x CFOP",
+    "solution": "Alinhar CST/CSOSN ao regime (SN/Normal) e natureza. Revisar regra fiscal do item.",
+    "tag": "ICMS",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "(CST|CSOSN)\\s*90\\s*(inv(á|a)lido|incompa)",
+    "description": "CST/CSOSN 90 incompatível com CFOP/regime tributário.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Incompatibilidade CST 90 x CFOP",
+    "solution": "Alinhar CST/CSOSN ao regime (SN/Normal) e natureza. Revisar regra fiscal do item.",
+    "tag": "ICMS",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "(CST|CSOSN)\\s*101\\s*(inv(á|a)lido|incompa)",
+    "description": "CST/CSOSN 101 incompatível com CFOP/regime tributário.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Incompatibilidade CST 101 x CFOP",
+    "solution": "Alinhar CST/CSOSN ao regime (SN/Normal) e natureza. Revisar regra fiscal do item.",
+    "tag": "ICMS",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "NCM\\s*0406\\.90\\.90\\s*(inv(á|a)lido|desatualizado)",
+    "description": "NCM 0406.90.90 inválido ou não consta na tabela vigente.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição por NCM 0406.90.90 inválido no item 1",
+    "solution": "Atualizar tabela NCM/TIPI, revisar vinculação CEST/benefícios e reemitir.",
+    "tag": "NCM",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "NCM\\s*0703\\.20\\.90\\s*(inv(á|a)lido|desatualizado)",
+    "description": "NCM 0703.20.90 inválido ou não consta na tabela vigente.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição por NCM 0703.20.90 inválido no item 1",
+    "solution": "Atualizar tabela NCM/TIPI, revisar vinculação CEST/benefícios e reemitir.",
+    "tag": "NCM",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "NCM\\s*1202\\.42\\.90\\s*(inv(á|a)lido|desatualizado)",
+    "description": "NCM 1202.42.90 inválido ou não consta na tabela vigente.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição por NCM 1202.42.90 inválido no item 1",
+    "solution": "Atualizar tabela NCM/TIPI, revisar vinculação CEST/benefícios e reemitir.",
+    "tag": "NCM",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "NCM\\s*1806\\.20\\.00\\s*(inv(á|a)lido|desatualizado)",
+    "description": "NCM 1806.20.00 inválido ou não consta na tabela vigente.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição por NCM 1806.20.00 inválido no item 1",
+    "solution": "Atualizar tabela NCM/TIPI, revisar vinculação CEST/benefícios e reemitir.",
+    "tag": "NCM",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "NCM\\s*2202\\.10\\.00\\s*(inv(á|a)lido|desatualizado)",
+    "description": "NCM 2202.10.00 inválido ou não consta na tabela vigente.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição por NCM 2202.10.00 inválido no item 1",
+    "solution": "Atualizar tabela NCM/TIPI, revisar vinculação CEST/benefícios e reemitir.",
+    "tag": "NCM",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "NCM\\s*2710\\.12\\.59\\s*(inv(á|a)lido|desatualizado)",
+    "description": "NCM 2710.12.59 inválido ou não consta na tabela vigente.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição por NCM 2710.12.59 inválido no item 1",
+    "solution": "Atualizar tabela NCM/TIPI, revisar vinculação CEST/benefícios e reemitir.",
+    "tag": "NCM",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "NCM\\s*3004\\.99\\.90\\s*(inv(á|a)lido|desatualizado)",
+    "description": "NCM 3004.99.90 inválido ou não consta na tabela vigente.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição por NCM 3004.99.90 inválido no item 1",
+    "solution": "Atualizar tabela NCM/TIPI, revisar vinculação CEST/benefícios e reemitir.",
+    "tag": "NCM",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "NCM\\s*3304\\.99\\.90\\s*(inv(á|a)lido|desatualizado)",
+    "description": "NCM 3304.99.90 inválido ou não consta na tabela vigente.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição por NCM 3304.99.90 inválido no item 1",
+    "solution": "Atualizar tabela NCM/TIPI, revisar vinculação CEST/benefícios e reemitir.",
+    "tag": "NCM",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "NCM\\s*3923\\.21\\.90\\s*(inv(á|a)lido|desatualizado)",
+    "description": "NCM 3923.21.90 inválido ou não consta na tabela vigente.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição por NCM 3923.21.90 inválido no item 1",
+    "solution": "Atualizar tabela NCM/TIPI, revisar vinculação CEST/benefícios e reemitir.",
+    "tag": "NCM",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "NCM\\s*4011\\.10\\.00\\s*(inv(á|a)lido|desatualizado)",
+    "description": "NCM 4011.10.00 inválido ou não consta na tabela vigente.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição por NCM 4011.10.00 inválido no item 1",
+    "solution": "Atualizar tabela NCM/TIPI, revisar vinculação CEST/benefícios e reemitir.",
+    "tag": "NCM",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "NCM\\s*6403\\.59\\.90\\s*(inv(á|a)lido|desatualizado)",
+    "description": "NCM 6403.59.90 inválido ou não consta na tabela vigente.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição por NCM 6403.59.90 inválido no item 1",
+    "solution": "Atualizar tabela NCM/TIPI, revisar vinculação CEST/benefícios e reemitir.",
+    "tag": "NCM",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "NCM\\s*7308\\.90\\.90\\s*(inv(á|a)lido|desatualizado)",
+    "description": "NCM 7308.90.90 inválido ou não consta na tabela vigente.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição por NCM 7308.90.90 inválido no item 1",
+    "solution": "Atualizar tabela NCM/TIPI, revisar vinculação CEST/benefícios e reemitir.",
+    "tag": "NCM",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "NCM\\s*8203\\.20\\.10\\s*(inv(á|a)lido|desatualizado)",
+    "description": "NCM 8203.20.10 inválido ou não consta na tabela vigente.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição por NCM 8203.20.10 inválido no item 1",
+    "solution": "Atualizar tabela NCM/TIPI, revisar vinculação CEST/benefícios e reemitir.",
+    "tag": "NCM",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "NCM\\s*8407\\.90\\.90\\s*(inv(á|a)lido|desatualizado)",
+    "description": "NCM 8407.90.90 inválido ou não consta na tabela vigente.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição por NCM 8407.90.90 inválido no item 1",
+    "solution": "Atualizar tabela NCM/TIPI, revisar vinculação CEST/benefícios e reemitir.",
+    "tag": "NCM",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "NCM\\s*8507\\.20\\.10\\s*(inv(á|a)lido|desatualizado)",
+    "description": "NCM 8507.20.10 inválido ou não consta na tabela vigente.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição por NCM 8507.20.10 inválido no item 1",
+    "solution": "Atualizar tabela NCM/TIPI, revisar vinculação CEST/benefícios e reemitir.",
+    "tag": "NCM",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "NCM\\s*8517\\.12\\.31\\s*(inv(á|a)lido|desatualizado)",
+    "description": "NCM 8517.12.31 inválido ou não consta na tabela vigente.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição por NCM 8517.12.31 inválido no item 1",
+    "solution": "Atualizar tabela NCM/TIPI, revisar vinculação CEST/benefícios e reemitir.",
+    "tag": "NCM",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "NCM\\s*8703\\.22\\.90\\s*(inv(á|a)lido|desatualizado)",
+    "description": "NCM 8703.22.90 inválido ou não consta na tabela vigente.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição por NCM 8703.22.90 inválido no item 1",
+    "solution": "Atualizar tabela NCM/TIPI, revisar vinculação CEST/benefícios e reemitir.",
+    "tag": "NCM",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "NCM\\s*9001\\.10\\.90\\s*(inv(á|a)lido|desatualizado)",
+    "description": "NCM 9001.10.90 inválido ou não consta na tabela vigente.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição por NCM 9001.10.90 inválido no item 1",
+    "solution": "Atualizar tabela NCM/TIPI, revisar vinculação CEST/benefícios e reemitir.",
+    "tag": "NCM",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "CEST\\s*(inv(á|a)lido|ausente)",
+    "description": "CEST inválido ou ausente quando exigido pela UF.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição 778 - CEST do item inválido",
+    "solution": "Preencher CEST conforme NCM e regras de ST da UF; atualizar cadastro do item.",
+    "tag": "CEST",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "(DIFAL|Partilha\\s*ICMS|FCP)\\s*(inv(á|a)lido|ausente)",
+    "description": "Informações de DIFAL/Partilha/FCP inconsistentes.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "DIFAL não calculado para operação interestadual",
+    "solution": "Configurar alíquotas interestaduais, FCP e partilha (origem/destino). Recalcular.",
+    "tag": "ICMS",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "(Falha\\s*no\\s*schema|XML\\s*inv(á|a)lido)",
+    "description": "XML inválido (estrutura/schema).",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "XML inválido (estrutura/schema).",
+    "solution": "Conferir layout da versão, tags obrigatórias e tipos; reemitir.",
+    "tag": "XML",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Chave\\s*de\\s*acesso\\s*(inv(á|a)lida|DV\\s*inv(á|a)lido)",
+    "description": "Chave de acesso inválida.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Chave de acesso inválida.",
+    "solution": "Regenerar chave conforme UF, ano, CNPJ, série e número; validar DV.",
+    "tag": "Chave",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "CS-?e|Carta\\s*de\\s*Corre(ç|c)ão\\s*inv(á|a)lida",
+    "description": "Dados inválidos na CC-e.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Dados inválidos na CC-e.",
+    "solution": "Revisar o que é permitido corrigir via CC-e; emitir nova NF-e se necessário.",
+    "tag": "Cancelamento",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "NFC-e.*(CSC|Token)\\s*(inv(á|a)lido|ausente)",
+    "description": "NFC-e com CSC/Token inválido.",
+    "category": "FAT/NFCe",
+    "severity": "Alto",
+    "example": "NFC-e com CSC/Token inválido.",
+    "solution": "Configurar CSC/Token e ambiente no TSS/TC; validar série e QRCode.",
+    "tag": "NFC-e",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "NFC-e.*QRCode\\s*(inv(á|a)lido)",
+    "description": "QRCode inválido para NFC-e.",
+    "category": "FAT/NFCe",
+    "severity": "Alto",
+    "example": "QRCode inválido para NFC-e.",
+    "solution": "Ajustar URL de consulta e geração do QRCode no TSS/TC; reemitir.",
+    "tag": "NFC-e",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "NFS-e.*C(ó|o)digo\\s*de\\s*Servi(ç|c)o\\s*(inv(á|a)lido|inexistente)",
+    "description": "Código de serviço inválido em NFS-e.",
+    "category": "FAT/NFSe",
+    "severity": "Médio",
+    "example": "Código de serviço inválido em NFS-e.",
+    "solution": "Usar código válido conforme lista do município; revisar CNAE e alíquota.",
+    "tag": "NFSe",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "NFS-e.*(CNPJ|CPF)\\s*do\\s*tomador\\s*(inv(á|a)lido)",
+    "description": "Documento do tomador inválido na NFS-e.",
+    "category": "FAT/NFSe",
+    "severity": "Médio",
+    "example": "Documento do tomador inválido na NFS-e.",
+    "solution": "Corrigir CPF/CNPJ do tomador no cadastro e reemitir o RPS.",
+    "tag": "NFSe",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Duplicata\\s*n(ã|a)o\\s*gerada",
+    "description": "Duplicata não gerada após emissão.",
+    "category": "Financeiro/Integração",
+    "severity": "Médio",
+    "example": "Duplicata não gerada após emissão.",
+    "solution": "Revisar parametrização de duplicata e condição de pagamento; reprocessar integração.",
+    "tag": "Financeiro",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Parcelas\\s*divergentes\\s*da\\s*nota",
+    "description": "Parcelas divergentes do total da NF.",
+    "category": "Financeiro/Integração",
+    "severity": "Médio",
+    "example": "Parcelas divergentes do total da NF.",
+    "solution": "Uniformizar prazos/valores; garantir soma = total da NF.",
+    "tag": "Financeiro",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "T(í|i)tulo\\s*a\\s*receber\\s*n(ã|a)o\\s*atualizado",
+    "description": "Título a receber não atualizado.",
+    "category": "Financeiro/Integração",
+    "severity": "Médio",
+    "example": "Título a receber não atualizado.",
+    "solution": "Sincronizar AR com FAT; reprocessar rotina de integração AR.",
+    "tag": "Financeiro",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "T(í|i)tulo\\s*a\\s*pagar\\s*pendente",
+    "description": "Título a pagar pendente bloqueando desatualização.",
+    "category": "Financeiro/Integração",
+    "severity": "Médio",
+    "example": "Título a pagar pendente bloqueando desatualização.",
+    "solution": "Quitar/estornar título no AP; refazer desatualização.",
+    "tag": "Financeiro",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Border(ô|o)\\s*inexistente",
+    "description": "Vínculo de borderô inexistente/errado.",
+    "category": "Financeiro/Integração",
+    "severity": "Médio",
+    "example": "Vínculo de borderô inexistente/errado.",
+    "solution": "Criar/ajustar borderô e refazer vínculo com o título.",
+    "tag": "Financeiro",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "CFOP\\s*do\\s*pedido\\s*diverge\\s*da\\s*NF",
+    "description": "Divergência de CFOP entre pedido e NF de entrada.",
+    "category": "MRE/Recebimento",
+    "severity": "Médio",
+    "example": "Divergência de CFOP entre pedido e NF de entrada.",
+    "solution": "Alinhar natureza/CFOP no pedido e no documento de entrada.",
+    "tag": "Compras",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Fornecedor.*IE\\s*(inv(á|a)lida|ausente)",
+    "description": "IE do fornecedor inválida/ausente.",
+    "category": "MRE/Recebimento",
+    "severity": "Médio",
+    "example": "IE do fornecedor inválida/ausente.",
+    "solution": "Atualizar IE do fornecedor; validar inscrição na SEFAZ.",
+    "tag": "Compras",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Base\\s*ICMS\\s*origem\\s*diferente\\s*do\\s*pedido",
+    "description": "Base ICMS origem difere do pedido.",
+    "category": "MRE/Recebimento",
+    "severity": "Médio",
+    "example": "Base ICMS origem difere do pedido.",
+    "solution": "Revisar base de cálculo, alíquota e benefícios; alinhar pedido e documento.",
+    "tag": "Compras",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Lote\\s*inexistente\\s*no\\s*estoque",
+    "description": "Lote inexistente em estoque.",
+    "category": "Estoque/Logística",
+    "severity": "Médio",
+    "example": "Lote inexistente em estoque.",
+    "solution": "Cadastrar/ajustar lote e executar acerto de estoque.",
+    "tag": "Estoque",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Saldo\\s*insuficiente\\s*para\\s*baixa",
+    "description": "Saldo insuficiente na baixa de estoque.",
+    "category": "Estoque/Logística",
+    "severity": "Médio",
+    "example": "Saldo insuficiente na baixa de estoque.",
+    "solution": "Regularizar saldo (entrada/acerto) e refazer a baixa.",
+    "tag": "Estoque",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Endere(ç|c)amento\\s*inv(á|a)lido",
+    "description": "Endereçamento inválido no depósito.",
+    "category": "Estoque/Logística",
+    "severity": "Médio",
+    "example": "Endereçamento inválido no depósito.",
+    "solution": "Ajustar endereçamento no cadastro e movimentar corretivamente.",
+    "tag": "Estoque",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Ordem\\s*de\\s*produ(ç|c)ão\\s*n(ã|a)o\\s*encontrada",
+    "description": "OP não encontrada.",
+    "category": "PCP/Chão de Fábrica",
+    "severity": "Médio",
+    "example": "OP não encontrada.",
+    "solution": "Verificar número/filial; reabrir ou recriar a OP.",
+    "tag": "Produção",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Estrutura\\s*do\\s*produto\\s*inv(á|a)lida",
+    "description": "Estrutura/BOM inválida para a OP.",
+    "category": "PCP/Chão de Fábrica",
+    "severity": "Médio",
+    "example": "Estrutura/BOM inválida para a OP.",
+    "solution": "Revisar estrutura e roteiros; reprocessar MRP e liberar OP.",
+    "tag": "Produção",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Aponta(mento)?\\s*inv(á|a)lido",
+    "description": "Apontamento de produção inválido.",
+    "category": "PCP/Chão de Fábrica",
+    "severity": "Médio",
+    "example": "Apontamento de produção inválido.",
+    "solution": "Conferir recursos, tempos e quantidades; corrigir e reapontar.",
+    "tag": "Produção",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "SPED.*Registro\\s*inv(á|a)lido",
+    "description": "Registro inválido no SPED.",
+    "category": "Fiscal/SPED",
+    "severity": "Médio",
+    "example": "Registro inválido no SPED.",
+    "solution": "Validar campos do registro e regras da EFD; corrigir e regerar.",
+    "tag": "SPED",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "EFD.*CFOP\\s*n(ã|a)o\\s*condiz",
+    "description": "EFD: CFOP não condiz com operação.",
+    "category": "Fiscal/SPED",
+    "severity": "Médio",
+    "example": "EFD: CFOP não condiz com operação.",
+    "solution": "Ajustar CFOP no documento e refazer a EFD.",
+    "tag": "SPED",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "SPED.*CST\\s*incompat(í|i)vel",
+    "description": "SPED: CST incompatível.",
+    "category": "Fiscal/SPED",
+    "severity": "Médio",
+    "example": "SPED: CST incompatível.",
+    "solution": "Rever CST conforme regra da EFD; reprocessar.",
+    "tag": "SPED",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Appserver.*(nao|não)\\s*responde|log\\s*4gb",
+    "description": "AppServer não responde / log do broker gigante.",
+    "category": "Infra/Framework",
+    "severity": "Médio",
+    "example": "AppServer não responde / log do broker gigante.",
+    "solution": "Rotacionar/deletar logs >4GB e reiniciar broker; revisar política de logs.",
+    "tag": "Infra",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Erro\\s*4124|erro\\s*secund(á|a)rio",
+    "description": "Erro Progress 4124 (secundário).",
+    "category": "Infra/Framework",
+    "severity": "Médio",
+    "example": "Erro Progress 4124 (secundário).",
+    "solution": "Gerar clientlog, identificar erro primário e corrigir causa raiz.",
+    "tag": "Sessão",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "broker\\s*de\\s*conex(ã|a)o\\s*inv(á|a)lido",
+    "description": "Broker de conexão inválido para a empresa.",
+    "category": "Infra/Framework",
+    "severity": "Médio",
+    "example": "Broker de conexão inválido para a empresa.",
+    "solution": "Conferir BTB962AA, cadastro de brokers e PROPATH; ajustar.",
+    "tag": "Infra",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "(1984|1985).*(client\\s*monitor|clientlog|logginglevel)",
+    "description": "Erros 1984/1985 de client monitor.",
+    "category": "Infra/Framework",
+    "severity": "Médio",
+    "example": "Erros 1984/1985 de client monitor.",
+    "solution": "Ajustar/remover -clientlog/-logginglevel/-logentrytypes no .pf ou corrigir caminho/permissão.",
+    "tag": "Sessão",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "dataserv\\.lg.*(errno\\s*87|11076)",
+    "description": "dataserv.lg com erro de abertura.",
+    "category": "Infra/Framework",
+    "severity": "Médio",
+    "example": "dataserv.lg com erro de abertura.",
+    "solution": "Setar DSLOGDIR ou -dslog para diretório válido do dataserv.lg.",
+    "tag": "DataServer",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "erro\\s*progress\\s*1247|arquivo\\s*\\.pf.*erro\\s*2\\s*\\(1247\\)",
+    "description": "Erro Progress 1247 (arquivo .pf).",
+    "category": "Infra/Framework",
+    "severity": "Médio",
+    "example": "Erro Progress 1247 (arquivo .pf).",
+    "solution": "Usar caminho UNC \\\\servidor\\pasta\\arquivo.pf; revisar alteração de navegador.",
+    "tag": "Sessão",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "LITERAL.*fora\\s*de\\s*FRAME.*\\(5905\\)",
+    "description": "Literal fora de FRAME (5905).",
+    "category": "Infra/Framework",
+    "severity": "Médio",
+    "example": "Literal fora de FRAME (5905).",
+    "solution": "No .ini, ajustar DefaultFixedFont=Courier New.",
+    "tag": "Relatório",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Erro\\s*no\\s*login\\s*do\\s*produto\\s*Datasul",
+    "description": "Erro de login genérico.",
+    "category": "Infra/Framework",
+    "severity": "Médio",
+    "example": "Erro de login genérico.",
+    "solution": "Checar logs de Tomcat/AppServer e PROPATH; ajustar ambiente.",
+    "tag": "Sessão",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Ocorreu\\s*um\\s*erro\\s*ao\\s*localizar\\s*o\\s*broker",
+    "description": "Erro ao localizar broker pós upgrade.",
+    "category": "Infra/Framework",
+    "severity": "Médio",
+    "example": "Erro ao localizar broker pós upgrade.",
+    "solution": "Atualizar cadastro_appserver.num_id conforme orientação; revisar upgrade scripts.",
+    "tag": "Infra",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Procedure:",
+    "description": "Linha de log com prefixo 'Procedure:' detectada (gatilho de mensagem).",
+    "category": "Framework/Log",
+    "severity": "Alto",
+    "example": "Procedure: prg/rotina.p Linha: 123 Usuário: ABC",
+    "solution": "Revisar a Procedure mencionada na linha do log (stack/chamada) e validar parâmetros/ambiente.",
+    "tag": "Pontos de Atenção",
+    "source": "Trigger interno"
+  },
+  {
+    "pattern": "LOG:MANAGER",
+    "description": "Linha de log do tipo 'LOG:MANAGER' detectada (gatilho de mensagem).",
+    "category": "Infra/Log",
+    "severity": "Alto",
+    "example": "LOG:MANAGER - rotation scheduled, file limit reached",
+    "solution": "Checar mensagens do LOG:MANAGER e eventos próximos para a causa raiz; verificar rotação e políticas de log.",
+    "tag": "Pontos de Atenção",
+    "source": "Trigger interno"
+  },
+  {
+    "pattern": "LOCK TABLE OVERFLOW",
+    "description": "Tabela de locks excedida.",
+    "category": "DataServer/DB",
+    "severity": "Alto",
+    "example": "Tabela de locks excedida.",
+    "solution": "Aumentar -L nos parâmetros de banco (OpenEdge) e revisar transações prolongadas.",
+    "tag": "Banco de Dados",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Too many clients.*connected",
+    "description": "Excesso de clientes conectados ao DB.",
+    "category": "DataServer/DB",
+    "severity": "Alto",
+    "example": "Excesso de clientes conectados ao DB.",
+    "solution": "Ajustar -n (número de conexões) e revisar pools; encerrar sessões zumbis.",
+    "tag": "Banco de Dados",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "No servers available.*(MSBroker|AppServer)",
+    "description": "Sem servidores disponíveis para atender.",
+    "category": "DataServer/DB",
+    "severity": "Alto",
+    "example": "Sem servidores disponíveis para atender.",
+    "solution": "Aumentar servidores no broker, revisar queue e timeouts; checar recursos do host.",
+    "tag": "Infra",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Invalid user or password",
+    "description": "Usuário/senha do banco inválidos.",
+    "category": "DataServer/DB",
+    "severity": "Alto",
+    "example": "Usuário/senha do banco inválidos.",
+    "solution": "Conferir credenciais no .pf/.ini/alias; resetar senha se necessário.",
+    "tag": "Banco de Dados",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "dbanalys.*errors|bi file too small",
+    "description": "BI pequeno/corrompido.",
+    "category": "DataServer/DB",
+    "severity": "Alto",
+    "example": "BI pequeno/corrompido.",
+    "solution": "Executar proutil -C truncate BI (em manutenção) e configurar BI adequado.",
+    "tag": "Banco de Dados",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "After-imaging.*disabled",
+    "description": "After-imaging desativado.",
+    "category": "DataServer/DB",
+    "severity": "Alto",
+    "example": "After-imaging desativado.",
+    "solution": "Habilitar AI e rotação; política de backup/recuperação.",
+    "tag": "Banco de Dados",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "AI file full|Cannot extend AI",
+    "description": "Arquivo de AI cheio.",
+    "category": "DataServer/DB",
+    "severity": "Alto",
+    "example": "Arquivo de AI cheio.",
+    "solution": "Rotacionar AI, aumentar extensão e automatizar rotação.",
+    "tag": "Banco de Dados",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "BKUP.*failed",
+    "description": "Backup falhou no OpenEdge.",
+    "category": "DataServer/DB",
+    "severity": "Alto",
+    "example": "Backup falhou no OpenEdge.",
+    "solution": "Validar permissões/paths; garantir espaço e janelas de backup.",
+    "tag": "Banco de Dados",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "PROPATH.*invalid",
+    "description": "PROPATH inválido/desordenado.",
+    "category": "DataServer/DB",
+    "severity": "Alto",
+    "example": "PROPATH inválido/desordenado.",
+    "solution": "Reordenar PROPATH; evitar diretórios TTY e entradas obsoletas.",
+    "tag": "Sessão",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Permission denied.*dataserv\\.lg",
+    "description": "Sem permissão no dataserv.lg.",
+    "category": "DataServer/DB",
+    "severity": "Alto",
+    "example": "Sem permissão no dataserv.lg.",
+    "solution": "Garantir permissões/grupo no diretório de logs e ajustar DSLOGDIR.",
+    "tag": "DataServer",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "HTTP Status 500|NullPointerException|IllegalStateException",
+    "description": "Erro 500 no Tomcat/PASOE.",
+    "category": "Infra/Tomcat",
+    "severity": "Alto",
+    "example": "Erro 500 no Tomcat/PASOE.",
+    "solution": "Ler stacktrace no catalina.out; corrigir variáveis de ambiente e libs; reiniciar instância.",
+    "tag": "Infra",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Connection refused.*AppServer",
+    "description": "Recusa de conexão ao AppServer.",
+    "category": "Infra/Tomcat",
+    "severity": "Alto",
+    "example": "Recusa de conexão ao AppServer.",
+    "solution": "Validar host/porta, firewall, broker e serviços em execução.",
+    "tag": "Infra",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "SSLHandshakeException|certificate.*expired",
+    "description": "Erro de certificado expirado.",
+    "category": "Infra/Tomcat",
+    "severity": "Alto",
+    "example": "Erro de certificado expirado.",
+    "solution": "Renovar certificado, ajustar truststore/keystore e reiniciar.",
+    "tag": "Infra",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "OutOfMemoryError|\\bJava heap space",
+    "description": "Heap da JVM esgotado.",
+    "category": "Infra/Tomcat",
+    "severity": "Alto",
+    "example": "Heap da JVM esgotado.",
+    "solution": "Ajustar -Xmx/-Xms; revisar vazamento de memória e cargas.",
+    "tag": "Infra",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Timeout waiting for response",
+    "description": "Timeout em chamada AppServer/PASOE.",
+    "category": "Infra/Tomcat",
+    "severity": "Alto",
+    "example": "Timeout em chamada AppServer/PASOE.",
+    "solution": "Aumentar timeouts e investigar lentidão em DB/rede.",
+    "tag": "Infra",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Romaneio\\s*inv(á|a)lido|Romaneio\\s*n(ã|a)o\\s*encontrado",
+    "description": "Romaneio inválido ou ausente.",
+    "category": "WMS/Expedição",
+    "severity": "Médio",
+    "example": "Romaneio inválido ou ausente.",
+    "solution": "Regerar romaneio e conferir notas vinculadas.",
+    "tag": "Logística",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Etiqueta\\s*inv(á|a)lida|ZPL\\s*erro",
+    "description": "Erro na etiqueta/Impressão ZPL.",
+    "category": "WMS/Expedição",
+    "severity": "Médio",
+    "example": "Erro na etiqueta/Impressão ZPL.",
+    "solution": "Revisar template ZPL, driver e mapeamento de dados.",
+    "tag": "Logística",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Transportadora\\s*n(ã|a)o\\s*parametrizada",
+    "description": "Transportadora não parametrizada.",
+    "category": "WMS/Expedição",
+    "severity": "Médio",
+    "example": "Transportadora não parametrizada.",
+    "solution": "Cadastrar transportadora e regras de frete/CFOP; vincular à filial.",
+    "tag": "Logística",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Webhook.*falhou|HTTP\\s*401|HTTP\\s*403",
+    "description": "Falha em webhook/autorização.",
+    "category": "Integrações/API",
+    "severity": "Médio",
+    "example": "Falha em webhook/autorização.",
+    "solution": "Validar tokens/chaves e IPs autorizados; retentar fila.",
+    "tag": "Integração",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "JSON\\s*inv(á|a)lido|Campo\\s*obrigatório\\s*ausente",
+    "description": "Payload JSON inválido/ausente.",
+    "category": "Integrações/API",
+    "severity": "Médio",
+    "example": "Payload JSON inválido/ausente.",
+    "solution": "Ajustar payload conforme contrato (Swagger); incluir campos obrigatórios.",
+    "tag": "Integração",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "URL\\s*de\\s*retorno\\s*inv(á|a)lida",
+    "description": "URL de retorno inválida.",
+    "category": "Integrações/API",
+    "severity": "Médio",
+    "example": "URL de retorno inválida.",
+    "solution": "Corrigir endpoint e certificados; testar via curl/Postman.",
+    "tag": "Integração",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Acesso\\s*negado|Permiss(ã|a)o\\s*insuficiente",
+    "description": "Permissão insuficiente para a rotina.",
+    "category": "Framework/Segurança",
+    "severity": "Médio",
+    "example": "Permissão insuficiente para a rotina.",
+    "solution": "Incluir permissões no grupo/usuário para o programa e dados da filial.",
+    "tag": "Segurança",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Usu(á|a)rio\\s*bloqueado|Senha\\s*expirada",
+    "description": "Usuário bloqueado/senha expirada.",
+    "category": "Framework/Segurança",
+    "severity": "Médio",
+    "example": "Usuário bloqueado/senha expirada.",
+    "solution": "Desbloquear usuário, resetar senha, aplicar política de senhas.",
+    "tag": "Segurança",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Hist(ó|o)rico\\s*de\\s*altera(ç|c)(õ|o)es\\s*inconsistente",
+    "description": "Trilha de auditoria inconsistente.",
+    "category": "Auditoria/Logs",
+    "severity": "Médio",
+    "example": "Trilha de auditoria inconsistente.",
+    "solution": "Executar rotina de rebuild/reindex; validar triggers de auditoria.",
+    "tag": "Auditoria",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "LOG:MANAGER.*rotate.*fail",
+    "description": "Falha na rotação de logs.",
+    "category": "Auditoria/Logs",
+    "severity": "Médio",
+    "example": "Falha na rotação de logs.",
+    "solution": "Ajustar permissões e limites; garantir espaço em disco e política de rotação.",
+    "tag": "Infra",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Prazo\\s*de\\s*pagamento\\s*inv(á|a)lido",
+    "description": "Condição de pagamento inválida.",
+    "category": "Faturamento/Negócio",
+    "severity": "Médio",
+    "example": "Condição de pagamento inválida.",
+    "solution": "Cadastrar/ajustar condição e refazer integração FAT↔AP/AR.",
+    "tag": "Financeiro",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Cliente\\s*sem\\s*IE\\s*para\\s*opera(ç|c)(ã|a)o",
+    "description": "Cliente sem IE para operação.",
+    "category": "Faturamento/Negócio",
+    "severity": "Médio",
+    "example": "Cliente sem IE para operação.",
+    "solution": "Atualizar IE/ISENTO conforme regra UF; ajustar natureza da operação.",
+    "tag": "Faturamento",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "CNPJ/CPF\\s*inv(á|a)lido\\s*no\\s*cadastro",
+    "description": "CNPJ/CPF inválido.",
+    "category": "Faturamento/Negócio",
+    "severity": "Médio",
+    "example": "CNPJ/CPF inválido.",
+    "solution": "Corrigir documento no cadastro; validar com Receita/SEFAZ.",
+    "tag": "Cadastro",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Desconto\\s*al(é|e)m\\s*do\\s*permitido",
+    "description": "Desconto acima do permitido.",
+    "category": "Faturamento/Negócio",
+    "severity": "Médio",
+    "example": "Desconto acima do permitido.",
+    "solution": "Ajustar limite de desconto no cadastro de condições e aprovações.",
+    "tag": "Vendas",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "Tributa(ç|c)ão\\s*de\\s*IPI\\s*inv(á|a)lida",
+    "description": "IPI inválido no item.",
+    "category": "Faturamento/Negócio",
+    "severity": "Médio",
+    "example": "IPI inválido no item.",
+    "solution": "Definir CST/aliquota de IPI correta no item e regra fiscal.",
+    "tag": "IPI",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "PIS/COFINS\\s*inv(á|a)lido",
+    "description": "PIS/COFINS inválidos.",
+    "category": "Faturamento/Negócio",
+    "severity": "Médio",
+    "example": "PIS/COFINS inválidos.",
+    "solution": "Ajustar CST/aliquota PIS/COFINS; validar cumulativo/não cumulativo.",
+    "tag": "PIS",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "FT1259\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de FT em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "FT1259 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "EE8933\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de EE em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "EE8933 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "AR8594\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de AR em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "AR8594 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "CD2495\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de CD em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "CD2495 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "CD2874\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de CD em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "CD2874 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "FT9242\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de FT em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "FT9242 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "AP5093\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de AP em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "AP5093 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "FT9865\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de FT em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "FT9865 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "AP2123\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de AP em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "AP2123 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "AR2457\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de AR em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "AR2457 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "AR1753\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de AR em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "AR1753 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "EE2033\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de EE em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "EE2033 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "EF5954\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de EF em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "EF5954 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "AP6820\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de AP em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "AP6820 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "EE5082\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de EE em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "EE5082 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "EF4277\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de EF em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "EF4277 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "AP9686\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de AP em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "AP9686 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "EF1316\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de EF em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "EF1316 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "AR2156\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de AR em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "AR2156 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "FT6464\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de FT em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "FT6464 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "CD8746\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de CD em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "CD8746 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "EF7182\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de EF em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "EF7182 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "CD1887\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de CD em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "CD1887 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "FT9135\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de FT em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "FT9135 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "CD2234\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de CD em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "CD2234 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "AR4524\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de AR em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "AR4524 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "CD1444\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de CD em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "CD1444 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "EE2816\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de EE em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "EE2816 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "AR3313\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de AR em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "AR3313 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "EF6003\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de EF em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "EF6003 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "AP1648\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de AP em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "AP1648 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "AP5534\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de AP em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "AP5534 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "EF1658\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de EF em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "EF1658 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "CD5451\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de CD em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "CD5451 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "CD5919\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de CD em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "CD5919 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "CD8610\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de CD em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "CD8610 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "FT7327\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de FT em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "FT7327 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "EE9124\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de EE em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "EE9124 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "EE8669\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de EE em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "EE8669 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "AP1742\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de AP em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "AP1742 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "AP3784\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de AP em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "AP3784 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "AP9506\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de AP em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "AP9506 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "AP5844\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de AP em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "AP5844 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "EE3029\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de EE em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "EE3029 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "CD7821\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de CD em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "CD7821 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "AP2957\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de AP em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "AP2957 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  },
+  {
+    "pattern": "AR2689\\s*-\\s*Erro\\s*(execu(ç|c)ão|processamento)",
+    "description": "Erro de AR em processamento.",
+    "category": "Programa/Rotina",
+    "severity": "Médio",
+    "example": "AR2689 - Erro processamento",
+    "solution": "Verificar log detalhado, parâmetros e dados de entrada; reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul knowledge base (consolidated)"
+  }
+]

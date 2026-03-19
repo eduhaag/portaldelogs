@@ -1,0 +1,118 @@
+<div class="app-shell" [class.app-shell--collapsed]="sidebarCollapsed" [class.app-shell--auth]="isAuthRoute">
+  @if (!isAuthRoute) {
+  <button type="button" class="sidebar-backdrop" [class.sidebar-backdrop--visible]="shouldShowMobileSidebar"
+    (click)="closeMobileSidebar()" aria-label="Fechar menu lateral"></button>
+
+  <aside class="sidebar" [class.sidebar--collapsed]="shouldCollapseSidebar"
+    [class.sidebar--mobile-open]="shouldShowMobileSidebar">
+    <div class="sidebar__header">
+      <div class="brand-lockup" [class.brand-lockup--collapsed]="shouldCollapseSidebar">
+        <div class="brand-mark"></div>
+        @if (!shouldCollapseSidebar) {
+        <span class="brand-text">TOTVS</span>
+        }
+      </div>
+    </div>
+
+    <nav class="sidebar__nav">
+      @for (item of visibleSidebarItems; track item.id) {
+      <div class="sidebar-item" [class.sidebar-item--active]="isItemActive(item)">
+        <button type="button" class="sidebar-item__trigger" (click)="toggleSection(item)" [title]="item.label">
+          <span class="sidebar-item__main">
+            <span class="sidebar-item__icon an" [class]="'sidebar-item__icon an ' + item.icon"></span>
+            @if (!shouldCollapseSidebar) {
+            <span class="sidebar-item__label">{{ item.label }}</span>
+            }
+          </span>
+
+          @if (item.children?.length && !shouldCollapseSidebar) {
+          <span class="sidebar-item__caret" [class.sidebar-item__caret--open]="isSectionOpen(item)"></span>
+          }
+        </button>
+
+        @if (item.children?.length && isSectionOpen(item) && !shouldCollapseSidebar) {
+        <div class="sidebar-subnav">
+          @for (child of item.children; track child.label) {
+          <button type="button" class="sidebar-subnav__item"
+            [class.sidebar-subnav__item--active]="isRouteActive(child.route)" (click)="navigateTo(child.route)">
+            {{ child.label }}
+          </button>
+          }
+        </div>
+        }
+      </div>
+      }
+    </nav>
+
+    <div class="sidebar__footer">
+      <div class="sidebar__footer-actions">
+        <button type="button" class="sidebar__toggle" (click)="toggleSidebar()" [title]="sidebarToggleTitle">
+          <span class="sidebar__toggle-icon an" [class]="'sidebar__toggle-icon an ' + sidebarToggleIcon"></span>
+        </button>
+      </div>
+    </div>
+  </aside>
+  }
+
+  <main class="main-panel" [class.main-panel--auth]="isAuthRoute">
+    @if (!isAuthRoute) {
+    <header class="workspace-header">
+      <div class="workspace-header__content">
+        <div class="workspace-header__topbar">
+          <span class="workspace-header__eyebrow">TOTVS Log Intelligence</span>
+          <div class="workspace-header__actions">
+            <button type="button" class="workspace-header__menu-button" (click)="toggleSidebar()"
+              aria-label="Abrir menu lateral">
+              <span class="an"
+                [class]="isMobileViewport && shouldShowMobileSidebar ? 'an-menu-close' : 'an-list'"></span>
+            </button>
+
+            <button type="button" class="workspace-header__logout-button" (click)="logout()" title="Sair"
+              aria-label="Sair">
+              <span class="an an-sign-out"></span>
+            </button>
+
+            <div class="workspace-header__user-tools">
+              <button type="button" class="workspace-header__avatar-button" (click)="toggleUserMenu($event)"
+                aria-label="Abrir dados do usuário">
+                <po-avatar [p-src]="userAvatarSrc" p-size="sm"></po-avatar>
+              </button>
+
+              @if (userMenuOpen) {
+              <div class="workspace-header__user-menu">
+                <div class="workspace-header__user-menu-header">
+                  <strong>{{ currentUserLabel }}</strong>
+                  @if (currentUserEmail) {
+                  <span>{{ currentUserEmail }}</span>
+                  }
+                </div>
+
+                <div class="workspace-header__credential-row">
+                  <span>Usuário</span>
+                  <strong>{{ currentUsername || '-' }}</strong>
+                </div>
+
+                <div class="workspace-header__credential-row">
+                  <span>Senha</span>
+                  <strong>{{ rememberedPassword }}</strong>
+                </div>
+              </div>
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="workspace-header__body">
+          <h1>Analisador de Logs</h1>
+          <p> Progress/OpenEdge, PASOE, AppServer, Datasul, Logix, TOTVS, HTTP/Web, Sistema/Rede e
+            Database.</p>
+        </div>
+      </div>
+    </header>
+    }
+
+    <div class="main-panel__content" [class.main-panel__content--auth]="isAuthRoute">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

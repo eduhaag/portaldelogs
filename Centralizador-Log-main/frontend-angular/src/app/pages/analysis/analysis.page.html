@@ -1,0 +1,815 @@
+<po-page-default>
+    <po-modal #patternModal class="modal-shell--pattern" p-title="Adicionar novo padrão">
+        <div class="modal-grid modal-grid--pattern">
+            <div class="modal-hero">
+                <div class="modal-hero__icon modal-hero__icon--green">
+                    <span class="modal-hero__symbol an an-plus"></span>
+                </div>
+                <div>
+                    <strong>Novo padrão</strong>
+                    <p>Cadastre regras personalizadas com validação, descrição funcional e solução recomendada.</p>
+                </div>
+            </div>
+
+            <div class="two-columns">
+                <po-input name="pattern" [(ngModel)]="customPatternForm.pattern" p-label="Padrão"
+                    p-placeholder="Regex ou texto base"></po-input>
+                <po-input name="partialPattern" [(ngModel)]="customPatternForm.partial_pattern" p-label="Padrão parcial"
+                    p-placeholder="Trecho auxiliar opcional"></po-input>
+            </div>
+
+            <div class="two-columns">
+                <po-input name="patternDescription" [(ngModel)]="customPatternForm.description"
+                    p-label="Descrição"></po-input>
+                <div class="file-picker">
+                    <label for="patternExample">Linha de log de exemplo</label>
+                    <textarea id="patternExample" [(ngModel)]="customPatternForm.example" name="patternExample" rows="3"
+                        placeholder="Linha de log de exemplo"></textarea>
+                </div>
+            </div>
+
+            <div class="two-columns">
+                <po-select name="customCategory" [ngModel]="customPatternForm.category"
+                    (ngModelChange)="customPatternForm.category = $event" p-label="Categoria"
+                    [p-options]="customCategoryOptions"></po-select>
+
+                <po-select name="customSeverity" [ngModel]="customPatternForm.severity"
+                    (ngModelChange)="customPatternForm.severity = $event" p-label="Severidade"
+                    [p-options]="customSeverityOptions"></po-select>
+            </div>
+
+            <div class="file-picker">
+                <label for="patternSolution">Solução</label>
+                <input id="patternSolution" type="text" [(ngModel)]="customPatternForm.solution" name="patternSolution"
+                    placeholder="Informe a solução recomendada" />
+            </div>
+
+            <div class="action-row">
+                <po-button p-label="Testar padrão" (p-click)="testCustomPattern()"
+                    [p-disabled]="managementLoading"></po-button>
+                <po-button p-kind="primary" p-label="Salvar padrão" (p-click)="saveCustomPattern()"
+                    [p-disabled]="managementLoading"></po-button>
+                <po-button p-label="Limpar" (p-click)="clearLearningForms()"
+                    [p-disabled]="managementLoading"></po-button>
+            </div>
+
+            @if (patternTestResult; as testResult) {
+            <div class="info-box">
+                <div><strong>Válido:</strong> {{ testResult.test_summary.pattern_valid ? 'Sim' : 'Não' }}</div>
+                <div><strong>Taxa de match:</strong> {{ testResult.test_summary.match_rate }}%</div>
+                <div><strong>Matches:</strong> {{ testResult.test_summary.matches_found }} / {{
+                    testResult.test_summary.total_tests }}</div>
+            </div>
+            }
+        </div>
+    </po-modal>
+
+    <po-modal #cleanerModal p-title="Limpar Log Progress">
+        <div class="modal-grid">
+            <div class="modal-hero">
+                <div class="modal-hero__icon modal-hero__icon--purple">
+                    <span class="modal-hero__symbol an an-funnel"></span>
+                </div>
+                <div>
+                    <strong>Limpa Log</strong>
+                    <p>Selecione as categorias desejadas e gere um arquivo limpo, preservando apenas o conteúdo útil.
+                    </p>
+                </div>
+            </div>
+
+            <div class="cleaner-steps">
+                <span [class.cleaner-step--active]="cleanerStep === 1">1. Upload</span>
+                <span [class.cleaner-step--active]="cleanerStep === 2">2. Categorias</span>
+                <span [class.cleaner-step--active]="cleanerStep === 3">3. Resultado</span>
+            </div>
+
+            @if (cleanerStep === 1) {
+            <div class="page-grid">
+                <div class="file-picker">
+                    <label for="cleanerFile">Arquivo para limpeza</label>
+                    <input #cleanerFileInput class="file-picker__native" id="cleanerFile" type="file"
+                        accept=".log,.txt,.gz" (change)="onCleanerFileSelected($event)" />
+                    <div class="file-picker__control">
+                        <po-button p-label="Selecionar arquivo" (p-click)="cleanerFileInput.click()"></po-button>
+                        <span class="file-picker__filename">{{ cleanerFile?.name || 'Nenhum arquivo selecionado'
+                            }}</span>
+                    </div>
+                    <span class="helper-text">Suportamos arquivos .log, .txt e .gz para análise de categorias.</span>
+                </div>
+
+                <div class="action-row">
+                    <po-button p-kind="primary" p-label="Ler categorias" (p-click)="analyzeCleanerCategories()"
+                        [p-disabled]="cleanerLoading || !cleanerFile"></po-button>
+                    <po-button p-label="Reiniciar" (p-click)="resetCleanerWorkflow()"
+                        [p-disabled]="cleanerLoading"></po-button>
+                </div>
+            </div>
+            }
+
+            @if (cleanerStep === 2) {
+            <div class="page-grid">
+                <div class="info-box">
+                    <div><strong>Arquivo:</strong> {{ cleanerCategoryAnalysis?.filename }}</div>
+                    <div><strong>Linhas:</strong> {{ cleanerCategoryAnalysis?.total_lines }}</div>
+                    <div><strong>Categorias encontradas:</strong> {{ cleanerCategoryItems.length }}</div>
+                </div>
+
+                <div class="detail-list">
+                    @for (item of cleanerCategoryItems; track item.key) {
+                    <div class="detail-item detail-item--stacked cleaner-category">
+                        <div class="detail-item__header">
+                            <po-checkbox name="cleaner_{{ item.key }}" [ngModel]="isCleanerCategorySelected(item.key)"
+                                (ngModelChange)="toggleCleanerCategory(item.key, $event)"
+                                [p-label]="item.displayName"></po-checkbox>
+                            <po-tag [p-value]="item.count + ' linha(s)'"></po-tag>
+                        </div>
+                        @if (item.samples.length > 0) {
+                        <div class="helper-text">{{ item.samples[0] }}</div>
+                        }
+                    </div>
+                    }
+                </div>
+
+                <div class="action-row">
+                    <po-button p-kind="primary" p-label="Limpar log" (p-click)="cleanSelectedCategories()"
+                        [p-disabled]="cleanerLoading || selectedCleanerCategories.length === 0"></po-button>
+                    <po-button p-label="Voltar" (p-click)="cleanerStep = 1" [p-disabled]="cleanerLoading"></po-button>
+                </div>
+            </div>
+            }
+
+            @if (cleanerStep === 3) {
+            <div class="page-grid">
+                <div class="success-box">Log limpo com sucesso. O arquivo foi baixado automaticamente.</div>
+
+                @if (cleanerResultStats; as stats) {
+                <div class="two-columns">
+                    <po-widget p-title="Linhas originais">
+                        <div class="widget-stat widget-stat--small">{{ stats['original_lines'] ?? '-' }}</div>
+                    </po-widget>
+                    <po-widget p-title="Linhas removidas">
+                        <div class="widget-stat widget-stat--small">{{ stats['removed_lines'] ?? '-' }}</div>
+                    </po-widget>
+                </div>
+                }
+
+                <div class="action-row">
+                    <po-button p-kind="primary" p-label="Nova limpeza" (p-click)="resetCleanerWorkflow()"></po-button>
+                </div>
+            </div>
+            }
+
+            @if (cleanerLoading) {
+            <po-loading-overlay [p-screen-lock]="false"></po-loading-overlay>
+            }
+        </div>
+    </po-modal>
+
+    <po-modal #splitterModal p-title="Dividir arquivo de log">
+        <div class="modal-grid">
+            <div class="modal-hero">
+                <div class="modal-hero__icon modal-hero__icon--navy">
+                    <span class="modal-hero__symbol an an-files"></span>
+                </div>
+                <div>
+                    <strong>Quebrar arquivo grande</strong>
+                    <p>Envie um log texto e escolha a quantidade de linhas por parte para gerar vários arquivos menores.
+                    </p>
+                </div>
+            </div>
+
+            <div class="file-picker">
+                <label for="splitterFile">Arquivo de log/texto</label>
+                <input #splitterFileInput class="file-picker__native" id="splitterFile" type="file"
+                    accept=".log,.txt,.out" (change)="onSplitterFileSelected($event)" />
+                <div class="file-picker__control">
+                    <po-button p-label="Selecionar arquivo" (p-click)="splitterFileInput.click()"></po-button>
+                    <span class="file-picker__filename">{{ splitterFile?.name || 'Nenhum arquivo selecionado' }}</span>
+                </div>
+                <span class="helper-text">O arquivo será devolvido em um pacote .zip com todas as partes menores.</span>
+            </div>
+
+            <po-select name="splitLinesPerChunk" [ngModel]="splitLinesPerChunk"
+                (ngModelChange)="splitLinesPerChunk = $event" p-label="Quebrar a cada"
+                [p-options]="splitChunkOptions"></po-select>
+
+            @if (splitResultStats; as splitStats) {
+            <div class="info-box">
+                <div><strong>Arquivo:</strong> {{ splitStats.original_filename }}</div>
+                <div><strong>Total de linhas:</strong> {{ splitStats.total_lines }}</div>
+                <div><strong>Linhas por arquivo:</strong> {{ splitStats.lines_per_chunk }}</div>
+                <div><strong>Arquivos gerados:</strong> {{ splitStats.generated_files }}</div>
+            </div>
+            }
+
+            <div class="action-row">
+                <po-button p-kind="primary" p-label="Dividir arquivo" (p-click)="splitLargeLogFile()"
+                    [p-disabled]="splitLoading || !splitterFile"></po-button>
+                <po-button p-label="Reiniciar" (p-click)="resetSplitWorkflow()" [p-disabled]="splitLoading"></po-button>
+            </div>
+
+            @if (splitLoading) {
+            <po-loading-overlay [p-screen-lock]="false"></po-loading-overlay>
+            }
+        </div>
+    </po-modal>
+
+    <po-modal #profilerModal p-title="Análise de Performance - Profiler Progress">
+        <div class="modal-grid">
+            <div class="modal-hero">
+                <div class="modal-hero__icon modal-hero__icon--orange">
+                    <span class="modal-hero__symbol an an-chart-bar"></span>
+                </div>
+                <div>
+                    <strong>Profiler</strong>
+                    <p>Leia o arquivo .out do Progress e visualize gargalos, tempo total e volume de chamadas.</p>
+                </div>
+            </div>
+
+            <div class="file-picker">
+                <label for="profilerFile">Arquivo Profiler (.out)</label>
+                <input #profilerFileInput class="file-picker__native" id="profilerFile" type="file" accept=".out,.txt"
+                    (change)="onProfilerFileSelected($event)" />
+                <div class="file-picker__control">
+                    <po-button p-label="Selecionar arquivo" (p-click)="profilerFileInput.click()"></po-button>
+                    <span class="file-picker__filename">{{ profilerFile?.name || 'Nenhum arquivo selecionado' }}</span>
+                </div>
+                <span class="helper-text">Carregue o arquivo .out do Progress Profiler conforme a lógica do
+                    backend.</span>
+            </div>
+
+            
+            <div class="action-row">
+                <po-button p-kind="primary" p-label="Analisar arquivo profiler" (p-click)="analyzeProfilerFile()"
+                    [p-disabled]="profilerLoading || !profilerFile"></po-button>
+                <po-button p-label="Limpar seleção" (p-click)="resetProfilerWorkflow()"
+                    [p-disabled]="profilerLoading"></po-button>
+            </div>
+
+            @if (profilerLoading) {
+            <po-loading-overlay [p-screen-lock]="false"></po-loading-overlay>
+            }
+        </div>
+    </po-modal>
+
+    <po-modal #versionCompareModal p-title="Extrato de Versão">
+        <div class="modal-grid">
+            <div class="modal-hero">
+                <div class="modal-hero__icon modal-hero__icon--teal">
+                    <span class="modal-hero__symbol an an-share"></span>
+                </div>
+                <div>
+                    <strong>Extrato de Versão</strong>
+                    <p>Envie o extrato do cliente para comparar versões, fixes e diferenças encontradas na base oficial.
+                    </p>
+                </div>
+            </div>
+
+            <div class="file-picker">
+                <label for="versionCompareFile">Extrato do cliente</label>
+                <input #versionCompareFileInput class="file-picker__native" id="versionCompareFile" type="file"
+                    accept=".log,.txt" (change)="onVersionCompareFileSelected($event)" />
+                <div class="file-picker__control">
+                    <po-button p-label="Selecionar arquivo" (p-click)="versionCompareFileInput.click()"></po-button>
+                    <span class="file-picker__filename">{{ versionCompareFile?.name || 'Nenhum arquivo selecionado'
+                        }}</span>
+                </div>
+                <span class="helper-text">Selecione o extrato para o backend executar a leitura do comparador de
+                    versões.</span>
+            </div>
+
+            @if (versionCompareStatus; as status) {
+            <div class="info-box">
+                <div><strong>Diretório base:</strong> {{ status.base_lib_directory }}</div>
+                <div><strong>Bases indexadas:</strong> {{ status.indexed_bases }}</div>
+                <div><strong>Fixes indexadas:</strong> {{ status.indexed_fixes }}</div>
+                <div><strong>Versões indexadas:</strong> {{ status.indexed_program_versions }}</div>
+            </div>
+            }
+
+            <div class="action-row">
+                <po-button p-label="Recarregar índice" (p-click)="reloadVersionIndex()"
+                    [p-disabled]="versionCompareLoading"></po-button>
+                <po-button p-kind="primary" p-label="Ler extrato" (p-click)="runVersionCompare()"
+                    [p-disabled]="versionCompareLoading || !versionCompareFile"></po-button>
+                <po-button p-label="Abrir central" (p-click)="openVersionCompare()"></po-button>
+            </div>
+
+            @if (versionCompareLoading) {
+            <po-loading-overlay [p-screen-lock]="false"></po-loading-overlay>
+            }
+
+            @if (versionCompareResult) {
+            <div class="cards-grid cards-grid--compact inside-grid">
+                @for (card of versionCompareSummaryCards; track card.label) {
+                <po-widget [p-title]="card.label">
+                    <div class="widget-stat widget-stat--small">{{ card.value }}</div>
+                </po-widget>
+                }
+            </div>
+
+            @if (versionCompareRows.length > 0) {
+            <div class="detail-list inside-grid">
+                @for (item of versionCompareRows.slice(0, 8); track item.programa) {
+                <div class="detail-item detail-item--stacked">
+                    <div class="detail-item__header">
+                        <strong>{{ item.programa }}</strong>
+                        <po-tag p-value="Diferença detectada"></po-tag>
+                    </div>
+                    <div class="helper-text">
+                        Extrato: {{ item.versao_extrato }} | Correta: {{ item.versao_correta }}
+                    </div>
+                </div>
+                }
+            </div>
+            }
+
+            <po-tabs>
+                <po-tab [p-label]="outdatedTabLabel">
+                    <po-table [p-columns]="versionCompareColumns" [p-items]="versionCompareRows"></po-table>
+                </po-tab>
+
+                <po-tab [p-label]="okTabLabel">
+                    <po-table [p-columns]="versionCompareColumns" [p-items]="versionCompareOkRows"></po-table>
+                </po-tab>
+
+                <po-tab [p-label]="notFoundTabLabel">
+                    <po-table [p-columns]="versionCompareColumns" [p-items]="versionCompareNotFoundRows"></po-table>
+                </po-tab>
+
+                <po-tab [p-label]="upcTabLabel">
+                    <po-table [p-columns]="upcColumns" [p-items]="versionCompareUpcRows"></po-table>
+                </po-tab>
+            </po-tabs>
+            }
+        </div>
+    </po-modal>
+
+    <po-modal #performanceModal p-title="Performance">
+        <div class="modal-grid modal-grid--performance">
+            <div class="modal-hero">
+                <div class="modal-hero__icon modal-hero__icon--red">
+                    <span class="modal-hero__symbol an an-gauge"></span>
+                </div>
+                <div>
+                    <strong>Performance</strong>
+                    <p>Consulte os indicadores de lentidão, operações críticas e alertas específicos gerados pelo
+                        backend.</p>
+                </div>
+            </div>
+
+            @if (hasPerformanceData) {
+            <div class="cards-grid cards-grid--compact inside-grid">
+                @for (card of performanceSummaryCards; track card.label) {
+                <po-widget [p-title]="card.label">
+                    <div class="widget-stat widget-stat--small">{{ card.value }}</div>
+                </po-widget>
+                }
+            </div>
+
+            <div class="info-box performance-hint-box">
+                <strong>Resumo rápido no modal</strong>
+                <p class="helper-text">Para evitar excesso de informação e rolagem, o modal mostra apenas uma visão
+                    resumida. Use a central de performance para explorar todos os dados.</p>
+            </div>
+
+            <po-tabs>
+                <po-tab p-label="Programas e operações">
+                    <div class="chart-grid chart-grid--performance">
+                        <po-widget p-title="Programas lentos">
+                            <po-table [p-columns]="performanceColumns"
+                                [p-items]="slowProgramRows.slice(0, 5)"></po-table>
+                        </po-widget>
+
+                        <po-widget p-title="Operações lentas">
+                            <po-table [p-columns]="performanceColumns"
+                                [p-items]="slowOperationRows.slice(0, 5)"></po-table>
+                        </po-widget>
+                    </div>
+                </po-tab>
+
+                <po-tab p-label="Métodos e alertas">
+                    <div class="chart-grid chart-grid--performance">
+                        <po-widget p-title="Top métodos">
+                            <po-table [p-columns]="topMethodColumns" [p-items]="topMethodRows.slice(0, 5)"></po-table>
+                        </po-widget>
+
+                        <po-widget p-title="Alertas específicos">
+                            <po-table [p-columns]="performanceColumns"
+                                [p-items]="specificAlertRows.slice(0, 5)"></po-table>
+                        </po-widget>
+                    </div>
+                </po-tab>
+
+                <po-tab p-label="Top programas e métodos">
+                    <po-widget p-title="Ranking principal">
+                        <po-table [p-columns]="topProgramColumns" [p-items]="topProgramRows.slice(0, 8)"></po-table>
+                    </po-widget>
+                </po-tab>
+            </po-tabs>
+            } @else {
+            <div class="info-box">
+                <strong>Performance a partir da análise</strong>
+                <p class="helper-text">O modal já está preparado com componentes PO UI e grids para receber o retorno do
+                    backend. Execute primeiro a análise do log para popular os blocos de performance.</p>
+            </div>
+            }
+
+            <div class="action-row">
+                <po-button p-label="Analisar logs" (p-click)="openAnalyzeLogPage()"></po-button>
+                <po-button p-kind="primary" p-label="Abrir central de performance"
+                    (p-click)="openPerformanceView()"></po-button>
+            </div>
+        </div>
+    </po-modal>
+
+    <po-modal #knowledgeModal p-title="Base de conhecimento">
+        <div class="modal-grid">
+            <div class="modal-hero">
+                <div class="modal-hero__icon modal-hero__icon--navy">
+                    <span class="modal-hero__symbol an an-book-open"></span>
+                </div>
+                <div>
+                    <strong>Base de conhecimento</strong>
+                    <p>Pesquise diretamente no banco para localizar padrões, sintomas, severidades e soluções
+                        conhecidas.</p>
+                </div>
+            </div>
+
+            <po-input name="knowledgeSearch" [(ngModel)]="knowledgeSearchTerm" p-label="Termo de busca"
+                p-placeholder="Ex.: DataServer, Rejeição 999, 18215"></po-input>
+
+            <div class="quick-actions">
+                @for (term of knowledgeQuickTerms; track term) {
+                <button type="button" class="quick-chip" (click)="applyKnowledgeQuickTerm(term)">{{ term }}</button>
+                }
+            </div>
+
+            <div class="action-row">
+                <po-button p-kind="primary" p-label="Pesquisar" (p-click)="searchKnowledgeBase()"
+                    [p-disabled]="knowledgeLoading"></po-button>
+                <po-dropdown p-label="Ações" [p-actions]="knowledgeActions"></po-dropdown>
+                <po-button p-label="Abrir central" (p-click)="openKnowledgeBase()"></po-button>
+            </div>
+
+            @if (knowledgeLoading) {
+            <po-loading-overlay [p-screen-lock]="false"></po-loading-overlay>
+            }
+
+            @if (knowledgeRecentTerms.length > 0) {
+            <div>
+                <strong>Consultas recentes</strong>
+                <div class="quick-actions top-gap">
+                    @for (term of knowledgeRecentTerms; track trackKnowledgeTerm(term)) {
+                    <button type="button" class="quick-chip quick-chip--subtle"
+                        (click)="selectKnowledgeRecentTerm(term)">{{ term }}</button>
+                    }
+                </div>
+            </div>
+            }
+
+            @if (knowledgeMatches.length > 0) {
+            <div class="cards-grid cards-grid--compact inside-grid">
+                <po-widget p-title="Total encontrado">
+                    <div class="widget-stat widget-stat--small">{{ knowledgeTotalFound }}</div>
+                </po-widget>
+                <po-widget p-title="Itens exibidos">
+                    <div class="widget-stat widget-stat--small">{{ knowledgeReturnedCount }}</div>
+                </po-widget>
+                @for (stat of knowledgeSourceStats; track stat.key) {
+                <po-widget [p-title]="stat.key">
+                    <div class="widget-stat widget-stat--small">{{ stat.value }}</div>
+                </po-widget>
+                }
+            </div>
+
+            <div class="filter-row">
+                <po-select class="filter-control" name="knowledgeSourceFilter" [ngModel]="knowledgeSourceFilter"
+                    (ngModelChange)="knowledgeSourceFilter = $event; applyKnowledgeFilters()" p-label="Origem"
+                    [p-options]="knowledgeSourceFilterOptions"></po-select>
+
+                <po-select class="filter-control" name="knowledgeSeverityFilter" [ngModel]="knowledgeSeverityFilter"
+                    (ngModelChange)="knowledgeSeverityFilter = $event; applyKnowledgeFilters()" p-label="Severidade"
+                    [p-options]="knowledgeSeverityFilterOptions"></po-select>
+            </div>
+
+            @if (knowledgeTruncated) {
+            <div class="info-box">Exibindo {{ knowledgeReturnedCount }} de {{ knowledgeTotalFound }} resultado(s),
+                limitado a {{ knowledgeResultLimit }} itens por consulta.</div>
+            } @else {
+            <div class="info-box">Exibindo {{ knowledgeReturnedCount }} resultado(s) retornados pelo backend.</div>
+            }
+
+            <po-table [p-columns]="knowledgeColumns" [p-items]="knowledgeFilteredItems"></po-table>
+
+            <div class="detail-list">
+                @for (match of knowledgeMatches; track match.code + match.type + match.source) {
+                <div class="detail-item">
+                    <div>
+                        <strong>{{ match.type }} {{ match.code ? '(' + match.code + ')' : '' }}</strong>
+                        <div class="helper-text">{{ match.description }}</div>
+                        <div class="match-meta-row">
+                            <po-tag [p-value]="match.severity || 'Sem severidade'"></po-tag>
+                            <span class="helper-text">{{ match.source }}</span>
+                        </div>
+                    </div>
+                    <po-button p-label="Detalhes" (p-click)="selectKnowledgeMatch(match)"></po-button>
+                </div>
+                }
+            </div>
+
+            @if (selectedKnowledgeMatch; as match) {
+            <div class="modal-detail">
+                <div><strong>Tipo</strong>{{ match.type }}</div>
+                <div><strong>Código</strong>{{ match.code || '-' }}</div>
+                <div><strong>Categoria</strong>{{ match.category || '-' }}</div>
+                <div><strong>Severidade</strong>{{ match.severity || '-' }}</div>
+                <div><strong>Descrição</strong>{{ match.description || '-' }}</div>
+                <div><strong>Solução</strong>{{ match.solution || '-' }}</div>
+                <div><strong>Exemplo</strong>{{ match.example || '-' }}</div>
+                <div><strong>Padrão</strong>{{ match.pattern || '-' }}</div>
+                <div><strong>Origem</strong>{{ match.source || '-' }}</div>
+            </div>
+            }
+            } @else {
+            <div class="info-box">
+                <strong>Consulta unificada</strong>
+                <p class="helper-text">Pesquise diretamente na base salva no backend para consultar códigos, padrões,
+                    sintomas, soluções e fontes como Datasul, LOGIX, TOTVS e customizados.</p>
+            </div>
+            }
+        </div>
+    </po-modal>
+
+    <po-modal #datasulModal class="modal-shell--datasul" p-title="Catálogo Datasul">
+        <div class="modal-grid modal-grid--datasul">
+            <div class="modal-hero">
+                <div class="modal-hero__icon modal-hero__icon--blue">
+                    <span class="modal-hero__symbol an an-database"></span>
+                </div>
+                <div>
+                    <strong>Catálogo de padrões Datasul</strong>
+                    <p>Consulte estatísticas do carregador, categorias disponíveis, padrões mais usados e force a
+                        atualização do cache do backend.</p>
+                </div>
+            </div>
+
+            <div class="datasul-summary-grid">
+                @for (card of datasulSummaryCards; track card.label) {
+                <div class="datasul-summary-card">
+                    <span class="datasul-summary-card__label">{{ card.label }}</span>
+                    <strong class="datasul-summary-card__value">{{ card.value }}</strong>
+                </div>
+                }
+            </div>
+
+            <div class="action-row">
+                <po-button p-label="Atualizar catálogo" (p-click)="refreshDatasulCatalog()"
+                    [p-disabled]="datasulLoading"></po-button>
+            </div>
+
+            @if (datasulLoading) {
+            <po-loading-overlay [p-screen-lock]="false"></po-loading-overlay>
+            }
+
+            <div class="chart-grid">
+                <po-widget p-title="Categorias">
+                    <po-table [p-columns]="breakdownColumns" [p-items]="datasulCategoryRows"></po-table>
+                </po-widget>
+
+                <po-widget p-title="Prioridades">
+                    <po-table [p-columns]="breakdownColumns" [p-items]="datasulPriorityRows"></po-table>
+                </po-widget>
+            </div>
+
+            <po-widget p-title="Padrões mais usados">
+                <po-table [p-columns]="performanceColumns" [p-items]="datasulMostUsedRows"></po-table>
+            </po-widget>
+
+            <po-widget p-title="Padrões Datasul carregados">
+                <po-table [p-columns]="datasulPatternColumns" [p-items]="datasulPatternRows"></po-table>
+            </po-widget>
+        </div>
+    </po-modal>
+
+    <div #dashboardStart class="page-grid">
+        @if (errorMessage) {
+        <div class="error-box">{{ errorMessage }}</div>
+        }
+
+        @if (successMessage) {
+        <div class="success-box">{{ successMessage }}</div>
+        }
+
+        <div class="welcome-block">
+            <h1>Bem-vindo,</h1>
+            <p>Selecione um módulo para começar.</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <po-widget class="dashboard-card dashboard-card--hero">
+                <button type="button" class="dashboard-card__button" (click)="openAnalyzeLogPage()">
+                    <span class="dashboard-card__icon dashboard-card__icon--blue an an-upload-simple"></span>
+                    <div class="dashboard-card__content">
+                        <strong>Analisar logs</strong>
+                        <span>Executar pré-análise, processamento completo e exportação CSV.</span>
+                    </div>
+                    <span class="dashboard-card__arrow an an-caret-right"></span>
+                </button>
+            </po-widget>
+
+            <po-widget class="dashboard-card">
+                <button type="button" class="dashboard-card__button" (click)="cleanerModal.open()">
+                    <span class="dashboard-card__icon dashboard-card__icon--purple an an-funnel"></span>
+                    <div class="dashboard-card__content">
+                        <strong>Limpa Log</strong>
+                        <span>Selecionar categorias e baixar o arquivo limpo.</span>
+                    </div>
+                    <span class="dashboard-card__arrow an an-caret-right"></span>
+                </button>
+            </po-widget>
+
+            <po-widget class="dashboard-card">
+                <button type="button" class="dashboard-card__button" (click)="splitterModal.open()">
+                    <span class="dashboard-card__icon dashboard-card__icon--navy an an-files"></span>
+                    <div class="dashboard-card__content">
+                        <strong>Dividir Log</strong>
+                        <span>Quebrar arquivos grandes em partes menores de 50 a 250 mil linhas.</span>
+                    </div>
+                    <span class="dashboard-card__arrow an an-caret-right"></span>
+                </button>
+            </po-widget>
+
+            <po-widget class="dashboard-card">
+                <button type="button" class="dashboard-card__button" (click)="patternModal.open()">
+                    <span class="dashboard-card__icon dashboard-card__icon--green an an-plus"></span>
+                    <div class="dashboard-card__content">
+                        <strong>Novo Padrão</strong>
+                        <span>Cadastrar, testar e salvar novos padrões customizados.</span>
+                    </div>
+                    <span class="dashboard-card__arrow an an-caret-right"></span>
+                </button>
+            </po-widget>
+
+            <po-widget class="dashboard-card">
+                <button type="button" class="dashboard-card__button" (click)="versionCompareModal.open()">
+                    <span class="dashboard-card__icon dashboard-card__icon--teal an an-swap"></span>
+                    <div class="dashboard-card__content">
+                        <strong>Extrato de Versão</strong>
+                        <span>Adicionar o extrato do cliente, processar no backend e retornar o resultado no
+                            frontend.</span>
+                    </div>
+                    <span class="dashboard-card__arrow an an-caret-right"></span>
+                </button>
+            </po-widget>
+
+            <po-widget class="dashboard-card">
+                <button type="button" class="dashboard-card__button" (click)="profilerModal.open()">
+                    <span class="dashboard-card__icon dashboard-card__icon--orange an an-chart-bar"></span>
+                    <div class="dashboard-card__content">
+                        <strong>Profiler</strong>
+                        <span>Carregar .out e visualizar gargalos do Progress.</span>
+                    </div>
+                    <span class="dashboard-card__arrow an an-caret-right"></span>
+                </button>
+            </po-widget>
+
+            <po-widget class="dashboard-card">
+                <button type="button" class="dashboard-card__button" (click)="performanceModal.open()">
+                    <span class="dashboard-card__icon dashboard-card__icon--red an an-gauge"></span>
+                    <div class="dashboard-card__content">
+                        <strong>Performance</strong>
+                        <span>Visualizar leituras de lentidão e indicadores operacionais.</span>
+                    </div>
+                    <span class="dashboard-card__arrow an an-caret-right"></span>
+                </button>
+            </po-widget>
+
+            <po-widget class="dashboard-card">
+                <button type="button" class="dashboard-card__button" (click)="knowledgeModal.open()">
+                    <span class="dashboard-card__icon dashboard-card__icon--navy an an-book-open"></span>
+                    <div class="dashboard-card__content">
+                        <strong>Base de conhecimento</strong>
+                        <span>Pesquisar padrões, sintomas, severidades e soluções.</span>
+                    </div>
+                    <span class="dashboard-card__arrow an an-caret-right"></span>
+                </button>
+            </po-widget>
+
+            <po-widget class="dashboard-card">
+                <button type="button" class="dashboard-card__button" (click)="datasulModal.open()">
+                    <span class="dashboard-card__icon dashboard-card__icon--blue an an-database"></span>
+                    <div class="dashboard-card__content">
+                        <strong>Catálogo Datasul</strong>
+                        <span>Consultar estatísticas, padrões e atualizar o cache Datasul do backend.</span>
+                    </div>
+                    <span class="dashboard-card__arrow an an-caret-right"></span>
+                </button>
+            </po-widget>
+
+            <po-widget class="dashboard-card">
+                <button type="button" class="dashboard-card__button" (click)="openEvidenceRegister()">
+                    <span class="dashboard-card__icon dashboard-card__icon--purple an an-note-pencil"></span>
+                    <div class="dashboard-card__content">
+                        <strong>Registro de Evidência</strong>
+                        <span>Centralizar anexos, descrições e histórico de evidências ligadas ao atendimento.</span>
+                    </div>
+                    <span class="dashboard-card__arrow an an-caret-right"></span>
+                </button>
+            </po-widget>
+
+            <po-widget class="dashboard-card">
+                <button type="button" class="dashboard-card__button" (click)="openIssueControl()">
+                    <span class="dashboard-card__icon dashboard-card__icon--red an an-list-check"></span>
+                    <div class="dashboard-card__content">
+                        <strong>Controle de Issues</strong>
+                        <span>Organizar pendências, responsáveis, prioridade e acompanhamento de issues do
+                            suporte.</span>
+                    </div>
+                    <span class="dashboard-card__arrow an an-caret-right"></span>
+                </button>
+            </po-widget>
+        </div>
+
+        <div class="dashboard-stats-grid">
+            @for (item of dashboardStats; track item.label) {
+            <po-widget [p-title]="item.label">
+                <div class="widget-stat">{{ item.value }}</div>
+                <div class="helper-text">{{ item.detail }}</div>
+            </po-widget>
+            }
+        </div>
+
+        @if (profilerResult) {
+        <po-widget p-title="Resultado do Profiler">
+            <div class="cards-grid cards-grid--compact inside-grid">
+                @for (card of profilerOverviewCards; track card.label) {
+                <po-widget [p-title]="card.label">
+                    <div class="widget-stat widget-stat--small">{{ card.value }}</div>
+                </po-widget>
+                }
+            </div>
+
+            <div class="chart-grid inside-grid">
+                <po-widget p-title="Top bottlenecks">
+                    <po-table [p-columns]="profilerColumns" [p-items]="profilerRows"></po-table>
+                </po-widget>
+
+                <po-widget p-title="Recomendações e saúde da sessão">
+                    <po-table [p-columns]="recommendationColumns" [p-items]="profilerRecommendationRows"></po-table>
+                    <div class="top-gap-small"></div>
+                    <po-table [p-columns]="breakdownColumns" [p-items]="profilerCallTreeStatRows"></po-table>
+                </po-widget>
+            </div>
+
+            <div class="chart-grid inside-grid">
+                <po-widget p-title="Top módulos por tempo total">
+                    <po-table [p-columns]="profilerModuleColumns" [p-items]="profilerTopByTimeRows"></po-table>
+                </po-widget>
+
+                <po-widget p-title="Top módulos por chamadas">
+                    <po-table [p-columns]="profilerModuleColumns" [p-items]="profilerTopByCallsRows"></po-table>
+                </po-widget>
+            </div>
+
+            <div class="chart-grid inside-grid">
+                <po-widget p-title="Top módulos por tempo médio">
+                    <po-table [p-columns]="profilerModuleColumns" [p-items]="profilerTopByAvgRows"></po-table>
+                </po-widget>
+
+                <po-widget p-title="Módulos com indício de gargalo">
+                    <po-table [p-columns]="profilerIssueColumns" [p-items]="profilerProblemRows"></po-table>
+                </po-widget>
+            </div>
+
+            <po-widget p-title="Árvore de chamadas">
+                <po-table [p-columns]="profilerCallTreeColumns" [p-items]="profilerCallTreeRows"></po-table>
+            </po-widget>
+        </po-widget>
+        }
+
+        <div class="chart-grid">
+            <po-widget p-title="Histórico de análises">
+                <po-table [p-columns]="historyColumns" [p-items]="historyRows"></po-table>
+            </po-widget>
+
+            <po-widget p-title="Padrões customizados ativos">
+                @if (customPatterns.length > 0) {
+                <div class="detail-list compact-list">
+                    @for (pattern of customPatterns.slice(0, 8); track pattern.id) {
+                    <div class="detail-item">
+                        <div>
+                            <strong>{{ pattern.pattern }}</strong>
+                            <div class="helper-text">{{ pattern.description }}</div>
+                        </div>
+                        <po-button p-label="Remover" (p-click)="removeCustomPattern(pattern.id)"></po-button>
+                    </div>
+                    }
+                </div>
+                } @else {
+                <p class="helper-text">Nenhum padrão customizado ativo.</p>
+                }
+            </po-widget>
+        </div>
+    </div>
+</po-page-default>

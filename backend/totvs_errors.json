@@ -1,0 +1,181 @@
+[
+  {
+    "pattern": "Lote.*n[ãa]o possui saldo para a s[eé]rie.*\\(18215\\)|\\(18215\\).*Lote.*saldo.*s[eé]rie",
+    "description": "O item possui controle de lote e série simultâneos, e o sistema não encontrou a combinação específica para baixa.",
+    "category": "Materiais/Rastreabilidade",
+    "severity": "Alto",
+    "code": "18215",
+    "example": "Lote <lote> não possui saldo para a série <série>. (18215)",
+    "solution": "Verificar a rastreabilidade no CE0222 e garantir que a série informada pertence ao lote selecionado.",
+    "tag": "Rastreabilidade",
+    "reference": "TOTVS Materiais - Rastreabilidade Automática"
+  },
+  {
+    "pattern": "N[ãa]o existe aloca[cç][aã]o f[íi]sica para o item.*endere[cç]o.*\\(52001\\)|\\(52001\\).*aloca[cç][aã]o f[íi]sica",
+    "description": "No módulo WMS, o sistema tentou realizar uma separação em um endereço onde o estoque físico não foi confirmado ou está reservado.",
+    "category": "Logística/WMS",
+    "severity": "Alto",
+    "code": "52001",
+    "example": "Não existe alocação física para o item <item> no endereço <end>. (52001)",
+    "solution": "Realizar o inventário do endereço ou conferir se há ordens de separação pendentes para o mesmo local.",
+    "tag": "WMS",
+    "reference": "TOTVS Logística - WMS"
+  },
+  {
+    "pattern": "Centro de Custo.*n[ãa]o aceita lan[cç]amentos diretos.*\\(17055\\)|\\(17055\\).*Centro de Custo",
+    "description": "O Centro de Custo está parametrizado como 'Sintético' ou 'Agrupador', impedindo movimentos diretos de estoque ou finanças.",
+    "category": "Controladoria/Custos",
+    "severity": "Médio",
+    "code": "17055",
+    "example": "Centro de Custo <cc> não aceita lançamentos diretos. (17055)",
+    "solution": "Informar um Centro de Custo analítico no lançamento.",
+    "tag": "Custos",
+    "reference": "TOTVS Controladoria - Custos"
+  },
+  {
+    "pattern": "transa[cç][aã]o de estoque.*custo m[eé]dio negativo.*\\(17275\\)|\\(17275\\).*custo m[eé]dio negativo",
+    "description": "Configuração no CE0101 que impede transações que causem distorção no cálculo do custo médio (Geralmente em estornos).",
+    "category": "Manufatura/Custos",
+    "severity": "Crítico",
+    "code": "17275",
+    "example": "A transação de estoque resultará em custo médio negativo. (17275)",
+    "solution": "Verificar se as entradas de valor ocorreram antes da baixa que está sendo estornada.",
+    "tag": "Custos",
+    "reference": "TOTVS Manufatura - Custos (MAG)"
+  },
+  {
+    "pattern": "Configurador de Produtos.*Estrutura inv[aá]lida.*vari[aá]vel.*\\(35442\\)|\\(35442\\).*Configurador.*Estrutura",
+    "description": "No módulo CFG, a regra de formação do item encontrou uma inconsistência entre as variáveis lógicas e a estrutura física.",
+    "category": "Manufatura/Configurador",
+    "severity": "Alto",
+    "code": "35442",
+    "example": "Configurador de Produtos: Estrutura inválida para a variável <var>. (35442)",
+    "solution": "Revisar as regras de montagem no CFG0101 e validar a fórmula de cálculo.",
+    "tag": "Configurador",
+    "reference": "TOTVS Manufatura - Configurador de Produtos"
+  },
+  {
+    "pattern": "Documento de Frete.*CTE.*vinculado.*Nota Fiscal.*\\(22550\\)|\\(22550\\).*CTE.*vinculado",
+    "description": "Tentativa de duplicar o registro de frete sobre a mesma nota fiscal de entrada.",
+    "category": "Suprimentos/Recebimento",
+    "severity": "Médio",
+    "code": "22550",
+    "example": "Documento de Frete (CTE) já vinculado à Nota Fiscal <nf>. (22550)",
+    "solution": "Consultar o recebimento de fretes (RE0501) para verificar o lançamento existente.",
+    "tag": "Recebimento",
+    "reference": "TOTVS Suprimentos - Recebimento"
+  },
+  {
+    "pattern": "somat[oó]rio das al[ií]quotas.*ICMS Retido.*ICMS Pr[oó]prio.*diverge.*ST.*\\(19102\\)|\\(19102\\).*al[ií]quotas.*ICMS",
+    "description": "Erro de cálculo na Substituição Tributária causado por parametrização incorreta de MVA ou Pauta no CD0356.",
+    "category": "Fiscal/Impostos",
+    "severity": "Crítico",
+    "code": "19102",
+    "example": "O somatório das alíquotas de ICMS Retido e ICMS Próprio diverge do ST. (19102)",
+    "solution": "Revisar a configuração de ST por UF para a natureza de operação utilizada.",
+    "tag": "ICMS/ST",
+    "reference": "TOTVS Fiscal - Impostos"
+  },
+  {
+    "pattern": "reporte de produ[cç][aã]o bloqueada.*Item sem inspe[cç][aã]o de qualidade.*\\(18445\\)|\\(18445\\).*reporte.*qualidade",
+    "description": "O item exige aprovação no módulo de Qualidade (CQ) para cada etapa, e o reporte anterior não foi aprovado.",
+    "category": "Manufatura/Qualidade",
+    "severity": "Alto",
+    "code": "18445",
+    "example": "Operação de reporte de produção bloqueada: Item sem inspeção de qualidade. (18445)",
+    "solution": "Efetuar a inspeção do lote no CQ0210 antes de prosseguir com o reporte da OP.",
+    "tag": "Qualidade",
+    "reference": "TOTVS Manufatura - Qualidade"
+  },
+  {
+    "pattern": "Estabelecimento destino.*n[ãa]o possui rela[cç][aã]o.*Estabelecimento origem.*\\(1455\\)|\\(1455\\).*Estabelecimento.*rela[cç][aã]o",
+    "description": "Em operações de transferência entre plantas (CD0205/CD0206), os estabelecimentos não estão vinculados na matriz de transferência.",
+    "category": "Materiais/Cadastros",
+    "severity": "Médio",
+    "code": "1455",
+    "example": "Estabelecimento destino <est> não possui relação com o Estabelecimento origem. (1455)",
+    "solution": "Configurar o relacionamento de transferência no programa CD0101.",
+    "tag": "Transferência",
+    "reference": "TOTVS Materiais - Cadastros"
+  },
+  {
+    "pattern": "Erro ao.*enviar e-mail.*notifica[cç][aã]o.*Servidor SMTP n[ãa]o responde.*\\(5891\\)|\\(5891\\).*SMTP.*n[ãa]o responde",
+    "description": "Falha na comunicação do Datasul com o servidor de e-mail (geralmente em processos de aprovação MLA).",
+    "category": "Tecnologia/Foundation",
+    "severity": "Médio",
+    "code": "5891",
+    "example": "Erro ao tentar enviar e-mail de notificação: Servidor SMTP não responde. (5891)",
+    "solution": "Validar as configurações de e-mail no programa BTB010AA (Parâmetros Foundation).",
+    "tag": "Email/SMTP",
+    "reference": "TOTVS Tecnologia - Foundation"
+  },
+  {
+    "pattern": "C[oó]digo de Benef[ií]cio Fiscal.*cBenef.*n[ãa]o informado.*UF.*\\(19890\\)|\\(19890\\).*cBenef.*n[ãa]o informado",
+    "description": "A legislação estadual exige o código de benefício para itens isentos ou com redução de base, mas o campo está vazio.",
+    "category": "Fiscal/NF-e",
+    "severity": "Crítico",
+    "code": "19890",
+    "example": "Código de Benefício Fiscal (cBenef) não informado para a UF. (19890)",
+    "solution": "Informar o cBenef no cadastro de exceções de impostos (CD0356).",
+    "tag": "NFe/cBenef",
+    "reference": "TOTVS Fiscal - NF-e"
+  },
+  {
+    "pattern": "N[uú]mero de parcelas excede.*limite permitido.*Portador.*\\(26045\\)|\\(26045\\).*parcelas.*limite.*Portador",
+    "description": "Regra de negócio no financeiro que limita o parcelamento conforme o banco/portador selecionado.",
+    "category": "Financeiro/ACR",
+    "severity": "Médio",
+    "code": "26045",
+    "example": "Número de parcelas excede o limite permitido para o Portador. (26045)",
+    "solution": "Ajustar o número de parcelas ou alterar o portador no ACR/APB.",
+    "tag": "Financeiro",
+    "reference": "TOTVS Financeiro - ACR"
+  },
+  {
+    "pattern": "(210)\\\\s*Cannot\\\\s*read\\\\s*BLOB",
+    "description": "Falha ao ler BLOB/CLOB no OpenEdge.",
+    "category": "OpenEdge/DB",
+    "severity": "Médio",
+    "example": "Cannot read BLOB field (210)",
+    "solution": "Validar LOB-dir, permissões e mapeamento no schema holder.",
+    "tag": "LOB",
+    "code": "210"
+  },
+  {
+    "pattern": "(1104)\\\\s*Shared\\\\s*memory\\\\s*conflict",
+    "description": "Conflito de memória compartilhada no OpenEdge.",
+    "category": "OpenEdge/DB",
+    "severity": "Crítico",
+    "example": "Shared memory conflict detected (1104)",
+    "solution": "Reiniciar DB com parâmetros coerentes; checar -B/-L/-n e SO.",
+    "tag": "Memória",
+    "code": "1104"
+  },
+  {
+    "pattern": "FT7394\\\\s*-\\\\s*(Falha|Erro)\\\\s*(execu([çc][aã]o|processo|valida[çc][aã]o))",
+    "description": "Erro em rotina de Estoque FT7394.",
+    "category": "Estoque",
+    "severity": "Crítico",
+    "example": "FT7394 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa"
+  },
+  {
+    "pattern": "AR4029\\\\s*-\\\\s*(Falha|Erro)\\\\s*(execu([çc][aã]o|processo|valida[çc][aã]o))",
+    "description": "Erro em rotina de Integração AR4029.",
+    "category": "Integração",
+    "severity": "Crítico",
+    "example": "AR4029 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa"
+  },
+  {
+    "pattern": "EF3578\\\\s*-\\\\s*(Falha|Erro)\\\\s*(execu([çc][aã]o|processo|valida[çc][aã]o))",
+    "description": "Erro em rotina de FAT/NFe EF3578.",
+    "category": "FAT/NFe",
+    "severity": "Crítico",
+    "example": "EF3578 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa"
+  }
+]

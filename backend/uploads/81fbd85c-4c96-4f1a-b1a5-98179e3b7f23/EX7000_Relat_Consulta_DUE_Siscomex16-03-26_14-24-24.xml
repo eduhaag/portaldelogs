@@ -1,0 +1,498 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:o="urn:schemas-microsoft-com:office:office"
+          xmlns:x="urn:schemas-microsoft-com:office:excel"
+          xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+          xmlns:html="http://www.w3.org/TR/REC-html40">
+   <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+      <Author>douglasr</Author>
+      <LastAuthor>douglasr</LastAuthor>
+      <LastPrinted>2005-10-18T09:43:42Z</LastPrinted>
+      <Created>2005-10-18T09:41:43Z</Created>
+      <Company>Totvs S.A.</Company>
+      <Version>15.00</Version>
+   </DocumentProperties>
+   <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+      <DownloadComponents/>
+      <LocationOfComponents HRef="/"/>
+   </OfficeDocumentSettings>
+   <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+      <WindowHeight>2970</WindowHeight>
+      <WindowWidth>11340</WindowWidth>
+      <WindowTopX>0</WindowTopX>
+      <WindowTopY>0</WindowTopY>
+      <ActiveSheet>0</ActiveSheet>
+      <ProtectStructure>False</ProtectStructure>
+      <ProtectWindows>False</ProtectWindows>
+   </ExcelWorkbook>
+   <Styles>
+      <Style ss:ID="Default" ss:Name="Normal">
+      <Alignment ss:Vertical="Bottom"/>
+      <Borders/>
+      <Font/>
+      <Interior/>
+      <NumberFormat/>
+      <Protection/>
+   </Style>
+   <Style ss:ID="m21">
+      <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+      <Borders>
+         <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+         <Border ss:Position="Left"   ss:LineStyle="Continuous" ss:Weight="1"/>
+         <Border ss:Position="Right"  ss:LineStyle="Continuous" ss:Weight="1"/>
+         <Border ss:Position="Top"    ss:LineStyle="Continuous" ss:Weight="1"/>
+      </Borders>
+      <Font x:Family="Swiss" ss:Bold="1"/>
+      <Interior ss:Color="#C5D9F1" ss:Pattern="Solid"/>
+   </Style>
+   <Style ss:ID="s21">
+      <Borders>
+         <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+         <Border ss:Position="Left"   ss:LineStyle="Continuous" ss:Weight="1"/>
+         <Border ss:Position="Right"  ss:LineStyle="Continuous" ss:Weight="1"/>
+         <Border ss:Position="Top"    ss:LineStyle="Continuous" ss:Weight="1"/>
+      </Borders>
+      <Font x:Family="Swiss" ss:Bold="1"/>
+      <Interior ss:Color="#C5D9F1" ss:Pattern="Solid"/>
+   </Style>
+   <Style ss:ID="s22">
+      <Borders>
+         <Border ss:Position="Left"  ss:LineStyle="Continuous" ss:Weight="1"/>
+         <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </Borders>
+   </Style>
+   <Style ss:ID="s22b">
+      <Borders>
+         <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+         <Border ss:Position="Left"  ss:LineStyle="Continuous" ss:Weight="1"/>
+         <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </Borders>
+   </Style>
+   <Style ss:ID="s23">
+      <Borders>
+         <Border ss:Position="Left"  ss:LineStyle="Continuous" ss:Weight="1"/>
+         <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </Borders>
+      <Interior ss:Color="#C5D9F1" ss:Pattern="Solid"/>
+   </Style>
+   <Style ss:ID="s23b">
+      <Borders>
+         <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+         <Border ss:Position="Left"  ss:LineStyle="Continuous" ss:Weight="1"/>
+         <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </Borders>
+      <Interior ss:Color="#C5D9F1" ss:Pattern="Solid"/>
+   </Style>
+   <Style ss:ID="s24">
+      <Borders>
+         <Border ss:Position="Left"  ss:LineStyle="Continuous" ss:Weight="1"/>
+         <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </Borders>
+   </Style>
+   <Style ss:ID="s24b">
+      <Borders>
+         <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+         <Border ss:Position="Left"  ss:LineStyle="Continuous" ss:Weight="1"/>
+         <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </Borders>
+   </Style>
+   <Style ss:ID="s25">
+      <Borders>
+         <Border ss:Position="Left"  ss:LineStyle="Continuous" ss:Weight="1"/>
+         <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </Borders>
+      <Interior ss:Color="#C5D9F1" ss:Pattern="Solid"/>
+   </Style>
+   <Style ss:ID="s25b">
+      <Borders>
+         <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+         <Border ss:Position="Left"  ss:LineStyle="Continuous" ss:Weight="1"/>
+         <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </Borders>
+      <Interior ss:Color="#C5D9F1" ss:Pattern="Solid"/>
+   </Style>
+   <Style ss:ID="s26">
+      <Borders>
+         <Border ss:Position="Left"  ss:LineStyle="Continuous" ss:Weight="1"/>
+         <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </Borders>
+   </Style>
+   <Style ss:ID="s26b">
+      <Borders>
+         <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+         <Border ss:Position="Left"  ss:LineStyle="Continuous" ss:Weight="1"/>
+         <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </Borders>
+   </Style>
+   <Style ss:ID="s27">
+      <Borders>
+         <Border ss:Position="Left"  ss:LineStyle="Continuous" ss:Weight="1"/>
+         <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </Borders>
+      <Interior ss:Color="#C5D9F1" ss:Pattern="Solid"/>
+   </Style>
+   <Style ss:ID="s27b">
+      <Borders>
+         <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+         <Border ss:Position="Left"  ss:LineStyle="Continuous" ss:Weight="1"/>
+         <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </Borders>
+      <Interior ss:Color="#C5D9F1" ss:Pattern="Solid"/>
+   </Style>
+   <Style ss:ID="s28">
+      <Borders>
+         <Border ss:Position="Left"  ss:LineStyle="Continuous" ss:Weight="1"/>
+         <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </Borders>
+   </Style>
+   <Style ss:ID="s28b">
+      <Borders>
+         <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+         <Border ss:Position="Left"  ss:LineStyle="Continuous" ss:Weight="1"/>
+         <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </Borders>
+   </Style>
+   <Style ss:ID="s29">
+      <Borders>
+         <Border ss:Position="Left"  ss:LineStyle="Continuous" ss:Weight="1"/>
+         <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </Borders>
+      <Interior ss:Color="#C5D9F1" ss:Pattern="Solid"/>
+   </Style>
+   <Style ss:ID="s29b">
+      <Borders>
+         <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+         <Border ss:Position="Left"  ss:LineStyle="Continuous" ss:Weight="1"/>
+         <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </Borders>
+      <Interior ss:Color="#C5D9F1" ss:Pattern="Solid"/>
+   </Style>
+   <Style ss:ID="s30">
+      <Borders>
+         <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+      </Borders>
+   </Style>
+   </Styles>
+   <Worksheet ss:Name="EX7000">
+      <Table ss:ExpandedColumnCount="4" ss:ExpandedRowCount="1048500" x:FullColumns="1" x:FullRows="1">
+         <Column ss:Index="1" ss:AutoFitWidth="0" ss:Width="110"/>
+         <Column ss:Index="2" ss:AutoFitWidth="0" ss:Width="110"/>
+         <Column ss:Index="3" ss:AutoFitWidth="0" ss:Width="60"/>
+         <Column ss:Index="4" ss:AutoFitWidth="0" ss:Width="600"/>
+         <Row ss:Index="1">
+            <Cell ss:Index="1" ss:MergeAcross="3" ss:StyleID="m21"><Data ss:Type="String">Relatório de Status de Consulta da Declaração Única de Exportação</Data></Cell>
+         </Row>
+         <Row ss:Index="2">
+            <Cell ss:Index="1" ss:StyleID="s21"><Data ss:Type="String">Número Interno DU-E</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s21"><Data ss:Type="String">Situação</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s21"><Data ss:Type="String">Código Erro</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s21"><Data ss:Type="String">Descrição Erro</Data></Cell>
+         </Row>
+         <Row ss:Index="3">
+            <Cell ss:Index="1" ss:StyleID="s23"><Data ss:Type="String">9242</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s25"><Data ss:Type="String">Atualizada</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s27"><Data ss:Type="String"></Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s29"><Data ss:Type="String"></Data></Cell>
+         </Row>
+         <Row ss:Index="4">
+            <Cell ss:Index="1" ss:StyleID="s22"><Data ss:Type="String">9245</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s24"><Data ss:Type="String">Atualizada</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s26"><Data ss:Type="String"></Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s28"><Data ss:Type="String"></Data></Cell>
+         </Row>
+         <Row ss:Index="5">
+            <Cell ss:Index="1" ss:StyleID="s23"><Data ss:Type="String">9246</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s25"><Data ss:Type="String">Atualizada</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s27"><Data ss:Type="String"></Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s29"><Data ss:Type="String"></Data></Cell>
+         </Row>
+         <Row ss:Index="6">
+            <Cell ss:Index="1" ss:StyleID="s22"><Data ss:Type="String">9247</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s24"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s26"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s28"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-SELIXEBN26]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:31&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;HtcnZ30N90&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="7">
+            <Cell ss:Index="1" ss:StyleID="s23"><Data ss:Type="String">9248</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s25"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s27"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s29"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-LEZXBB4DXP]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:31&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;1j6LYrDhn4&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="8">
+            <Cell ss:Index="1" ss:StyleID="s22"><Data ss:Type="String">9249</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s24"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s26"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s28"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-UWISOFSQSV]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:32&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;PEPhYJVlwL&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="9">
+            <Cell ss:Index="1" ss:StyleID="s23"><Data ss:Type="String">9250</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s25"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s27"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s29"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-WWPCZLHDBN]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:32&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;WjsJPnvbpU&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="10">
+            <Cell ss:Index="1" ss:StyleID="s22"><Data ss:Type="String">9251</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s24"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s26"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s28"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-FMFFWXTZRD]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:32&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;jGrWtshc8o&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="11">
+            <Cell ss:Index="1" ss:StyleID="s23"><Data ss:Type="String">9252</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s25"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s27"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s29"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-VZYPZBZ27N]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:33&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;oxAHyUi51z&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="12">
+            <Cell ss:Index="1" ss:StyleID="s22"><Data ss:Type="String">9253</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s24"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s26"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s28"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-CDTUCK5W8L]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:33&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;JibWP1hJL0&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="13">
+            <Cell ss:Index="1" ss:StyleID="s23"><Data ss:Type="String">9254</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s25"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s27"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s29"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-QARWPTKLCD]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:33&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;C622TV25qn&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="14">
+            <Cell ss:Index="1" ss:StyleID="s22"><Data ss:Type="String">9255</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s24"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s26"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s28"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-RPGZESFDVP]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:34&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;nCcqTOdNuA&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="15">
+            <Cell ss:Index="1" ss:StyleID="s23"><Data ss:Type="String">9256</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s25"><Data ss:Type="String">Atualizada</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s27"><Data ss:Type="String"></Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s29"><Data ss:Type="String"></Data></Cell>
+         </Row>
+         <Row ss:Index="16">
+            <Cell ss:Index="1" ss:StyleID="s22"><Data ss:Type="String">9257</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s24"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s26"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s28"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-AQAZTBXM6J]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:36&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;WVqFkhzIMU&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="17">
+            <Cell ss:Index="1" ss:StyleID="s23"><Data ss:Type="String">9258</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s25"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s27"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s29"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-PYIPSZCT6S]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:36&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;7bXd8at2aT&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="18">
+            <Cell ss:Index="1" ss:StyleID="s22"><Data ss:Type="String">9259</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s24"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s26"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s28"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-ONKUDNKLCD]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:37&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;HH4c61iBwD&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="19">
+            <Cell ss:Index="1" ss:StyleID="s23"><Data ss:Type="String">9260</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s25"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s27"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s29"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-UCGKKXBN26]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:37&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;qRYBooJKIN&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="20">
+            <Cell ss:Index="1" ss:StyleID="s22"><Data ss:Type="String">9261</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s24"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s26"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s28"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-XRXQJJ5W8L]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:38&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;SsbZxjsDQj&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="21">
+            <Cell ss:Index="1" ss:StyleID="s23"><Data ss:Type="String">9262</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s25"><Data ss:Type="String">Atualizada</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s27"><Data ss:Type="String"></Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s29"><Data ss:Type="String"></Data></Cell>
+         </Row>
+         <Row ss:Index="22">
+            <Cell ss:Index="1" ss:StyleID="s22"><Data ss:Type="String">9263</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s24"><Data ss:Type="String">Atualizada</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s26"><Data ss:Type="String"></Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s28"><Data ss:Type="String"></Data></Cell>
+         </Row>
+         <Row ss:Index="23">
+            <Cell ss:Index="1" ss:StyleID="s23"><Data ss:Type="String">9264</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s25"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s27"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s29"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-RSIOHZJZ4J]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:38&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;rW7IENcn3S&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="24">
+            <Cell ss:Index="1" ss:StyleID="s22"><Data ss:Type="String">9265</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s24"><Data ss:Type="String">Atualizada</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s26"><Data ss:Type="String"></Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s28"><Data ss:Type="String"></Data></Cell>
+         </Row>
+         <Row ss:Index="25">
+            <Cell ss:Index="1" ss:StyleID="s23"><Data ss:Type="String">9266</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s25"><Data ss:Type="String">Atualizada</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s27"><Data ss:Type="String"></Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s29"><Data ss:Type="String"></Data></Cell>
+         </Row>
+         <Row ss:Index="26">
+            <Cell ss:Index="1" ss:StyleID="s22"><Data ss:Type="String">9267</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s24"><Data ss:Type="String">Atualizada</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s26"><Data ss:Type="String"></Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s28"><Data ss:Type="String"></Data></Cell>
+         </Row>
+         <Row ss:Index="27">
+            <Cell ss:Index="1" ss:StyleID="s23"><Data ss:Type="String">9268</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s25"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s27"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s29"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-VDZSSYP9F9]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:41&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;vQ7F7PGUoL&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="28">
+            <Cell ss:Index="1" ss:StyleID="s22"><Data ss:Type="String">9269</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s24"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s26"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s28"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-TRXVZO5W8L]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:41&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;k3q7oCdICA&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="29">
+            <Cell ss:Index="1" ss:StyleID="s23"><Data ss:Type="String">9270</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s25"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s27"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s29"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-XDUZMG26VN]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:41&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;JLeLf8hrwY&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="30">
+            <Cell ss:Index="1" ss:StyleID="s22"><Data ss:Type="String">9271</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s24"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s26"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s28"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-OUEPEZBN26]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:42&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;6WHTXv3kQp&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="31">
+            <Cell ss:Index="1" ss:StyleID="s23"><Data ss:Type="String">9272</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s25"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s27"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s29"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-IWBXDG555G]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:42&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;TXjErC5jrB&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="32">
+            <Cell ss:Index="1" ss:StyleID="s22"><Data ss:Type="String">9273</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s24"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s26"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s28"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-NULXPX26VN]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:42&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;RSy6yaJIq9&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="33">
+            <Cell ss:Index="1" ss:StyleID="s23"><Data ss:Type="String">9274</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s25"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s27"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s29"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-MPWLSAFDVP]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:43&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;gPB2HrkS67&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="34">
+            <Cell ss:Index="1" ss:StyleID="s22"><Data ss:Type="String">9275</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s24"><Data ss:Type="String">Atualizada</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s26"><Data ss:Type="String"></Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s28"><Data ss:Type="String"></Data></Cell>
+         </Row>
+         <Row ss:Index="35">
+            <Cell ss:Index="1" ss:StyleID="s23"><Data ss:Type="String">9276</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s25"><Data ss:Type="String">Atualizada</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s27"><Data ss:Type="String"></Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s29"><Data ss:Type="String"></Data></Cell>
+         </Row>
+         <Row ss:Index="36">
+            <Cell ss:Index="1" ss:StyleID="s22"><Data ss:Type="String">9277</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s24"><Data ss:Type="String">Atualizada</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s26"><Data ss:Type="String"></Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s28"><Data ss:Type="String"></Data></Cell>
+         </Row>
+         <Row ss:Index="37">
+            <Cell ss:Index="1" ss:StyleID="s23"><Data ss:Type="String">9278</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s25"><Data ss:Type="String">Atualizada</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s27"><Data ss:Type="String"></Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s29"><Data ss:Type="String"></Data></Cell>
+         </Row>
+         <Row ss:Index="38">
+            <Cell ss:Index="1" ss:StyleID="s22"><Data ss:Type="String">9279</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s24"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s26"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s28"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-CCIGHIBN26]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:46&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;f7UUfoIxmP&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="39">
+            <Cell ss:Index="1" ss:StyleID="s23"><Data ss:Type="String">9280</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s25"><Data ss:Type="String">Atualizada</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s27"><Data ss:Type="String"></Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s29"><Data ss:Type="String"></Data></Cell>
+         </Row>
+         <Row ss:Index="40">
+            <Cell ss:Index="1" ss:StyleID="s22"><Data ss:Type="String">9281</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s24"><Data ss:Type="String">Atualizada</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s26"><Data ss:Type="String"></Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s28"><Data ss:Type="String"></Data></Cell>
+         </Row>
+         <Row ss:Index="41">
+            <Cell ss:Index="1" ss:StyleID="s23"><Data ss:Type="String">9282</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s25"><Data ss:Type="String">Atualizada</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s27"><Data ss:Type="String"></Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s29"><Data ss:Type="String"></Data></Cell>
+         </Row>
+         <Row ss:Index="42">
+            <Cell ss:Index="1" ss:StyleID="s22"><Data ss:Type="String">9283</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s24"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s26"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s28"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-MIRXEUJ52V]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:47&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;ZmasfCsIV4&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="43">
+            <Cell ss:Index="1" ss:StyleID="s23"><Data ss:Type="String">9284</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s25"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s27"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s29"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-AWKBLP26VN]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:48&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;pLop4tVfvu&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="44">
+            <Cell ss:Index="1" ss:StyleID="s22"><Data ss:Type="String">9285</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s24"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s26"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s28"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-NOXRMEXM6J]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:48&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;Ls3ouzLvWw&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="45">
+            <Cell ss:Index="1" ss:StyleID="s23"><Data ss:Type="String">9286</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s25"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s27"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s29"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-LLWMWFZ27N]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:48&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;mtukRng8rW&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="46">
+            <Cell ss:Index="1" ss:StyleID="s22"><Data ss:Type="String">9287</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s24"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s26"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s28"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-CKDIJV5W8L]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:49&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;iQ3s8Fe2XY&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="47">
+            <Cell ss:Index="1" ss:StyleID="s23"><Data ss:Type="String">9288</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s25"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s27"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s29"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-GUTSOM555G]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:49&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;Pqh5kDAVoF&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="48">
+            <Cell ss:Index="1" ss:StyleID="s22"><Data ss:Type="String">9289</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s24"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s26"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s28"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-BQKEEBTB59]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:49&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;Gs4HzFgzys&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="49">
+            <Cell ss:Index="1" ss:StyleID="s23"><Data ss:Type="String">9290</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s25"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s27"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s29"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-IDIYFOGMVM]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:49&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;rtBFWVnkPB&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="50">
+            <Cell ss:Index="1" ss:StyleID="s22"><Data ss:Type="String">9291</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s24"><Data ss:Type="String">Com Erro</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s26"><Data ss:Type="String">55967</Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s28"><Data ss:Type="String">Erro na integração com o Siscomex: Servidor retornou - {&quot;message&quot;:&quot;Operação não autorizada. Usuário realizou autenticação válida nos últimos 60 segundos. O token gerado deve ser reaproveitado. Consulte a documentação do X-CSRF-Token em https://api-docs.portalunico.siscomex.gov.br/api/plat.&quot;,&quot;code&quot;:&quot;PLAT-ER2033&quot;,&quot;field&quot;:null,&quot;path&quot;:null,&quot;tag&quot;:&quot;[PLAT-JYSLTZBN26]&quot;,&quot;date&quot;:&quot;2026-03-16T14:25:50&quot;,&quot;detail&quot;:[],&quot;severity&quot;:&quot;ERROR&quot;,&quot;info&quot;:{&quot;mnemonico&quot;:&quot;PLAT&quot;,&quot;sistema&quot;:&quot;Plataforma [Módulo Auth - Serviços de Segurança]&quot;,&quot;ambiente&quot;:&quot;PRO&quot;,&quot;visao&quot;:&quot;PRIV&quot;,&quot;usuario&quot;:null,&quot;url&quot;:&quot;/plat-auth/api/autenticar&quot;,&quot;fluxo&quot;:null,&quot;trackerId&quot;:&quot;hGT20W9qPs&quot;}}</Data></Cell>
+         </Row>
+         <Row ss:Index="51">
+            <Cell ss:Index="1" ss:StyleID="s23b"><Data ss:Type="String">9292</Data></Cell>
+            <Cell ss:Index="2" ss:StyleID="s25b"><Data ss:Type="String">Atualizada</Data></Cell>
+            <Cell ss:Index="3" ss:StyleID="s27b"><Data ss:Type="String"></Data></Cell>
+            <Cell ss:Index="4" ss:StyleID="s29b"><Data ss:Type="String"></Data></Cell>
+         </Row>
+      </Table>
+      <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+         <PageSetup>
+            <Header x:Margin="0.4"/>
+            <Footer x:Margin="0.4"/>
+            <PageMargins x:Bottom="0.984251969" x:Left="0.78740157499999996"
+                         x:Right="0.78740157499999996" x:Top="0.984251969"/>
+         </PageSetup>
+         <PageBreakZoom>100</PageBreakZoom>
+         <Selected/>
+      </WorksheetOptions>
+   </Worksheet>
+</Workbook>

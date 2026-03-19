@@ -1,0 +1,77 @@
+<po-page-default p-title="Controle de Issues em Desenvolvimento"
+    p-subtitle="Central visual do backlog para acompanhar volume, status, clientes afetados e rotinas com maior pressão.">
+    <div class="issue-control-page">
+        <section class="issue-hero">
+            <div class="issue-hero__content">
+                <span class="issue-hero__eyebrow">Backlog técnico</span>
+                <h2>Visão operacional das issues em desenvolvimento</h2>
+                <p>
+                    Acompanhe o volume do backlog, priorize os clientes com maior impacto e atue nas rotinas sob
+                    maior pressão sem perder a leitura do detalhamento principal.
+                </p>
+            </div>
+
+            <div class="issue-hero__actions">
+                <po-button p-label="Nova Issue" p-icon="po-icon-plus" p-kind="primary" (p-click)="openNewIssueModal()"
+                    data-testid="new-issue-btn"></po-button>
+                <po-button p-label="Importar CSV" p-icon="po-icon-upload" (p-click)="triggerCsvImport()"
+                    data-testid="import-csv-btn"></po-button>
+                <po-button p-label="Exportar CSV" p-icon="po-icon-download" p-kind="tertiary"
+                    (p-click)="exportCsv()" data-testid="export-csv-btn"></po-button>
+                <po-button p-label="Atualizar" p-icon="po-icon-refresh" p-kind="tertiary"
+                    [p-loading]="isLoading" (p-click)="loadIssues()" data-testid="refresh-issues-btn"></po-button>
+                <input #csvInput type="file" accept=".csv" class="issue-control-page__hidden-input"
+                    (change)="onCsvSelected($event)">
+            </div>
+        </section>
+
+        <section class="issue-toolbar">
+            <div class="issue-toolbar__filters">
+                <po-input name="filterText" p-placeholder="Filtrar por ticket, cliente, rotina ou situação"
+                    p-icon="po-icon-search" [(ngModel)]="filterText" (ngModelChange)="applyFilter()"
+                    data-testid="filter-input"></po-input>
+                <po-select name="filterStatus" p-placeholder="Filtrar por status" [p-options]="statusFilterOptions"
+                    [ngModel]="filterStatus" (p-change)="filterStatus = $event; applyFilter()"
+                    data-testid="filter-status"></po-select>
+            </div>
+        </section>
+
+        <div class="issue-backlog-widget">
+            <po-widget p-title="Backlog detalhado"
+                p-subtitle="A tabela abaixo concentra a leitura principal da operação, com foco em data, ticket, issue, cliente, rotina, situação, status e versões.">
+                <div class="issue-backlog-shell">
+                    <div class="issue-backlog__table-wrap">
+                        <po-table [p-columns]="columns" [p-items]="filteredIssues" [p-actions]="tableActions" p-sort p-striped
+                            data-testid="issues-table"></po-table>
+                    </div>
+                </div>
+            </po-widget>
+        </div>
+
+        <po-modal #editModal p-title="Editar Issue" [p-primary-action]="editConfirm" [p-secondary-action]="editCancel">
+            <div class="issue-form-grid">
+                <po-input name="edit_ticket" p-label="Ticket" [(ngModel)]="editingIssue.ticket"></po-input>
+                <po-input name="edit_issue" p-label="Issue" [(ngModel)]="editingIssue.issue"></po-input>
+                <po-input name="edit_cliente" p-label="Cliente" [(ngModel)]="editingIssue.cliente"></po-input>
+                <po-input name="edit_rotina" p-label="Rotina" [(ngModel)]="editingIssue.rotina"></po-input>
+                <po-textarea name="edit_situacao" p-label="Situação" [(ngModel)]="editingIssue.situacao" [p-rows]="4"></po-textarea>
+                <po-select name="edit_status" p-label="Status" [p-options]="statusOptions" [ngModel]="editingIssue.status"
+                    (p-change)="editingIssue.status = $event"></po-select>
+                <po-input name="edit_versoes" p-label="Liberado versões" [(ngModel)]="editingIssue.liberado_versoes"></po-input>
+            </div>
+        </po-modal>
+
+        <po-modal #newModal p-title="Nova Issue" [p-primary-action]="newConfirm" [p-secondary-action]="newCancel">
+            <div class="issue-form-grid">
+                <po-input name="new_ticket" p-label="Ticket" p-required="true" [(ngModel)]="newIssue.ticket"></po-input>
+                <po-input name="new_issue" p-label="Issue" p-required="true" [(ngModel)]="newIssue.issue"></po-input>
+                <po-input name="new_cliente" p-label="Cliente" p-required="true" [(ngModel)]="newIssue.cliente"></po-input>
+                <po-input name="new_rotina" p-label="Rotina" p-required="true" [(ngModel)]="newIssue.rotina"></po-input>
+                <po-textarea name="new_situacao" p-label="Situação" [p-required]="true" [(ngModel)]="newIssue.situacao" [p-rows]="4"></po-textarea>
+                <po-select name="new_status" p-label="Status" [p-options]="statusOptions" [ngModel]="newIssue.status"
+                    (p-change)="newIssue.status = $event"></po-select>
+                <po-input name="new_versoes" p-label="Liberado versões" [(ngModel)]="newIssue.liberado_versoes"></po-input>
+            </div>
+        </po-modal>
+    </div>
+</po-page-default>

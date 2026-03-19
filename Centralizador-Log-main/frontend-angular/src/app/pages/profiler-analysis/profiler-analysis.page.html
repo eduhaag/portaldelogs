@@ -1,0 +1,143 @@
+<po-page-default p-title="Análise do Profiler"
+    p-subtitle="Tela dedicada para leitura do arquivo .out e visualização completa do retorno do backend.">
+    <div class="page-grid">
+        @if (errorMessage) {
+        <div class="feedback feedback--error">{{ errorMessage }}</div>
+        }
+
+        @if (successMessage) {
+        <div class="feedback feedback--success">{{ successMessage }}</div>
+        }
+
+        <div class="top-layout">
+            <po-widget p-title="Carregar arquivo do profiler">
+                <div class="page-grid">
+                    <div class="compact-intro">
+                        <div>
+                            <span class="eyebrow">Profiler Progress</span>
+                            <h3>Análise compacta com retorno completo do backend</h3>
+                            <p>Envie o arquivo .out, processe a sessão e acompanhe gargalos, chamadas e árvore.</p>
+                        </div>
+
+                        <div class="compact-steps">
+                            <span>1. Upload</span>
+                            <span>2. Processamento</span>
+                            <span>3. Resultado visual</span>
+                        </div>
+                    </div>
+
+                    <div class="file-picker">
+                        <label for="profilerAnalysisFile">Arquivo .out do Progress Profiler</label>
+                        <input id="profilerAnalysisFile" type="file" accept=".out,.txt,.log"
+                            (change)="onProfilerSelected($event)" />
+                        <span class="helper-text">Depois do upload, a análise permanece nesta tela dedicada.</span>
+                    </div>
+
+                    <div class="upload-summary">
+                        <div class="upload-summary__item">
+                            <span class="upload-summary__label">Arquivo selecionado</span>
+                            <strong>{{ profilerFile?.name || uploadedFilename || 'Nenhum arquivo selecionado'
+                                }}</strong>
+                        </div>
+                        <div class="upload-summary__item">
+                            <span class="upload-summary__label">Última análise</span>
+                            <strong>{{ analyzedAt ? analyzedAt : '-' }}</strong>
+                        </div>
+                    </div>
+
+                    <div class="action-row">
+                        <po-button p-kind="primary" p-label="Analisar profiler" (p-click)="analyzeProfiler()"
+                            [p-disabled]="profilerLoading || !profilerFile"></po-button>
+                        <po-button p-label="Limpar resultado" (p-click)="clearProfilerSession()"
+                            [p-disabled]="profilerLoading || !hasResult"></po-button>
+                    </div>
+
+                    @if (profilerLoading) {
+                    <po-loading-overlay [p-screen-lock]="false"></po-loading-overlay>
+                    }
+                </div>
+            </po-widget>
+
+            <po-widget p-title="Resumo do backend">
+                @if (hasResult) {
+                <div class="highlights-grid">
+                    @for (card of summaryCards; track card.label) {
+                    <div class="highlight-item highlight-item--accent">
+                        <span class="highlight-item__label">{{ card.label }}</span>
+                        <strong>{{ card.value }}</strong>
+                    </div>
+                    }
+                </div>
+                } @else {
+                <div class="empty-state">
+                    Faça a leitura do arquivo para preencher aqui os principais indicadores retornados pelo backend.
+                </div>
+                }
+            </po-widget>
+        </div>
+
+        @if (hasResult) {
+        <div class="cards-grid cards-grid--summary">
+            @for (card of summaryCards; track card.label) {
+            <po-widget [p-title]="card.label">
+                <div class="summary-card">
+                    <div class="widget-stat summary-card__value">{{ card.value }}</div>
+                </div>
+            </po-widget>
+            }
+        </div>
+
+        <po-widget p-title="Visão consolidada da sessão">
+            <div class="section-intro section-intro--compact">
+                O retorno do backend já foi consolidado em gargalos, recomendações, ranking por tempo, ranking por
+                chamadas e árvore de execução.
+            </div>
+        </po-widget>
+
+        <div class="chart-grid">
+            <po-widget p-title="Principais gargalos">
+                <po-table [p-columns]="profilerColumns" [p-items]="profilerRows"></po-table>
+            </po-widget>
+
+            <po-widget p-title="Recomendações do backend">
+                <po-table [p-columns]="recommendationColumns" [p-items]="recommendationRows"></po-table>
+            </po-widget>
+        </div>
+
+        <div class="chart-grid">
+            <po-widget p-title="Top módulos por tempo total">
+                <po-table [p-columns]="profilerModuleColumns" [p-items]="profilerTopByTimeRows"></po-table>
+            </po-widget>
+
+            <po-widget p-title="Top módulos por chamadas">
+                <po-table [p-columns]="profilerModuleColumns" [p-items]="profilerTopByCallsRows"></po-table>
+            </po-widget>
+        </div>
+
+        <div class="chart-grid">
+            <po-widget p-title="Top módulos por tempo médio">
+                <po-table [p-columns]="profilerModuleColumns" [p-items]="profilerTopByAvgRows"></po-table>
+            </po-widget>
+
+            <po-widget p-title="Saúde da sessão e call tree">
+                <po-table [p-columns]="breakdownColumns" [p-items]="profilerCallTreeStatRows"></po-table>
+            </po-widget>
+        </div>
+
+        <po-widget p-title="Módulos com indício de gargalo">
+            <po-table [p-columns]="profilerIssueColumns" [p-items]="profilerProblemRows"></po-table>
+        </po-widget>
+
+        <po-widget p-title="Árvore de chamadas">
+            <po-table [p-columns]="profilerCallTreeColumns" [p-items]="profilerCallTreeRows"></po-table>
+        </po-widget>
+        } @else {
+        <po-widget p-title="Sem análise carregada">
+            <div class="empty-state">
+                Envie um arquivo pelo modal da análise principal ou carregue um novo arquivo nesta tela para ver o
+                retorno completo do profiler.
+            </div>
+        </po-widget>
+        }
+    </div>
+</po-page-default>

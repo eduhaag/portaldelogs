@@ -1,0 +1,67 @@
+<div class="login-page">
+    <div class="login-page__headline">
+        <p>Acesse sua conta para continuar.</p>
+    </div>
+
+    <section class="login-card">
+        <div class="login-card__header">
+            <h1>Login</h1>
+
+        </div>
+
+        @if (infoMessage) {
+        <div class="login-card__feedback login-card__feedback--info">{{ infoMessage }}</div>
+        }
+
+        <form class="login-form" (ngSubmit)="login()">
+            <div class="login-form__field">
+                <label for="username">Usuário ou Email</label>
+                <input id="username" type="text" name="username" [value]="username"
+                    placeholder="Digite seu usuário ou email" autocomplete="username"
+                    [class.login-form__input--error]="loginErrors.length > 0"
+                    (input)="onLoginChange($any($event.target).value)">
+
+                @if (loginErrors.length > 0) {
+                <span class="login-form__error">{{ loginErrors[0] }}</span>
+                }
+            </div>
+
+            <div class="login-form__field">
+                <label for="password">Senha</label>
+                <div class="login-form__password-wrapper"
+                    [class.login-form__password-wrapper--error]="passwordErrors.length > 0">
+                    <input id="password" [type]="showPassword ? 'text' : 'password'" name="password" [value]="password"
+                        placeholder="Digite sua senha" autocomplete="current-password"
+                        (input)="onPasswordChange($any($event.target).value)">
+
+                    <button type="button" class="login-form__password-toggle" (click)="togglePasswordVisibility()"
+                        [attr.aria-label]="showPassword ? 'Ocultar senha' : 'Mostrar senha'">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M12 5C6.5 5 2.08 8.11.5 12c1.58 3.89 6 7 11.5 7s9.92-3.11 11.5-7C21.92 8.11 17.5 5 12 5Zm0 11.2A4.2 4.2 0 1 1 12 7.8a4.2 4.2 0 0 1 0 8.4Zm0-6.72A2.52 2.52 0 1 0 12 14.52a2.52 2.52 0 0 0 0-5.04Z" />
+                        </svg>
+                    </button>
+                </div>
+
+                @if (passwordErrors.length > 0) {
+                <span class="login-form__error">{{ passwordErrors[0] }}</span>
+                }
+            </div>
+
+            <label class="login-form__remember">
+                <input type="checkbox" [checked]="rememberPassword" (change)="onRememberPasswordChange($event)">
+                <span>Lembrar login e senha</span>
+            </label>
+
+            <div class="login-form__actions">
+                <button type="submit" class="login-form__button login-form__button--primary" [disabled]="loading || !canSubmit">
+                    {{ loading ? 'Entrando...' : 'Entrar' }}
+                </button>
+                <button type="button" class="login-form__button login-form__button--secondary"
+                    (click)="requestNewUser()">
+                    Cadastre-se
+                </button>
+            </div>
+        </form>
+    </section>
+</div>

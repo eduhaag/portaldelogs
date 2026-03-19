@@ -1,0 +1,442 @@
+<po-page-default>
+    <po-modal #patternModal class="modal-shell--pattern" p-title="Adicionar novo padrão">
+        <div class="modal-grid modal-grid--pattern">
+            <div class="modal-hero">
+                <div class="modal-hero__icon modal-hero__icon--green">
+                    <span class="modal-hero__symbol an an-plus"></span>
+                </div>
+                <div>
+                    <strong>Novo padrão</strong>
+                    <p>Cadastre regras personalizadas com validação, descrição funcional e solução recomendada.</p>
+                </div>
+            </div>
+
+            <div class="two-columns">
+                <po-input name="pattern" [(ngModel)]="customPatternForm.pattern" p-label="Padrão"
+                    p-placeholder="Regex ou texto base"></po-input>
+                <po-input name="partialPattern" [(ngModel)]="customPatternForm.partial_pattern" p-label="Padrão parcial"
+                    p-placeholder="Trecho auxiliar opcional"></po-input>
+            </div>
+
+            <div class="two-columns">
+                <po-input name="patternDescription" [(ngModel)]="customPatternForm.description"
+                    p-label="Descrição"></po-input>
+                <div class="file-picker">
+                    <label for="patternExample">Linha de log de exemplo</label>
+                    <textarea id="patternExample" [(ngModel)]="customPatternForm.example" name="patternExample" rows="3"
+                        placeholder="Linha de log de exemplo"></textarea>
+                </div>
+            </div>
+
+            <div class="two-columns">
+                <po-select name="customCategory" [ngModel]="customPatternForm.category"
+                    (ngModelChange)="customPatternForm.category = $event" p-label="Categoria"
+                    [p-options]="customCategoryOptions"></po-select>
+
+                <po-select name="customSeverity" [ngModel]="customPatternForm.severity"
+                    (ngModelChange)="customPatternForm.severity = $event" p-label="Severidade"
+                    [p-options]="customSeverityOptions"></po-select>
+            </div>
+
+            <div class="file-picker">
+                <label for="patternSolution">Solução</label>
+                <input id="patternSolution" type="text" [(ngModel)]="customPatternForm.solution" name="patternSolution"
+                    placeholder="Informe a solução recomendada" />
+            </div>
+
+            <div class="action-row">
+                <po-button p-label="Testar padrão" (p-click)="testCustomPattern()"
+                    [p-disabled]="managementLoading"></po-button>
+                <po-button p-kind="primary" p-label="Salvar padrão" (p-click)="saveCustomPattern()"
+                    [p-disabled]="managementLoading"></po-button>
+                <po-button p-label="Limpar" (p-click)="clearLearningForms()"
+                    [p-disabled]="managementLoading"></po-button>
+            </div>
+
+            @if (patternTestResult; as testResult) {
+            <div class="info-box">
+                <div><strong>Válido:</strong> {{ testResult.test_summary.pattern_valid ? 'Sim' : 'Não' }}</div>
+                <div><strong>Taxa de match:</strong> {{ testResult.test_summary.match_rate }}%</div>
+                <div><strong>Matches:</strong> {{ testResult.test_summary.matches_found }} / {{
+                    testResult.test_summary.total_tests }}</div>
+            </div>
+            }
+        </div>
+    </po-modal>
+
+    <po-modal #cleanerModal p-title="Limpar log">
+        <div class="modal-grid">
+            <div class="modal-hero">
+                <div class="modal-hero__icon modal-hero__icon--purple">
+                    <span class="modal-hero__symbol an an-funnel"></span>
+                </div>
+                <div>
+                    <strong>Limpa Log</strong>
+                    <p>Selecione as categorias desejadas e gere um arquivo limpo, preservando apenas o conteúdo útil.
+                    </p>
+                </div>
+            </div>
+
+            <div class="cleaner-steps">
+                <span [class.cleaner-step--active]="cleanerStep === 1">1. Upload</span>
+                <span [class.cleaner-step--active]="cleanerStep === 2">2. Categorias</span>
+                <span [class.cleaner-step--active]="cleanerStep === 3">3. Resultado</span>
+            </div>
+
+            @if (cleanerStep === 1) {
+            <div class="page-grid">
+                <po-select name="cleanerLogType" [ngModel]="cleanerLogType"
+                    (ngModelChange)="cleanerLogType = $event" p-label="Tipo de log"
+                    [p-options]="cleanerLogTypeOptions"></po-select>
+
+                <div class="file-picker">
+                    <label for="cleanerFile">Arquivo para limpeza</label>
+                    <input #cleanerFileInput class="file-picker__native" id="cleanerFile" type="file"
+                        accept=".log,.txt,.gz" (change)="onCleanerFileSelected($event)" />
+                    <div class="file-picker__control">
+                        <po-button p-label="Selecionar arquivo" (p-click)="cleanerFileInput.click()"></po-button>
+                        <span class="file-picker__filename">{{ cleanerFile?.name || 'Nenhum arquivo selecionado'
+                            }}</span>
+                    </div>
+                    <span class="helper-text">Selecione primeiro o tipo do log para receber apenas as categorias compatíveis.</span>
+                </div>
+
+                <div class="action-row">
+                    <po-button p-kind="primary" p-label="Ler categorias" (p-click)="analyzeCleanerCategories()"
+                        [p-disabled]="cleanerLoading || !cleanerFile"></po-button>
+                    <po-button p-label="Reiniciar" (p-click)="resetCleanerWorkflow()"
+                        [p-disabled]="cleanerLoading"></po-button>
+                </div>
+            </div>
+            }
+
+            @if (cleanerStep === 2) {
+            <div class="page-grid">
+                <div class="info-box">
+                    <div><strong>Arquivo:</strong> {{ cleanerCategoryAnalysis?.filename }}</div>
+                    <div><strong>Linhas:</strong> {{ cleanerCategoryAnalysis?.total_lines }}</div>
+                    <div><strong>Tipo selecionado:</strong> {{ cleanerCategoryAnalysis?.selected_log_type_label }}</div>
+                    <div><strong>Tipo considerado:</strong> {{ cleanerCategoryAnalysis?.effective_log_type_label }}</div>
+                    <div><strong>Categorias encontradas:</strong> {{ cleanerCategoryItems.length }}</div>
+                </div>
+
+                <div class="detail-list">
+                    @for (item of cleanerCategoryItems; track item.key) {
+                    <div class="detail-item detail-item--stacked cleaner-category">
+                        <div class="detail-item__header">
+                            <po-checkbox name="cleaner_{{ item.key }}" [ngModel]="isCleanerCategorySelected(item.key)"
+                                (ngModelChange)="toggleCleanerCategory(item.key, $event)"
+                                [p-label]="item.displayName"></po-checkbox>
+                            <po-tag [p-value]="item.count + ' linha(s)'"></po-tag>
+                        </div>
+                    </div>
+                    }
+                </div>
+
+                <div class="action-row">
+                    <po-button p-kind="primary" p-label="Limpar log" (p-click)="cleanSelectedCategories()"
+                        [p-disabled]="cleanerLoading || selectedCleanerCategories.length === 0"></po-button>
+                    <po-button p-label="Voltar" (p-click)="cleanerStep = 1" [p-disabled]="cleanerLoading"></po-button>
+                </div>
+            </div>
+            }
+
+            @if (cleanerStep === 3) {
+            <div class="page-grid">
+                <div class="success-box">Log limpo com sucesso. O arquivo foi baixado automaticamente.</div>
+
+                @if (cleanerResultStats; as stats) {
+                <div class="two-columns">
+                    <po-widget p-title="Linhas originais">
+                        <div class="widget-stat widget-stat--small">{{ stats['original_lines'] ?? '-' }}</div>
+                    </po-widget>
+                    <po-widget p-title="Linhas removidas">
+                        <div class="widget-stat widget-stat--small">{{ stats['removed_lines'] ?? '-' }}</div>
+                    </po-widget>
+                </div>
+                }
+
+                <div class="action-row">
+                    <po-button p-kind="primary" p-label="Nova limpeza" (p-click)="resetCleanerWorkflow()"></po-button>
+                </div>
+            </div>
+            }
+
+            @if (cleanerLoading) {
+            <po-loading-overlay [p-screen-lock]="false"></po-loading-overlay>
+            }
+        </div>
+    </po-modal>
+
+    <po-modal #splitterModal p-title="Dividir arquivo de log">
+        <div class="modal-grid">
+            <div class="modal-hero">
+                <div class="modal-hero__icon modal-hero__icon--navy">
+                    <span class="modal-hero__symbol an an-files"></span>
+                </div>
+                <div>
+                    <strong>Quebrar arquivo grande</strong>
+                    <p>Envie um log texto e escolha a quantidade de linhas por parte para gerar vários arquivos menores.
+                    </p>
+                </div>
+            </div>
+
+            <div class="file-picker">
+                <label for="splitterFile">Arquivo de log/texto</label>
+                <input #splitterFileInput class="file-picker__native" id="splitterFile" type="file"
+                    accept=".log,.txt,.out" (change)="onSplitterFileSelected($event)" />
+                <div class="file-picker__control">
+                    <po-button p-label="Selecionar arquivo" (p-click)="splitterFileInput.click()"></po-button>
+                    <span class="file-picker__filename">{{ splitterFile?.name || 'Nenhum arquivo selecionado' }}</span>
+                </div>
+                <span class="helper-text">O arquivo será devolvido em um pacote .zip com todas as partes menores.</span>
+            </div>
+
+            <po-select name="splitLinesPerChunk" [ngModel]="splitLinesPerChunk"
+                (ngModelChange)="splitLinesPerChunk = $event" p-label="Quebrar a cada"
+                [p-options]="splitChunkOptions"></po-select>
+
+            @if (splitResultStats; as splitStats) {
+            <div class="info-box">
+                <div><strong>Arquivo:</strong> {{ splitStats.original_filename }}</div>
+                <div><strong>Total de linhas:</strong> {{ splitStats.total_lines }}</div>
+                <div><strong>Linhas por arquivo:</strong> {{ splitStats.lines_per_chunk }}</div>
+                <div><strong>Arquivos gerados:</strong> {{ splitStats.generated_files }}</div>
+            </div>
+            }
+
+            <div class="action-row">
+                <po-button p-kind="primary" p-label="Dividir arquivo" (p-click)="splitLargeLogFile()"
+                    [p-disabled]="splitLoading || !splitterFile"></po-button>
+                <po-button p-label="Reiniciar" (p-click)="resetSplitWorkflow()" [p-disabled]="splitLoading"></po-button>
+            </div>
+
+            @if (splitLoading) {
+            <po-loading-overlay [p-screen-lock]="false"></po-loading-overlay>
+            }
+        </div>
+    </po-modal>
+
+    <po-modal #datasulModal class="modal-shell--datasul" p-title="Catálogo Datasul">
+        <div class="modal-grid modal-grid--datasul">
+            <div class="modal-hero">
+                <div class="modal-hero__icon modal-hero__icon--blue">
+                    <span class="modal-hero__symbol an an-database"></span>
+                </div>
+                <div>
+                    <strong>Catálogo de padrões Datasul</strong>
+                    <p>Consulte estatísticas do carregador, categorias disponíveis, padrões mais usados e force a
+                        atualização do cache do backend.</p>
+                </div>
+            </div>
+
+            <div class="datasul-summary-grid">
+                @for (card of datasulSummaryCards; track card.label) {
+                <div class="datasul-summary-card">
+                    <span class="datasul-summary-card__label">{{ card.label }}</span>
+                    <strong class="datasul-summary-card__value">{{ card.value }}</strong>
+                </div>
+                }
+            </div>
+
+            <div class="action-row">
+                <po-button p-label="Atualizar catálogo" (p-click)="refreshDatasulCatalog()"
+                    [p-disabled]="datasulLoading"></po-button>
+            </div>
+
+            @if (datasulLoading) {
+            <po-loading-overlay [p-screen-lock]="false"></po-loading-overlay>
+            }
+
+            <div class="chart-grid">
+                <po-widget p-title="Categorias">
+                    <div class="table-shell">
+                        <po-table [p-columns]="breakdownColumns" [p-items]="datasulCategoryRows"></po-table>
+                    </div>
+                </po-widget>
+
+                <po-widget p-title="Prioridades">
+                    <div class="table-shell">
+                        <po-table [p-columns]="breakdownColumns" [p-items]="datasulPriorityRows"></po-table>
+                    </div>
+                </po-widget>
+            </div>
+
+            <po-widget p-title="Padrões mais usados">
+                <div class="table-shell">
+                    <po-table [p-columns]="performanceColumns" [p-items]="datasulMostUsedRows"></po-table>
+                </div>
+            </po-widget>
+
+            <po-widget p-title="Padrões Datasul carregados">
+                <div class="table-shell">
+                    <po-table [p-columns]="datasulPatternColumns" [p-items]="datasulPatternRows"></po-table>
+                </div>
+            </po-widget>
+        </div>
+    </po-modal>
+
+    <div #dashboardStart class="page-grid">
+        @if (errorMessage) {
+        <div class="error-box">{{ errorMessage }}</div>
+        }
+
+        @if (successMessage) {
+        <div class="success-box">{{ successMessage }}</div>
+        }
+
+        <div class="welcome-block">
+            <h1>Bem-vindo,</h1>
+            <p>Selecione um módulo para começar.</p>
+        </div>
+
+        <div class="dashboard-grid">
+            <po-widget class="dashboard-card dashboard-card--half">
+                <button type="button" class="dashboard-card__button" (click)="openAnalyzeLogPage()">
+                    <span class="dashboard-card__icon dashboard-card__icon--blue an an-upload-simple"></span>
+                    <div class="dashboard-card__content">
+                        <strong>Analisar logs</strong>
+                        <span>Executar pré-análise, processamento completo, performance e exportação CSV.</span>
+                    </div>
+                    <span class="dashboard-card__arrow an an-caret-right"></span>
+                </button>
+            </po-widget>
+
+            <po-widget class="dashboard-card dashboard-card--half">
+                <button type="button" class="dashboard-card__button" (click)="patternModal.open()">
+                    <span class="dashboard-card__icon dashboard-card__icon--green an an-plus"></span>
+                    <div class="dashboard-card__content">
+                        <strong>Novo Padrão</strong>
+                        <span>Cadastrar, testar e salvar novos padrões customizados.</span>
+                    </div>
+                    <span class="dashboard-card__arrow an an-caret-right"></span>
+                </button>
+            </po-widget>
+
+            <po-widget class="dashboard-card">
+                <button type="button" class="dashboard-card__button" (click)="cleanerModal.open()">
+                    <span class="dashboard-card__icon dashboard-card__icon--purple an an-funnel"></span>
+                    <div class="dashboard-card__content">
+                        <strong>Limpa Log</strong>
+                        <span>Selecionar categorias e baixar o arquivo limpo.</span>
+                    </div>
+                    <span class="dashboard-card__arrow an an-caret-right"></span>
+                </button>
+            </po-widget>
+
+            <po-widget class="dashboard-card">
+                <button type="button" class="dashboard-card__button" (click)="splitterModal.open()">
+                    <span class="dashboard-card__icon dashboard-card__icon--navy an an-files"></span>
+                    <div class="dashboard-card__content">
+                        <strong>Dividir Log</strong>
+                        <span>Quebrar arquivos grandes em partes menores de 50 a 250 mil linhas.</span>
+                    </div>
+                    <span class="dashboard-card__arrow an an-caret-right"></span>
+                </button>
+            </po-widget>
+
+            <po-widget class="dashboard-card">
+                <button type="button" class="dashboard-card__button" (click)="openVersionCompare()">
+                    <span class="dashboard-card__icon dashboard-card__icon--teal an an-swap"></span>
+                    <div class="dashboard-card__content">
+                        <strong>Extrato de Versão</strong>
+                        <span>Adicionar o extrato do cliente, processar no backend e retornar o resultado no
+                            frontend.</span>
+                    </div>
+                    <span class="dashboard-card__arrow an an-caret-right"></span>
+                </button>
+            </po-widget>
+
+            <po-widget class="dashboard-card">
+                <button type="button" class="dashboard-card__button" (click)="openProfilerPage()">
+                    <span class="dashboard-card__icon dashboard-card__icon--orange an an-chart-bar"></span>
+                    <div class="dashboard-card__content">
+                        <strong>Profiler</strong>
+                        <span>Abrir a tela dedicada para carregar o .out e visualizar gargalos do Progress.</span>
+                    </div>
+                    <span class="dashboard-card__arrow an an-caret-right"></span>
+                </button>
+            </po-widget>
+
+            <po-widget class="dashboard-card">
+                <button type="button" class="dashboard-card__button" (click)="openKnowledgeBase()">
+                    <span class="dashboard-card__icon dashboard-card__icon--navy an an-book-open"></span>
+                    <div class="dashboard-card__content">
+                        <strong>Base de conhecimento</strong>
+                        <span>Pesquisar padrões, sintomas, severidades e soluções.</span>
+                    </div>
+                    <span class="dashboard-card__arrow an an-caret-right"></span>
+                </button>
+            </po-widget>
+
+            <po-widget class="dashboard-card">
+                <button type="button" class="dashboard-card__button" (click)="datasulModal.open()">
+                    <span class="dashboard-card__icon dashboard-card__icon--blue an an-database"></span>
+                    <div class="dashboard-card__content">
+                        <strong>Catálogo Datasul</strong>
+                        <span>Consultar estatísticas, padrões e atualizar o cache Datasul do backend.</span>
+                    </div>
+                    <span class="dashboard-card__arrow an an-caret-right"></span>
+                </button>
+            </po-widget>
+
+            <po-widget class="dashboard-card">
+                <button type="button" class="dashboard-card__button" (click)="openEvidenceRegister()">
+                    <span class="dashboard-card__icon dashboard-card__icon--purple an an-note-pencil"></span>
+                    <div class="dashboard-card__content">
+                        <strong>Registro de Evidência</strong>
+                        <span>Centralizar anexos, descrições e histórico de evidências ligadas ao atendimento.</span>
+                    </div>
+                    <span class="dashboard-card__arrow an an-caret-right"></span>
+                </button>
+            </po-widget>
+
+            <po-widget class="dashboard-card">
+                <button type="button" class="dashboard-card__button" (click)="openIssueControl()">
+                    <span class="dashboard-card__icon dashboard-card__icon--red an an-list-check"></span>
+                    <div class="dashboard-card__content">
+                        <strong>Controle de Issues</strong>
+                        <span>Organizar pendências, responsáveis, prioridade e acompanhamento de issues do
+                            suporte.</span>
+                    </div>
+                    <span class="dashboard-card__arrow an an-caret-right"></span>
+                </button>
+            </po-widget>
+        </div>
+
+        <div class="dashboard-stats-grid">
+            @for (item of dashboardStats; track item.label) {
+            <po-widget [p-title]="item.label">
+                <div class="widget-stat">{{ item.value }}</div>
+                <div class="helper-text">{{ item.detail }}</div>
+            </po-widget>
+            }
+        </div>
+
+        <div class="chart-grid">
+            <po-widget p-title="Histórico de análises">
+                <div class="table-shell">
+                    <po-table [p-columns]="historyColumns" [p-items]="historyRows"></po-table>
+                </div>
+            </po-widget>
+
+            <po-widget p-title="Padrões customizados ativos">
+                @if (customPatterns.length > 0) {
+                <div class="detail-list compact-list">
+                    @for (pattern of customPatterns.slice(0, 8); track pattern.id) {
+                    <div class="detail-item">
+                        <div>
+                            <strong>{{ pattern.pattern }}</strong>
+                            <div class="helper-text">{{ pattern.description }}</div>
+                        </div>
+                        <po-button p-label="Remover" (p-click)="removeCustomPattern(pattern.id)"></po-button>
+                    </div>
+                    }
+                </div>
+                } @else {
+                <p class="helper-text">Nenhum padrão customizado ativo.</p>
+                }
+            </po-widget>
+        </div>
+    </div>
+</po-page-default>

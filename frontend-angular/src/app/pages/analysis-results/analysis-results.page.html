@@ -1,0 +1,707 @@
+<po-page-default p-title="Resultado da Analise"
+    p-subtitle="Suba o arquivo, faça a prévia e acompanhe o resultado completo no mesmo lugar.">
+    <po-modal #nonErrorModal p-title="Marcar ocorrencia como nao-erro">
+        <div class="modal-grid">
+            <div class="modal-hero">
+                <div class="modal-hero__icon modal-hero__icon--green">
+                    <po-icon p-icon="an-check-circle"></po-icon>
+                </div>
+                <div>
+                    <strong>Salvar restricao de nao-erro</strong>
+                    <p>Escolha como o trecho deve ser salvo, informe a parte que nao representa erro e registre a
+                        justificativa. O padrao ficara salvo e sera aplicado nas proximas analises.</p>
+                </div>
+            </div>
+
+            @if (selectedError; as current) {
+            <div class="non-error-review-box">
+                <strong>{{ current.title }}</strong>
+                <p>{{ current.helperText }}</p>
+            </div>
+            }
+
+            <po-textarea name="fullLine" [(ngModel)]="nonErrorFullLine" p-label="Linha completa" [p-rows]="4"
+                [p-readonly]="true"></po-textarea>
+
+            <div class="selection-mode-grid">
+                <label class="selection-option" [class.selection-option--active]="nonErrorSelectionMode === 'auto'"
+                    data-testid="selection-mode-auto">
+                    <input type="radio" name="nonErrorSelectionMode" [checked]="nonErrorSelectionMode === 'auto'"
+                        (change)="setNonErrorSelectionMode('auto')" />
+                    <div>
+                        <strong>Sugestao automatica</strong>
+                        <span>Usa o padrao identificado automaticamente para a linha.</span>
+                    </div>
+                </label>
+
+                <label class="selection-option" [class.selection-option--active]="nonErrorSelectionMode === 'full'"
+                    data-testid="selection-mode-full">
+                    <input type="radio" name="nonErrorSelectionMode" [checked]="nonErrorSelectionMode === 'full'"
+                        (change)="setNonErrorSelectionMode('full')" />
+                    <div>
+                        <strong>Linha inteira nao e erro</strong>
+                        <span>Salva a mensagem completa como referencia.</span>
+                    </div>
+                </label>
+
+                <label class="selection-option" [class.selection-option--active]="nonErrorSelectionMode === 'custom'"
+                    data-testid="selection-mode-custom">
+                    <input type="radio" name="nonErrorSelectionMode" [checked]="nonErrorSelectionMode === 'custom'"
+                        (change)="setNonErrorSelectionMode('custom')" />
+                    <div>
+                        <strong>Selecionar parte especifica</strong>
+                        <span>Informe manualmente qual trecho nao deve ser tratado como erro.</span>
+                    </div>
+                </label>
+            </div>
+
+            <div class="manual-pattern-field">
+                <label for="partialPatternInput">Qual parte nao e erro</label>
+                <input id="partialPatternInput" type="text" [(ngModel)]="nonErrorPartialPattern"
+                    [disabled]="nonErrorSelectionMode !== 'custom'"
+                    placeholder="Informe o trecho que nao deve ser tratado como erro" />
+                <span class="helper-text">No modo manual, informe apenas a parte da linha que caracteriza o
+                    nao-erro.</span>
+            </div>
+            <po-textarea name="reason" [(ngModel)]="nonErrorReason" p-label="Explicacao / motivo"
+                [p-rows]="4"></po-textarea>
+
+            <div class="action-row">
+                <po-button p-label="Cancelar" (p-click)="closeNonErrorModal()"
+                    [p-disabled]="savingNonError" data-testid="cancel-non-error-btn"></po-button>
+                <po-button p-kind="primary" p-label="Salvar nao-erro" (p-click)="saveAsNonError()"
+                    [p-disabled]="savingNonError" data-testid="save-non-error-btn"></po-button>
+            </div>
+
+            @if (savingNonError) {
+            <po-loading-overlay [p-screen-lock]="false"></po-loading-overlay>
+            }
+        </div>
+    </po-modal>
+
+    <div class="page-grid" data-testid="analysis-results-page">
+        @if (errorMessage) {
+        <div class="error-box" data-testid="error-message">{{ errorMessage }}</div>
+        }
+
+        @if (successMessage) {
+        <div class="success-box" data-testid="success-message">{{ successMessage }}</div>
+        }
+
+        <section class="analyze-log-shell" data-testid="embedded-analyze-log-shell">
+            <div class="analyze-log-shell__title-row">
+                <div>
+                    <h2>{{ hasAnalysisResult ? 'Analisar outro log' : 'Analisar logs' }}</h2>
+                    <p>Carregue o log principal, faça a prévia e execute a análise completa sem sair desta tela.</p>
+                </div>
+            </div>
+
+            <div class="modal-grid modal-grid--analysis-page">
+                <div class="two-columns modal-section-grid">
+                    <div class="file-picker" data-testid="log-file-picker">
+                        <label for="logFilePage">Arquivo principal de log</label>
+                        <input #logFileInput class="file-picker__native" id="logFilePage" type="file"
+                            accept=".log,.txt,.out" (change)="onLogFileSelected($event)" />
+                        <div class="file-picker__control">
+                            <po-button p-label="Selecionar arquivo" p-icon="po-icon-upload"
+                                (p-click)="logFileInput.click()"></po-button>
+                            <span class="file-picker__filename">{{ logFile?.name || 'Nenhum arquivo selecionado' }}</span>
+                        </div>
+                        <span class="helper-text">Use o arquivo principal que será processado conforme as regras do backend.</span>
+                    </div>
+
+                    <div class="file-picker" data-testid="patterns-file-picker">
+                        <label for="patternsFilePage">Arquivo extra de padrões</label>
+                        <input #patternsFileInput class="file-picker__native" id="patternsFilePage" type="file"
+                            accept=".txt,.json,.log" (change)="onPatternsFileSelected($event)" />
+                        <div class="file-picker__control">
+                            <po-button p-label="Selecionar arquivo" p-icon="po-icon-upload"
+                                (p-click)="patternsFileInput.click()"></po-button>
+                            <span class="file-picker__filename">{{ patternsFile?.name || 'Nenhum arquivo selecionado' }}</span>
+                        </div>
+                        <span class="helper-text">Opcional. Complementa o matcher do backend no endpoint de análise.</span>
+                    </div>
+                </div>
+
+                <div class="action-row">
+                    <po-button p-label="Pré-analisar" (p-click)="previewLog()" [p-disabled]="loading || !logFile"></po-button>
+                    <po-button p-kind="primary" p-label="Analisar log" (p-click)="analyzeLog()" [p-disabled]="loading || !logFile"></po-button>
+                </div>
+
+                @if (previewInfo; as preview) {
+                <div class="modal-preview-box" data-testid="preview-info">
+                    <div><strong>Arquivo:</strong> {{ preview.file_info.filename }}</div>
+                    <div><strong>Linhas:</strong> {{ preview.file_info.line_count }}</div>
+                    <div><strong>Tamanho:</strong> {{ preview.file_info.size_mb }} MB</div>
+                    <div><strong>Processamento:</strong> {{ preview.file_info.processing_type }}</div>
+                    <div><strong>Tempo estimado:</strong> {{ preview.processing_estimate.estimated_time_human }}</div>
+                </div>
+                }
+
+                @if (loading) {
+                <po-loading-overlay [p-screen-lock]="false"></po-loading-overlay>
+                }
+            </div>
+        </section>
+
+        @if (hasAnalysisResult) {
+
+        <!-- HEADER COM IDENTIFICACAO DO LOG -->
+        <div class="result-header" data-testid="result-header">
+            <div class="result-header__info">
+                <h2>{{ analyzedFilename || 'Ultima analise' }}</h2>
+                <div class="result-header__meta">
+                    <po-tag [p-value]="analysisResult?.log_type || 'Desconhecido'"
+                        [p-color]="logTypeColor(analysisResult?.log_type || '')"
+                        p-icon="an-server"
+                        data-testid="log-type-tag"></po-tag>
+                    <span class="result-header__date">Analisado em {{ analyzedAt | date:'dd/MM/yyyy HH:mm:ss' }}</span>
+                </div>
+            </div>
+            <div class="action-row">
+                <po-button p-label="Voltar" (p-click)="backToAnalysis()" data-testid="back-btn"></po-button>
+                <po-button p-kind="primary" p-label="Nova analise" (p-click)="newAnalysis()" data-testid="new-analysis-btn"></po-button>
+            </div>
+        </div>
+
+        <!-- RESUMO PRINCIPAL COM PO-INFO -->
+        <div class="summary-banner" data-testid="summary-banner">
+            <div class="summary-banner__stats">
+                @for (card of summaryCards; track card.label) {
+                <div class="summary-stat-item" data-testid="summary-stat">
+                    <span class="summary-stat-item__value">{{ card.value }}</span>
+                    <span class="summary-stat-item__label">{{ card.label }}</span>
+                </div>
+                }
+            </div>
+        </div>
+
+        <!-- INDICADORES SECUNDARIOS -->
+        <div class="cards-grid cards-grid--compact" data-testid="highlighted-stats">
+            @for (card of highlightedStats; track card.label) {
+            <po-widget [p-title]="card.label">
+                <div class="widget-stat widget-stat--small">{{ card.value }}</div>
+            </po-widget>
+            }
+        </div>
+
+        <po-divider></po-divider>
+
+        <div class="insight-switcher" data-testid="analysis-insight-switcher">
+            @for (view of viewOptions; track view.key) {
+            <button type="button" class="insight-switcher__button"
+                [class.insight-switcher__button--active]="isActiveView(view.key)"
+                (click)="setInsightView(view.key)">
+                <span>{{ view.label }}</span>
+                @if (view.count !== undefined) {
+                <strong>{{ view.count }}</strong>
+                }
+            </button>
+            }
+        </div>
+
+        @if (isActiveView('linhas')) {
+        <div class="section-intro section-intro--highlight">
+            <span>A linha do log fica visível como no arquivo original. Os detalhes complementares abrem só quando o usuário expandir a ocorrência.</span>
+        </div>
+
+        <po-widget p-title="Linhas encontradas" data-testid="results-lines-widget">
+            <div class="result-toolbar">
+                <div class="result-toolbar__search">
+                    <label for="result-search-input">Buscar linha, tipo ou categoria</label>
+                    <input id="result-search-input" type="text" [(ngModel)]="resultSearchTerm"
+                        (ngModelChange)="setSeverityFilter(severityFilter)"
+                        placeholder="Ex.: timeout, broker, appserver, linha 120" />
+                </div>
+
+                <div class="severity-pills">
+                    @for (severity of severityFilterOptions; track severity) {
+                    <button type="button" class="severity-pill"
+                        [class.severity-pill--active]="severityFilter === severity"
+                        (click)="setSeverityFilter(severity)">
+                        {{ severity === 'all' ? 'Todas' : severity }}
+                    </button>
+                    }
+                </div>
+            </div>
+
+            @if (filteredResultRows.length > 0) {
+            <div class="detail-list result-list">
+                @for (item of filteredResultRows; track item.lineNumber + '-' + item.preview) {
+                <div class="detail-item detail-item--stacked result-card result-line-card"
+                    [class.result-line-card--expanded]="isResultRowExpanded(item)"
+                    data-testid="result-line-card">
+                    <div class="result-line-card__header">
+                        <div class="result-line-card__meta">
+                            <po-tag [p-value]="'Linha ' + item.lineNumber" p-color="color-12"></po-tag>
+                            <po-tag [p-value]="item.severity" [p-type]="severityTagType(item.severity)"></po-tag>
+                            <span class="helper-text">{{ item.timestamp }}</span>
+                        </div>
+                        <div class="result-line-card__actions">
+                            <po-button class="result-line-card__non-error-button" p-kind="tertiary" p-label="Não erro"
+                                (p-click)="openNonErrorModal(item)"></po-button>
+                            <button type="button" class="result-line-card__toggle"
+                                [attr.aria-expanded]="isResultRowExpanded(item)"
+                                [attr.aria-label]="isResultRowExpanded(item) ? 'Fechar detalhes da linha' : 'Abrir detalhes da linha'"
+                                (click)="toggleResultRow(item)">
+                                <po-icon [p-icon]="isResultRowExpanded(item) ? 'po-icon-arrow-top' : 'po-icon-arrow-down'"></po-icon>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="result-line-card__inline-tags">
+                        <po-tag [p-value]="item.type" [p-type]="TAG_INFO"></po-tag>
+                        <po-tag [p-value]="item.category"></po-tag>
+                    </div>
+
+                    <pre class="result-line-card__log-line">{{ item.preview }}</pre>
+
+                    @if (isResultRowExpanded(item)) {
+                    <div class="result-line-card__details">
+                        <div class="result-detail-panel__meta">
+                            <po-info p-label="Categoria" [p-value]="item.category"></po-info>
+                            <po-info p-label="Origem" [p-value]="item.source"></po-info>
+                            <po-info p-label="Subtipo" [p-value]="item.subtype"></po-info>
+                            <po-info p-label="Padrão" [p-value]="item.matchedPattern"></po-info>
+                        </div>
+
+                        @if (item.recommendationHint && item.recommendationHint !== '-') {
+                        <div class="result-card__recommendation">
+                            <strong>Recomendacao direcionada</strong>
+                            <p>{{ item.recommendationHint }}</p>
+                        </div>
+                        }
+
+                        @if (item.domainFields.length > 0) {
+                        <div class="result-card__domain-grid">
+                            @for (field of item.domainFields; track field.label + field.value) {
+                            <div class="result-card__domain-item">
+                                <strong>{{ field.label }}</strong>
+                                <span>{{ field.value }}</span>
+                            </div>
+                            }
+                        </div>
+                        }
+
+                        <div class="result-card__knowledge">
+                            <div class="result-card__knowledge-block result-card__knowledge-block--cause">
+                                <strong>Causa / situacao</strong>
+                                <p>{{ item.description }}</p>
+                            </div>
+                            <div class="result-card__knowledge-block result-card__knowledge-block--solution">
+                                <strong>Solucao recomendada</strong>
+                                <p>{{ item.solution }}</p>
+                            </div>
+                        </div>
+
+                        @if (item.insightTags.length > 0) {
+                        <div class="result-card__tags">
+                            @for (tag of item.insightTags; track tag) {
+                            <po-tag [p-value]="tag" [p-type]="TAG_INFO"></po-tag>
+                            }
+                        </div>
+                        }
+                    </div>
+                    }
+                </div>
+                }
+            </div>
+            } @else {
+            <div class="empty-state">Nenhuma linha corresponde aos filtros atuais.</div>
+            }
+        </po-widget>
+        }
+
+        @if (isActiveView('geral')) {
+        <div class="chart-grid">
+            <po-widget p-title="Tipos de erro">
+                @if ((errorTypeChartData.labels?.length ?? 0) > 0) {
+                <div class="chart-box">
+                    <canvas baseChart [data]="errorTypeChartData" [options]="barChartOptions" type="bar"></canvas>
+                </div>
+                } @else {
+                <p class="helper-text">Sem dados para o grafico de tipos de erro.</p>
+                }
+            </po-widget>
+
+            <po-widget p-title="Distribuicao por severidade">
+                @if ((severityChartData.labels?.length ?? 0) > 0) {
+                <div class="chart-box chart-box--donut">
+                    <canvas baseChart [data]="severityChartData" [options]="doughnutChartOptions" type="doughnut"></canvas>
+                </div>
+                } @else {
+                <p class="helper-text">Sem dados de severidade neste resultado.</p>
+                }
+            </po-widget>
+        </div>
+
+        <div class="chart-grid">
+            <po-widget p-title="Evolucao temporal das ocorrencias">
+                @if ((temporalChartData.labels?.length ?? 0) > 0) {
+                <div class="chart-box">
+                    <canvas baseChart [data]="temporalChartData" [options]="lineChartOptions" type="line"></canvas>
+                </div>
+                } @else {
+                <p class="helper-text">Sem serie temporal disponivel no retorno do backend.</p>
+                }
+            </po-widget>
+
+            <po-widget p-title="Ritmo das ocorrencias">
+                @if ((hourlyChartData.labels?.length ?? 0) > 0) {
+                <div class="chart-box">
+                    <canvas baseChart [data]="hourlyChartData" [options]="lineChartOptions" type="line"></canvas>
+                </div>
+                } @else {
+                <p class="helper-text">Sem distribuicao horaria disponivel para este log.</p>
+                }
+            </po-widget>
+        </div>
+
+        <div class="chart-grid">
+            <po-widget p-title="Estatisticas gerais">
+                @if (statisticsRows.length > 0) {
+                <div class="table-shell">
+                    <po-table [p-columns]="breakdownColumns" [p-items]="statisticsRows"></po-table>
+                </div>
+                } @else {
+                <p class="helper-text">Sem estatisticas adicionais retornadas.</p>
+                }
+            </po-widget>
+
+            <div class="chart-grid-inner">
+                <po-widget p-title="Contagem por categoria">
+                    @if (errorCountRows.length > 0) {
+                    <div class="table-shell">
+                        <po-table [p-columns]="breakdownColumns" [p-items]="errorCountRows"></po-table>
+                    </div>
+                    } @else {
+                    <p class="helper-text">Sem contagens por categoria no retorno.</p>
+                    }
+                </po-widget>
+
+                <po-widget p-title="Contagem por severidade">
+                    @if (severityCountRows.length > 0) {
+                    <div class="table-shell">
+                        <po-table [p-columns]="breakdownColumns" [p-items]="severityCountRows"></po-table>
+                    </div>
+                    } @else {
+                    <p class="helper-text">Sem contagens por severidade no retorno.</p>
+                    }
+                </po-widget>
+            </div>
+        </div>
+        }
+
+        @if (isActiveView('novos-erros')) {
+        <div class="section-intro">
+            <span>Bloco de novos erros sugeridos pelo backend, com cobertura, palavras suspeitas e linhas candidatas.</span>
+        </div>
+
+        @if (newErrorSummaryCards.length > 0) {
+        <div class="cards-grid cards-grid--compact inside-grid">
+            @for (card of newErrorSummaryCards; track card.label) {
+            <po-widget [p-title]="card.label">
+                <div class="widget-stat widget-stat--small">{{ card.value }}</div>
+            </po-widget>
+            }
+        </div>
+        }
+
+        <div class="chart-grid inside-grid">
+            <po-widget p-title="Cobertura da analise">
+                <div class="table-shell">
+                    <po-table [p-columns]="breakdownColumns" [p-items]="newErrorCoverageRows"></po-table>
+                </div>
+            </po-widget>
+
+            <po-widget p-title="Palavras suspeitas mais frequentes">
+                <div class="table-shell">
+                    <po-table [p-columns]="breakdownColumns" [p-items]="suspiciousWordRows"></po-table>
+                </div>
+            </po-widget>
+        </div>
+
+        <po-widget p-title="Sugestoes de padroes">
+            <div class="table-shell">
+                <po-table [p-columns]="patternSuggestionColumns" [p-items]="patternSuggestionRows"></po-table>
+            </div>
+        </po-widget>
+
+        <po-widget p-title="Linhas com possivel novo erro">
+            @if (potentialErrorRows.length > 0) {
+            <div class="detail-list result-list potential-error-list">
+                @for (item of potentialErrorRows; track item.line + '-' + item.message) {
+                <div class="detail-item detail-item--stacked result-card potential-error-card" data-testid="potential-error-card">
+                    <div class="result-card__top">
+                        <div class="result-card__identity">
+                            <po-tag [p-value]="'Linha ' + item.line"></po-tag>
+                            <po-tag [p-value]="item.confidence" [p-type]="TAG_WARNING"></po-tag>
+                        </div>
+                        <po-button p-label="Marcar como nao-erro" (p-click)="openPotentialNonErrorModal(item)"></po-button>
+                    </div>
+                    <div class="result-card__message">{{ item.message }}</div>
+                </div>
+                }
+            </div>
+            } @else {
+            <p class="helper-text">Sem linhas com possivel novo erro no retorno atual.</p>
+            }
+        </po-widget>
+        }
+
+        @if (isActiveView('estruturado')) {
+        <div class="section-intro">
+            <span>Resumo dos subtipos detectados, recomendações automáticas e métricas especializadas do parser estruturado.</span>
+        </div>
+
+        @if (structuredSummaryCards.length > 0) {
+        <div class="cards-grid cards-grid--compact inside-grid structured-summary-grid">
+            @for (card of structuredSummaryCards; track card.label) {
+            <po-widget [p-title]="card.label">
+                <div class="widget-stat widget-stat--small">{{ card.value }}</div>
+            </po-widget>
+            }
+        </div>
+        }
+
+        <div class="chart-grid inside-grid">
+            @if (structuredSubtypeRows.length > 0) {
+            <po-widget p-title="Subtipos estruturados">
+                <div class="table-shell">
+                    <po-table [p-columns]="breakdownColumns" [p-items]="structuredSubtypeRows"></po-table>
+                </div>
+            </po-widget>
+            }
+
+            @if (structuredCategoryRows.length > 0) {
+            <po-widget p-title="Categorias estruturadas">
+                <div class="table-shell">
+                    <po-table [p-columns]="breakdownColumns" [p-items]="structuredCategoryRows"></po-table>
+                </div>
+            </po-widget>
+            }
+        </div>
+
+        <div class="chart-grid inside-grid">
+            @if (specializedInsightRows.length > 0) {
+            <po-widget p-title="Tags de insight">
+                <div class="table-shell">
+                    <po-table [p-columns]="breakdownColumns" [p-items]="specializedInsightRows"></po-table>
+                </div>
+            </po-widget>
+            }
+
+            @if (specializedRecommendationRows.length > 0) {
+            <po-widget p-title="Recomendacoes sugeridas">
+                <div class="table-shell">
+                    <po-table [p-columns]="breakdownColumns" [p-items]="specializedRecommendationRows"></po-table>
+                </div>
+            </po-widget>
+            }
+        </div>
+
+        <div class="chart-grid inside-grid">
+            @if (specializedAccessRows.length > 0) {
+            <po-widget p-title="Access / PASOE - rotas 5xx">
+                <div class="table-shell">
+                    <po-table [p-columns]="performanceColumns" [p-items]="specializedAccessRows"></po-table>
+                </div>
+            </po-widget>
+            }
+
+            @if (specializedProgressRows.length > 0) {
+            <po-widget p-title="Progress / AppServer - recorrencias">
+                <div class="table-shell">
+                    <po-table [p-columns]="performanceColumns" [p-items]="specializedProgressRows"></po-table>
+                </div>
+            </po-widget>
+            }
+        </div>
+
+        <div class="chart-grid inside-grid">
+            @if (specializedTabanalysRows.length > 0) {
+            <po-widget p-title="TabAnalys - objetos criticos">
+                <div class="table-shell">
+                    <po-table [p-columns]="performanceColumns" [p-items]="specializedTabanalysRows"></po-table>
+                </div>
+            </po-widget>
+            }
+
+            @if (specializedXrefRows.length > 0) {
+            <po-widget p-title="XREF - tipos detectados">
+                <div class="table-shell">
+                    <po-table [p-columns]="breakdownColumns" [p-items]="specializedXrefRows"></po-table>
+                </div>
+            </po-widget>
+            }
+        </div>
+
+        <div class="chart-grid inside-grid">
+            @if (specializedLogixCommandRows.length > 0) {
+            <po-widget p-title="LOGIX - comandos mais frequentes">
+                <div class="table-shell">
+                    <po-table [p-columns]="performanceColumns" [p-items]="specializedLogixCommandRows"></po-table>
+                </div>
+            </po-widget>
+            }
+
+            @if (specializedLogixProgramRows.length > 0) {
+            <po-widget p-title="LOGIX - programas mais afetados">
+                <div class="table-shell">
+                    <po-table [p-columns]="performanceColumns" [p-items]="specializedLogixProgramRows"></po-table>
+                </div>
+            </po-widget>
+            }
+        </div>
+        }
+
+        @if (isActiveView('performance')) {
+        @if (hasPerformanceData) {
+        <po-widget p-title="Saúde da performance">
+            <div class="performance-pulse">
+                <div class="score-orb"
+                    [class.score-orb--info]="performanceHealthTagType === TAG_INFO"
+                    [class.score-orb--warning]="performanceHealthTagType === TAG_WARNING"
+                    [class.score-orb--danger]="performanceHealthTagType === TAG_DANGER"
+                    [class.score-orb--success]="performanceHealthTagType === TAG_SUCCESS">
+                    <span>Saúde</span>
+                    <strong>{{ performanceHealthScore === null ? '--' : performanceHealthScore }}</strong>
+                </div>
+
+                <div class="pulse-summary">
+                    <po-tag [p-type]="performanceHealthTagType" [p-value]="performanceHealthLabel"></po-tag>
+                    <p class="helper-text">{{ performanceHealthHelper }}</p>
+
+                    @if (performanceHealthReasons.length > 0) {
+                    <ul class="performance-health-reasons">
+                        @for (reason of performanceHealthReasons; track reason) {
+                        <li>{{ reason }}</li>
+                        }
+                    </ul>
+                    }
+                </div>
+            </div>
+        </po-widget>
+
+        <div class="cards-grid cards-grid--compact inside-grid">
+            @for (card of performanceSummaryCards; track card.label) {
+            <po-widget [p-title]="card.label">
+                <div class="widget-stat widget-stat--small">{{ card.value }}</div>
+            </po-widget>
+            }
+        </div>
+
+        <div class="chart-grid inside-grid">
+            <po-widget p-title="Procedures / programas lentos">
+                <div class="table-shell">
+                    <po-table [p-columns]="performanceColumns" [p-items]="slowProgramRows"></po-table>
+                </div>
+            </po-widget>
+
+            <po-widget p-title="Operacoes lentas">
+                <div class="table-shell">
+                    <po-table [p-columns]="performanceColumns" [p-items]="slowOperationRows"></po-table>
+                </div>
+            </po-widget>
+        </div>
+
+        <div class="chart-grid inside-grid">
+            <po-widget p-title="Metodos mais chamados">
+                <div class="table-shell">
+                    <po-table [p-columns]="topMethodColumns" [p-items]="topMethodRows"></po-table>
+                </div>
+            </po-widget>
+
+            <po-widget p-title="Alertas especificos">
+                <div class="table-shell">
+                    <po-table [p-columns]="performanceColumns" [p-items]="specificAlertRows"></po-table>
+                </div>
+            </po-widget>
+        </div>
+
+        <po-widget p-title="Programas e metodos com maior impacto">
+            <div class="section-intro">
+                <span>Visao consolidada por tipo de log, com percentual do tempo rastreado e callers identificados.</span>
+            </div>
+            <div class="table-shell">
+                <po-table [p-columns]="topProgramColumns" [p-items]="topProgramRows"></po-table>
+            </div>
+        </po-widget>
+        } @else {
+        <p class="helper-text">Este resultado nao trouxe blocos de performance.</p>
+        }
+        }
+
+        @if (isActiveView('atencao')) {
+        <po-widget p-title="Pontos de atencao" data-testid="attention-points-widget">
+            @if (attentionPoints.length > 0) {
+            <div class="detail-list">
+                @for (item of attentionPoints; track item.line + item.message) {
+                <div class="detail-item detail-item--stacked result-card attention-card" data-testid="attention-point-card">
+                    <div class="detail-item__header">
+                        <po-tag [p-value]="'Linha ' + item.line" p-color="color-07"></po-tag>
+                        <span class="helper-text">{{ item.timestamp }}</span>
+                    </div>
+                    <div class="result-card__message">{{ item.message }}</div>
+                    @if (item.description || item.solution) {
+                    <div class="result-card__knowledge">
+                        @if (item.description) {
+                        <div class="result-card__knowledge-block result-card__knowledge-block--cause">
+                            <strong>Causa / situacao</strong>
+                            <p>{{ item.description }}</p>
+                        </div>
+                        }
+                        @if (item.solution) {
+                        <div class="result-card__knowledge-block result-card__knowledge-block--solution">
+                            <strong>Solucao recomendada</strong>
+                            <p>{{ item.solution }}</p>
+                        </div>
+                        }
+                    </div>
+                    }
+                </div>
+                }
+            </div>
+            } @else {
+            <p class="helper-text">Nenhum ponto de atencao destacado.</p>
+            }
+        </po-widget>
+        }
+
+        @if (isActiveView('informativas')) {
+        <po-widget p-title="Linhas informativas sugeridas" data-testid="informational-lines-widget">
+            @if (informationalLines.length > 0) {
+            <div class="detail-list informational-list">
+                @for (item of informationalLines; track item.line + item.message) {
+                <div class="detail-item detail-item--stacked informational-card" data-testid="informational-line-card">
+                    <div class="informational-card__top">
+                        <div class="informational-card__meta">
+                            <po-tag [p-value]="'Linha ' + item.line" p-color="color-11"></po-tag>
+                            <span class="helper-text">{{ item.timestamp }}</span>
+                        </div>
+                        <div class="action-row informational-card__actions">
+                            <po-button p-label="Nao e informativa" (p-click)="rejectInformationalLine(item)" [p-disabled]="savingInformationalLine === item.line"></po-button>
+                            <po-button p-kind="primary" p-label="Aprovar como nao-erro" (p-click)="approveInformationalLine(item)" [p-disabled]="savingInformationalLine === item.line"></po-button>
+                        </div>
+                    </div>
+                    <div class="informational-card__message">{{ item.message }}</div>
+                    @if (item.suggestion) {
+                    <div class="helper-text"><strong>Sugestao:</strong> {{ item.suggestion }}</div>
+                    }
+                </div>
+                }
+            </div>
+            } @else {
+            <p class="helper-text">Nenhuma linha informativa pendente de revisao.</p>
+            }
+        </po-widget>
+        }
+        } @else {
+        <po-widget p-title="Sem análise carregada">
+            <div class="empty-state">
+                Selecione um log acima para fazer a prévia e executar a análise completa nesta própria tela.
+            </div>
+        </po-widget>
+        }
+    </div>
+</po-page-default>

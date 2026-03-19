@@ -1,0 +1,157 @@
+<po-page-default p-title="Base de conhecimento"
+    p-subtitle="Consulta unificada de padrões, erros conhecidos, severidade e recomendações de solução.">
+    <po-modal #detailModal p-title="Detalhes do padrão" [p-primary-action]="closeDetailAction">
+        @if (selectedMatch; as match) {
+        <div class="modal-detail">
+            <div><strong>Tipo</strong>{{ match.type }}</div>
+            <div><strong>Código</strong>{{ match.code || '-' }}</div>
+            <div><strong>Categoria</strong>{{ match.category || '-' }}</div>
+            <div><strong>Severidade</strong>{{ match.severity || '-' }}</div>
+            <div><strong>Descrição</strong>{{ match.description || '-' }}</div>
+            <div><strong>Solução</strong>{{ match.solution || '-' }}</div>
+            <div><strong>Exemplo</strong>{{ match.example || '-' }}</div>
+            <div><strong>Padrão</strong>{{ match.pattern || '-' }}</div>
+            <div><strong>Origem</strong>{{ match.source || '-' }}</div>
+        </div>
+        }
+    </po-modal>
+
+    <div class="page-grid">
+        @if (errorMessage) {
+        <div class="error-box">{{ errorMessage }}</div>
+        }
+
+        <div class="two-columns knowledge-top-grid">
+            <po-widget p-title="Pesquisar na base">
+                <div class="search-panel">
+                    <div class="search-panel__intro">
+                        <div class="search-panel__icon an an-book-open"></div>
+                        <div>
+                            <strong>Consulta rápida</strong>
+                            <p>Pesquise códigos, mensagens exatas ou palavras-chave para localizar soluções já
+                                catalogadas.</p>
+                        </div>
+                    </div>
+
+                    <po-input name="knowledgeSearch" [(ngModel)]="searchTerm" p-label="Termo de busca"
+                        p-placeholder="Ex.: DataServer, Rejeição 999, 18215"></po-input>
+
+                    <div>
+                        <span class="section-label">Sugestões</span>
+                        <div class="quick-actions top-gap">
+                            @for (term of quickTerms; track term) {
+                            <button type="button" class="quick-chip" (click)="applyQuickTerm(term)">{{ term }}</button>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="action-row">
+                        <po-button p-kind="primary" p-label="Pesquisar" (p-click)="search(detailModal)"
+                            [p-disabled]="loading"></po-button>
+                        <po-dropdown p-label="Ações" [p-actions]="knowledgeActions"></po-dropdown>
+                    </div>
+
+                    @if (recentTerms.length > 0) {
+                    <div>
+                        <span class="section-label">Consultas recentes</span>
+                        <div class="quick-actions top-gap">
+                            @for (term of recentTerms; track trackTerm(term)) {
+                            <button type="button" class="quick-chip quick-chip--subtle"
+                                (click)="selectRecentTerm(term)">{{ term }}</button>
+                            }
+                        </div>
+                    </div>
+                    }
+
+                    @if (loading) {
+                    <po-loading-overlay [p-screen-lock]="false"></po-loading-overlay>
+                    }
+                </div>
+            </po-widget>
+
+            <po-widget p-title="Visão geral">
+                <div class="insight-grid">
+                    <po-info p-label="Retorno do backend"
+                        p-value="Top matches, contadores por fonte e filtros por severidade/origem."></po-info>
+                    <po-info p-label="Fontes cobertas"
+                        p-value="Datasul, LOGIX, TOTVS, customizados e padrões de sistema."></po-info>
+                    <po-info p-label="Melhor uso"
+                        p-value="Pesquise pelo código do erro, por trecho da mensagem ou pelo nome do componente."></po-info>
+                </div>
+            </po-widget>
+        </div>
+
+        @if (matches.length > 0) {
+        <div class="cards-grid cards-grid--compact">
+            <po-widget p-title="Total encontrado">
+                <div class="widget-stat">{{ totalFound }}</div>
+            </po-widget>
+            <po-widget p-title="Itens exibidos">
+                <div class="widget-stat">{{ returnedCount }}</div>
+            </po-widget>
+            @for (stat of sourceStats; track stat.key) {
+            <po-widget [p-title]="stat.key">
+                <div class="widget-stat">{{ stat.value }}</div>
+            </po-widget>
+            }
+        </div>
+        }
+
+        <po-widget p-title="Resultados encontrados">
+            @if (matches.length === 0) {
+            <div class="empty-state">
+                <div class="empty-state__icon an an-magnifying-glass"></div>
+                <strong>Nenhum resultado carregado</strong>
+                <p>Faça uma pesquisa para visualizar os padrões e recomendações disponíveis.</p>
+            </div>
+            } @else {
+            <div class="filter-row">
+                <po-select class="filter-control" name="sourceFilter" [ngModel]="sourceFilter"
+                    (ngModelChange)="sourceFilter = $event; applyFilters()" p-label="Origem"
+                    [p-options]="sourceFilterOptions"></po-select>
+
+                <po-select class="filter-control" name="severityFilter" [ngModel]="severityFilter"
+                    (ngModelChange)="severityFilter = $event; applyFilters()" p-label="Severidade"
+                    [p-options]="severityFilterOptions"></po-select>
+            </div>
+
+            @if (truncatedResults) {
+            <div class="info-box">
+                Exibindo {{ returnedCount }} de {{ totalFound }} resultado(s), limitado a {{ resultLimit }} itens por
+                consulta. Refine a busca para reduzir o conjunto ou ajuste o limite retornado pelo backend.
+            </div>
+            } @else {
+            <div class="info-box">Exibindo {{ returnedCount }} resultado(s) retornados pelo backend.</div>
+            }
+
+            <po-table [p-columns]="columns" [p-items]="filteredItems"></po-table>
+
+            <div class="results-card-grid top-gap-lg">
+                @for (match of matches; track match.code + match.type + match.source) {
+                <div class="result-card">
+                    <div class="result-card__header">
+                        <div>
+                            <strong>{{ match.type }} {{ match.code ? '(' + match.code + ')' : '' }}</strong>
+                            <div class="helper-text">{{ match.source }}</div>
+                        </div>
+                        <po-tag [p-value]="match.severity || 'Sem severidade'"></po-tag>
+                    </div>
+
+                    <div class="result-card__body">
+                        <p>{{ match.description }}</p>
+                        <div class="match-meta-row">
+                            <po-tag [p-value]="match.severity || 'Sem severidade'"></po-tag>
+                            <span class="helper-text">{{ match.category || 'Sem categoria' }}</span>
+                        </div>
+                    </div>
+
+                    <div class="result-card__footer">
+                        <po-button p-label="Detalhes" (p-click)="openDetails(match, detailModal)"></po-button>
+                    </div>
+                </div>
+                }
+            </div>
+            }
+        </po-widget>
+    </div>
+</po-page-default>

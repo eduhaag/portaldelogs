@@ -1,0 +1,1302 @@
+[
+  {
+    "pattern": "CFOP\\s*6102.*CST/CSOSN\\s*60|NCM\\s*2710\\.12\\.49.*incompa",
+    "description": "Incompatibilidade entre CFOP 6102, CST 60 e NCM 2710.12.49.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CFOP 6102 x CST 60 x NCM 2710.12.49",
+    "solution": "Ajustar regra fiscal e cadastros (produto/cliente/UF).",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "FT0904",
+    "description": "Atualização da situação da NF-e (consulta batch).",
+    "category": "FAT/NFe",
+    "severity": "Baixo",
+    "example": "Atualização da situação da NF-e (consulta batch).",
+    "solution": "Conferir parâmetros (URLs, certificados, CSCs) e reprocessar.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "(CST|CSOSN)\\s*41\\s*incompa|(CSOSN)\\s*41\\s*inv(á|a)lido",
+    "description": "CST/CSOSN 41 incompatível com CFOP/regime.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CST 41 incompatível com CFOP",
+    "solution": "Revisar CST/CSOSN x regime tributário e regra fiscal.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "FT0909F|FT0909",
+    "description": "Funções de envio/retorno de NF-e.",
+    "category": "FAT/NFe",
+    "severity": "Baixo",
+    "example": "Funções de envio/retorno de NF-e.",
+    "solution": "Conferir parâmetros (URLs, certificados, CSCs) e reprocessar.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*786",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição 786 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*949",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Alto",
+    "example": "Rejeição 949 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "(CST|CSOSN)\\s*00\\s*incompa|(CSOSN)\\s*00\\s*inv(á|a)lido",
+    "description": "CST/CSOSN 00 incompatível com CFOP/regime.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CST 00 incompatível com CFOP",
+    "solution": "Revisar CST/CSOSN x regime tributário e regra fiscal.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*821",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Baixo",
+    "example": "Rejeição 821 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "CFOP\\s*1202.*CST/CSOSN\\s*102|NCM\\s*2710\\.12\\.49.*incompa",
+    "description": "Incompatibilidade entre CFOP 1202, CST 102 e NCM 2710.12.49.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CFOP 1202 x CST 102 x NCM 2710.12.49",
+    "solution": "Ajustar regra fiscal e cadastros (produto/cliente/UF).",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*510",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição 510 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "CFOP\\s*6910.*CST/CSOSN\\s*60|NCM\\s*8517\\.12\\.31.*incompa",
+    "description": "Incompatibilidade entre CFOP 6910, CST 60 e NCM 8517.12.31.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CFOP 6910 x CST 60 x NCM 8517.12.31",
+    "solution": "Ajustar regra fiscal e cadastros (produto/cliente/UF).",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "CFOP\\s*5102.*CST/CSOSN\\s*10|NCM\\s*4011\\.10\\.00.*incompa",
+    "description": "Incompatibilidade entre CFOP 5102, CST 10 e NCM 4011.10.00.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CFOP 5102 x CST 10 x NCM 4011.10.00",
+    "solution": "Ajustar regra fiscal e cadastros (produto/cliente/UF).",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*878",
+    "description": "SEFAZ: Rejeição 878 — inconsistência de dados.",
+    "category": "FAT/NFe",
+    "severity": "Alto",
+    "example": "Rejeição 878 — inconsistência de dados",
+    "solution": "Corrigir dados fiscais e reenviar; validar regras da UF.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*539|Duplicidade.*NFe",
+    "description": "Duplicidade de NF-e com número/série já utilizado.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Duplicidade de NF-e com número/série já utilizado.",
+    "solution": "Ajustar parametrização e reemitir nota.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*394",
+    "description": "SEFAZ: Rejeição 394 — inconsistência de dados.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição 394 — inconsistência de dados",
+    "solution": "Corrigir dados fiscais e reenviar; validar regras da UF.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*763",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Baixo",
+    "example": "Rejeição 763 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "NCM\\s*8517\\.12\\.31.*inv(á|a)lido|NCM\\s*8517\\.12\\.31.*desatualizado",
+    "description": "NCM 8517.12.31 inválido/desatualizado.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "NCM 8517.12.31 inválido",
+    "solution": "Atualizar tabela NCM e cadastro do item; validar TIPI.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "CFOP\\s*6102\\s*inv(á|a)lido|CFOP\\s*6102\\s*n(ã|a)o\\s*permitido",
+    "description": "CFOP 6102 incompatível com a operação/finalidade.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CFOP 6102 não permitido",
+    "solution": "Ajustar natureza/CFOP conforme operação.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*733",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição 733 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "CFOP\\s*5405\\s*inv(á|a)lido|CFOP\\s*5405\\s*n(ã|a)o\\s*permitido",
+    "description": "CFOP 5405 incompatível com a operação/finalidade.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CFOP 5405 não permitido",
+    "solution": "Ajustar natureza/CFOP conforme operação.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*723",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Alto",
+    "example": "Rejeição 723 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*463",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Baixo",
+    "example": "Rejeição 463 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*649",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Baixo",
+    "example": "Rejeição 649 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "NCM\\s*3923\\.21\\.10.*inv(á|a)lido|NCM\\s*3923\\.21\\.10.*desatualizado",
+    "description": "NCM 3923.21.10 inválido/desatualizado.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "NCM 3923.21.10 inválido",
+    "solution": "Atualizar tabela NCM e cadastro do item; validar TIPI.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*199",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição 199 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "TC\\s*2\\.0|TSS",
+    "description": "Configuração do transporte (TOTVS TSS/TC).",
+    "category": "FAT/NFe",
+    "severity": "Baixo",
+    "example": "Configuração do transporte (TOTVS TSS/TC).",
+    "solution": "Conferir parâmetros (URLs, certificados, CSCs) e reprocessar.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "CFOP\\s*1202\\s*inv(á|a)lido|CFOP\\s*1202\\s*n(ã|a)o\\s*permitido",
+    "description": "CFOP 1202 incompatível com a operação/finalidade.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CFOP 1202 não permitido",
+    "solution": "Ajustar natureza/CFOP conforme operação.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*799",
+    "description": "SEFAZ: Rejeição 799 — inconsistência de dados.",
+    "category": "FAT/NFe",
+    "severity": "Alto",
+    "example": "Rejeição 799 — inconsistência de dados",
+    "solution": "Corrigir dados fiscais e reenviar; validar regras da UF.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*610|NCM\\s*inv(á|a)lido",
+    "description": "NCM inválido para o item.",
+    "category": "FAT/NFe",
+    "severity": "Alto",
+    "example": "NCM inválido para o item.",
+    "solution": "Ajustar parametrização e reemitir nota.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "CFOP\\s*5910.*CST/CSOSN\\s*103|NCM\\s*3923\\.21\\.10.*incompa",
+    "description": "Incompatibilidade entre CFOP 5910, CST 103 e NCM 3923.21.10.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CFOP 5910 x CST 103 x NCM 3923.21.10",
+    "solution": "Ajustar regra fiscal e cadastros (produto/cliente/UF).",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*181",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Baixo",
+    "example": "Rejeição 181 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "CFOP\\s*1202.*CST/CSOSN\\s*500|NCM\\s*1905\\.90\\.90.*incompa",
+    "description": "Incompatibilidade entre CFOP 1202, CST 500 e NCM 1905.90.90.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CFOP 1202 x CST 500 x NCM 1905.90.90",
+    "solution": "Ajustar regra fiscal e cadastros (produto/cliente/UF).",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "(CST|CSOSN)\\s*20\\s*incompa|(CSOSN)\\s*20\\s*inv(á|a)lido",
+    "description": "CST/CSOSN 20 incompatível com CFOP/regime.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CST 20 incompatível com CFOP",
+    "solution": "Revisar CST/CSOSN x regime tributário e regra fiscal.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*207",
+    "description": "SEFAZ: Rejeição 207 — inconsistência de dados.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição 207 — inconsistência de dados",
+    "solution": "Corrigir dados fiscais e reenviar; validar regras da UF.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "CFOP\\s*6910\\s*inv(á|a)lido|CFOP\\s*6910\\s*n(ã|a)o\\s*permitido",
+    "description": "CFOP 6910 incompatível com a operação/finalidade.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CFOP 6910 não permitido",
+    "solution": "Ajustar natureza/CFOP conforme operação.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "CFOP\\s*5910\\s*inv(á|a)lido|CFOP\\s*5910\\s*n(ã|a)o\\s*permitido",
+    "description": "CFOP 5910 incompatível com a operação/finalidade.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CFOP 5910 não permitido",
+    "solution": "Ajustar natureza/CFOP conforme operação.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*665",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição 665 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*488",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição 488 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "(CST|CSOSN)\\s*40\\s*incompa|(CSOSN)\\s*40\\s*inv(á|a)lido",
+    "description": "CST/CSOSN 40 incompatível com CFOP/regime.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CST 40 incompatível com CFOP",
+    "solution": "Revisar CST/CSOSN x regime tributário e regra fiscal.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "(CST|CSOSN)\\s*60\\s*incompa|(CSOSN)\\s*60\\s*inv(á|a)lido",
+    "description": "CST/CSOSN 60 incompatível com CFOP/regime.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CST 60 incompatível com CFOP",
+    "solution": "Revisar CST/CSOSN x regime tributário e regra fiscal.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*806",
+    "description": "SEFAZ: Rejeição 806 — inconsistência de dados.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição 806 — inconsistência de dados",
+    "solution": "Corrigir dados fiscais e reenviar; validar regras da UF.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*371",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Baixo",
+    "example": "Rejeição 371 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "CFOP\\s*5401\\s*inv(á|a)lido|CFOP\\s*5401\\s*n(ã|a)o\\s*permitido",
+    "description": "CFOP 5401 incompatível com a operação/finalidade.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CFOP 5401 não permitido",
+    "solution": "Ajustar natureza/CFOP conforme operação.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "(CST|CSOSN)\\s*10\\s*incompa|(CSOSN)\\s*10\\s*inv(á|a)lido",
+    "description": "CST/CSOSN 10 incompatível com CFOP/regime.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CST 10 incompatível com CFOP",
+    "solution": "Revisar CST/CSOSN x regime tributário e regra fiscal.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*778|CEST\\s*inv(á|a)lido",
+    "description": "CEST inválido ou ausente quando exigido.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CEST inválido ou ausente quando exigido.",
+    "solution": "Ajustar parametrização e reemitir nota.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*267",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição 267 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*818",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Alto",
+    "example": "Rejeição 818 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*146",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Alto",
+    "example": "Rejeição 146 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*605",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Baixo",
+    "example": "Rejeição 605 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*924",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição 924 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*569",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Baixo",
+    "example": "Rejeição 569 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "(CST|CSOSN)\\s*102\\s*incompa|(CSOSN)\\s*102\\s*inv(á|a)lido",
+    "description": "CST/CSOSN 102 incompatível com CFOP/regime.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CST 102 incompatível com CFOP",
+    "solution": "Revisar CST/CSOSN x regime tributário e regra fiscal.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*954",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição 954 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*333",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição 333 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "NCM\\s*2203\\.00\\.00.*inv(á|a)lido|NCM\\s*2203\\.00\\.00.*desatualizado",
+    "description": "NCM 2203.00.00 inválido/desatualizado.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "NCM 2203.00.00 inválido",
+    "solution": "Atualizar tabela NCM e cadastro do item; validar TIPI.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "(CST|CSOSN)\\s*500\\s*incompa|(CSOSN)\\s*500\\s*inv(á|a)lido",
+    "description": "CST/CSOSN 500 incompatível com CFOP/regime.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CST 500 incompatível com CFOP",
+    "solution": "Revisar CST/CSOSN x regime tributário e regra fiscal.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*691",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Baixo",
+    "example": "Rejeição 691 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "CFOP\\s*5910.*CST/CSOSN\\s*20|NCM\\s*3923\\.21\\.10.*incompa",
+    "description": "Incompatibilidade entre CFOP 5910, CST 20 e NCM 3923.21.10.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CFOP 5910 x CST 20 x NCM 3923.21.10",
+    "solution": "Ajustar regra fiscal e cadastros (produto/cliente/UF).",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "CFOP\\s*2202\\s*inv(á|a)lido|CFOP\\s*2202\\s*n(ã|a)o\\s*permitido",
+    "description": "CFOP 2202 incompatível com a operação/finalidade.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CFOP 2202 não permitido",
+    "solution": "Ajustar natureza/CFOP conforme operação.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*241",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Alto",
+    "example": "Rejeição 241 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "NCM\\s*8507\\.60\\.00.*inv(á|a)lido|NCM\\s*8507\\.60\\.00.*desatualizado",
+    "description": "NCM 8507.60.00 inválido/desatualizado.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "NCM 8507.60.00 inválido",
+    "solution": "Atualizar tabela NCM e cadastro do item; validar TIPI.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*352",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Alto",
+    "example": "Rejeição 352 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*579",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Alto",
+    "example": "Rejeição 579 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "NCM\\s*3004\\.90\\.99.*inv(á|a)lido|NCM\\s*3004\\.90\\.99.*desatualizado",
+    "description": "NCM 3004.90.99 inválido/desatualizado.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "NCM 3004.90.99 inválido",
+    "solution": "Atualizar tabela NCM e cadastro do item; validar TIPI.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*394|CFOP.*operac(ao|ão)\\s*n(ao|ão)\\s*permitida",
+    "description": "CFOP da nota não permitido para a operação/finalidade informada.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CFOP da nota não permitido para a operação/finalidade informada.",
+    "solution": "Ajustar parametrização e reemitir nota.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "NCM\\s*2710\\.12\\.49.*inv(á|a)lido|NCM\\s*2710\\.12\\.49.*desatualizado",
+    "description": "NCM 2710.12.49 inválido/desatualizado.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "NCM 2710.12.49 inválido",
+    "solution": "Atualizar tabela NCM e cadastro do item; validar TIPI.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*256",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Alto",
+    "example": "Rejeição 256 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*801",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição 801 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*670",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Baixo",
+    "example": "Rejeição 670 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "CFOP\\s*6201\\s*inv(á|a)lido|CFOP\\s*6201\\s*n(ã|a)o\\s*permitido",
+    "description": "CFOP 6201 incompatível com a operação/finalidade.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CFOP 6201 não permitido",
+    "solution": "Ajustar natureza/CFOP conforme operação.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Parcelas\\s*divergentes\\s*da\\s*nota",
+    "description": "Parcelas divergentes.",
+    "category": "Financeiro/Integração",
+    "severity": "Baixo",
+    "example": "Parcelas divergentes",
+    "solution": "Revisar integração FAT↔AP/AR; regularizar títulos/parcelas e refazer processo.",
+    "source": "",
+    "tag": "Financeiro"
+  },
+  {
+    "pattern": "T(í|i)tulo\\s*a\\s*receber\\s*n(ã|a)o\\s*atualizado",
+    "description": "Título a receber não atualizado.",
+    "category": "Financeiro/Integração",
+    "severity": "Baixo",
+    "example": "Título a receber não atualizado",
+    "solution": "Revisar integração FAT↔AP/AR; regularizar títulos/parcelas e refazer processo.",
+    "source": "",
+    "tag": "Financeiro"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*771",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição 771 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*852",
+    "description": "SEFAZ: Rejeição 852 — inconsistência de dados.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição 852 — inconsistência de dados",
+    "solution": "Corrigir dados fiscais e reenviar; validar regras da UF.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "CFOP\\s*1411\\s*inv(á|a)lido|CFOP\\s*1411\\s*n(ã|a)o\\s*permitido",
+    "description": "CFOP 1411 incompatível com a operação/finalidade.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CFOP 1411 não permitido",
+    "solution": "Ajustar natureza/CFOP conforme operação.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*239",
+    "description": "SEFAZ: Rejeição 239 — inconsistência de dados.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição 239 — inconsistência de dados",
+    "solution": "Corrigir dados fiscais e reenviar; validar regras da UF.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "CFOP\\s*6201.*CST/CSOSN\\s*900|NCM\\s*3923\\.21\\.10.*incompa",
+    "description": "Incompatibilidade entre CFOP 6201, CST 900 e NCM 3923.21.10.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CFOP 6201 x CST 900 x NCM 3923.21.10",
+    "solution": "Ajustar regra fiscal e cadastros (produto/cliente/UF).",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*357",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Alto",
+    "example": "Rejeição 357 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*470",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Baixo",
+    "example": "Rejeição 470 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*963",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Baixo",
+    "example": "Rejeição 963 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*926",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Baixo",
+    "example": "Rejeição 926 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "CFOP\\s*5405.*CST/CSOSN\\s*103|NCM\\s*3923\\.21\\.10.*incompa",
+    "description": "Incompatibilidade entre CFOP 5405, CST 103 e NCM 3923.21.10.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CFOP 5405 x CST 103 x NCM 3923.21.10",
+    "solution": "Ajustar regra fiscal e cadastros (produto/cliente/UF).",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*206",
+    "description": "SEFAZ: Rejeição 206 — inconsistência de dados.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição 206 — inconsistência de dados",
+    "solution": "Corrigir dados fiscais e reenviar; validar regras da UF.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*755",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Alto",
+    "example": "Rejeição 755 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*422",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Baixo",
+    "example": "Rejeição 422 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "CFOP\\s*6401\\s*inv(á|a)lido|CFOP\\s*6401\\s*n(ã|a)o\\s*permitido",
+    "description": "CFOP 6401 incompatível com a operação/finalidade.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CFOP 6401 não permitido",
+    "solution": "Ajustar natureza/CFOP conforme operação.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*999",
+    "description": "SEFAZ: Rejeição 999 — inconsistência de dados.",
+    "category": "FAT/NFe",
+    "severity": "Alto",
+    "example": "Rejeição 999 — inconsistência de dados",
+    "solution": "Corrigir dados fiscais e reenviar; validar regras da UF.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*505",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Alto",
+    "example": "Rejeição 505 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "CFOP\\s*5910.*CST/CSOSN\\s*500|NCM\\s*2203\\.00\\.00.*incompa",
+    "description": "Incompatibilidade entre CFOP 5910, CST 500 e NCM 2203.00.00.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CFOP 5910 x CST 500 x NCM 2203.00.00",
+    "solution": "Ajustar regra fiscal e cadastros (produto/cliente/UF).",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "CFOP\\s*5401.*CST/CSOSN\\s*60|NCM\\s*8517\\.12\\.31.*incompa",
+    "description": "Incompatibilidade entre CFOP 5401, CST 60 e NCM 8517.12.31.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CFOP 5401 x CST 60 x NCM 8517.12.31",
+    "solution": "Ajustar regra fiscal e cadastros (produto/cliente/UF).",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*967",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição 967 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "CFOP\\s*5401.*CST/CSOSN\\s*60|NCM\\s*3923\\.21\\.10.*incompa",
+    "description": "Incompatibilidade entre CFOP 5401, CST 60 e NCM 3923.21.10.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CFOP 5401 x CST 60 x NCM 3923.21.10",
+    "solution": "Ajustar regra fiscal e cadastros (produto/cliente/UF).",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*698",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição 698 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*873",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Baixo",
+    "example": "Rejeição 873 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*386",
+    "description": "SEFAZ: Rejeição 386 — inconsistência de dados.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição 386 — inconsistência de dados",
+    "solution": "Corrigir dados fiscais e reenviar; validar regras da UF.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "(CST|CSOSN)\\s*103\\s*incompa|(CSOSN)\\s*103\\s*inv(á|a)lido",
+    "description": "CST/CSOSN 103 incompatível com CFOP/regime.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CST 103 incompatível com CFOP",
+    "solution": "Revisar CST/CSOSN x regime tributário e regra fiscal.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*680",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Alto",
+    "example": "Rejeição 680 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "NCM\\s*4011\\.10\\.00.*inv(á|a)lido|NCM\\s*4011\\.10\\.00.*desatualizado",
+    "description": "NCM 4011.10.00 inválido/desatualizado.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "NCM 4011.10.00 inválido",
+    "solution": "Atualizar tabela NCM e cadastro do item; validar TIPI.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*215|Falha\\s*no\\s*schema|XML\\s*inv(á|a)lido",
+    "description": "XML inválido (schema/estrutura).",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "XML inválido (schema/estrutura).",
+    "solution": "Ajustar parametrização e reemitir nota.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*674",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Alto",
+    "example": "Rejeição 674 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*987",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Baixo",
+    "example": "Rejeição 987 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*489",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição 489 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "CFOP\\s*6201.*CST/CSOSN\\s*500|NCM\\s*3004\\.90\\.99.*incompa",
+    "description": "Incompatibilidade entre CFOP 6201, CST 500 e NCM 3004.90.99.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CFOP 6201 x CST 500 x NCM 3004.90.99",
+    "solution": "Ajustar regra fiscal e cadastros (produto/cliente/UF).",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*237|CPF/CNPJ\\s*do\\s*destinat(á|a)rio\\s*inv(á|a)lido",
+    "description": "Documento do destinatário inválido.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Documento do destinatário inválido.",
+    "solution": "Ajustar parametrização e reemitir nota.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*846",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Baixo",
+    "example": "Rejeição 846 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "NFS-e.*Al(í|i)quota\\s*fora\\s*do\\s*limite",
+    "description": "NFS-e: Alíquota fora do limite.",
+    "category": "FAT/NFSe",
+    "severity": "Médio",
+    "example": "NFS-e: Alíquota fora do limite",
+    "solution": "Conferir lista de serviços municipal, alíquotas e CNAE; ajustar cadastro.",
+    "source": "",
+    "tag": "NFSe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*697",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição 697 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "CFOP\\s*5102.*CST/CSOSN\\s*10|NCM\\s*8507\\.60\\.00.*incompa",
+    "description": "Incompatibilidade entre CFOP 5102, CST 10 e NCM 8507.60.00.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CFOP 5102 x CST 10 x NCM 8507.60.00",
+    "solution": "Ajustar regra fiscal e cadastros (produto/cliente/UF).",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "(CST|CSOSN)\\s*900\\s*incompa|(CSOSN)\\s*900\\s*inv(á|a)lido",
+    "description": "CST/CSOSN 900 incompatível com CFOP/regime.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CST 900 incompatível com CFOP",
+    "solution": "Revisar CST/CSOSN x regime tributário e regra fiscal.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "NFC-e.*CSC\\s*ausente",
+    "description": "NFC-e CSC ausente.",
+    "category": "FAT/NFCe",
+    "severity": "Médio",
+    "example": "NFC-e CSC ausente",
+    "solution": "Configurar CSC/série/URL QRCode no TSS/TC e filial.",
+    "source": "",
+    "tag": "NFC-e"
+  },
+  {
+    "pattern": "CFOP\\s*5401.*CST/CSOSN\\s*41|NCM\\s*3004\\.90\\.99.*incompa",
+    "description": "Incompatibilidade entre CFOP 5401, CST 41 e NCM 3004.90.99.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CFOP 5401 x CST 41 x NCM 3004.90.99",
+    "solution": "Ajustar regra fiscal e cadastros (produto/cliente/UF).",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*532",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Alto",
+    "example": "Rejeição 532 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*302",
+    "description": "SEFAZ: Rejeição 302 — inconsistência de dados.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição 302 — inconsistência de dados",
+    "solution": "Corrigir dados fiscais e reenviar; validar regras da UF.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "CFOP\\s*5102\\s*inv(á|a)lido|CFOP\\s*5102\\s*n(ã|a)o\\s*permitido",
+    "description": "CFOP 5102 incompatível com a operação/finalidade.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CFOP 5102 não permitido",
+    "solution": "Ajustar natureza/CFOP conforme operação.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "NCM\\s*1905\\.90\\.90.*inv(á|a)lido|NCM\\s*1905\\.90\\.90.*desatualizado",
+    "description": "NCM 1905.90.90 inválido/desatualizado.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "NCM 1905.90.90 inválido",
+    "solution": "Atualizar tabela NCM e cadastro do item; validar TIPI.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*167",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Baixo",
+    "example": "Rejeição 167 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*165",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição 165 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*334",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Baixo",
+    "example": "Rejeição 334 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "CFOP\\s*2411\\s*inv(á|a)lido|CFOP\\s*2411\\s*n(ã|a)o\\s*permitido",
+    "description": "CFOP 2411 incompatível com a operação/finalidade.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CFOP 2411 não permitido",
+    "solution": "Ajustar natureza/CFOP conforme operação.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "CFOP\\s*2411.*CST/CSOSN\\s*00|NCM\\s*8507\\.60\\.00.*incompa",
+    "description": "Incompatibilidade entre CFOP 2411, CST 00 e NCM 8507.60.00.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CFOP 2411 x CST 00 x NCM 8507.60.00",
+    "solution": "Ajustar regra fiscal e cadastros (produto/cliente/UF).",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*263",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Alto",
+    "example": "Rejeição 263 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*487",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Baixo",
+    "example": "Rejeição 487 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*369",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Alto",
+    "example": "Rejeição 369 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*981",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Baixo",
+    "example": "Rejeição 981 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*275",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Alto",
+    "example": "Rejeição 275 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "CFOP\\s*6401.*CST/CSOSN\\s*41|NCM\\s*1905\\.90\\.90.*incompa",
+    "description": "Incompatibilidade entre CFOP 6401, CST 41 e NCM 1905.90.90.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CFOP 6401 x CST 41 x NCM 1905.90.90",
+    "solution": "Ajustar regra fiscal e cadastros (produto/cliente/UF).",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*718",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição 718 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "NFC-e.*QRCode\\s*inv(á|a)lido",
+    "description": "NFC-e QRCode inválido.",
+    "category": "FAT/NFCe",
+    "severity": "Alto",
+    "example": "NFC-e QRCode inválido",
+    "solution": "Configurar CSC/série/URL QRCode no TSS/TC e filial.",
+    "source": "",
+    "tag": "NFC-e"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*490",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Alto",
+    "example": "Rejeição 490 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  },
+  {
+    "pattern": "Rejei(c|ç)ão\\s*847",
+    "description": "Inconsistência tributária detectada pela SEFAZ.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Rejeição 847 — inconsistência tributária",
+    "solution": "Revisar CFOP, CST, bases e alíquotas; reemitir.",
+    "source": "",
+    "tag": "NFe"
+  }
+]

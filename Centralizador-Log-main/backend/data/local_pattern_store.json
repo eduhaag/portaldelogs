@@ -1,0 +1,18 @@
+{
+  "custom_patterns": [],
+  "non_error_patterns": [],
+  "session_patterns": [],
+  "auth_users": [
+    {
+      "id": "0a2a3df5-7556-4da4-a404-093e467dcbab",
+      "display_name": "thay",
+      "username": "thay",
+      "username_normalized": "thay",
+      "email": "thay@eu.com",
+      "email_normalized": "thay@eu.com",
+      "password_hash": "086919250fedf3af06fe5a5b6ad579c4f508d8ab4a199f685be1864196046001",
+      "active": true,
+      "created_at": "2026-03-17 02:22:05.153727"
+    }
+  ]
+}

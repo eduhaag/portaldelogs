@@ -1,0 +1,195 @@
+<po-page-default p-title="Comparação de extrato de versão"
+    p-subtitle="Leitura dedicada do extrato do cliente, comparação com a base interna e visualização completa do retorno do backend.">
+    <div class="page-grid">
+        @if (errorMessage) {
+        <div class="feedback feedback--error">{{ errorMessage }}</div>
+        }
+
+        @if (successMessage) {
+        <div class="feedback feedback--success">{{ successMessage }}</div>
+        }
+
+        <div class="top-layout">
+            <po-widget p-title="Carregar extrato do cliente">
+                <div class="page-grid">
+                    <div class="compact-intro">
+                        <div>
+                            <span class="eyebrow">Leitura orientada pelo backend</span>
+                            <h3>Comparação rápida com a base interna</h3>
+                            <p>Envie o extrato, compare versões e veja o retorno completo sem sair desta tela.</p>
+                        </div>
+
+                        <div class="compact-steps">
+                            <span>1. Upload</span>
+                            <span>2. Comparação</span>
+                            <span>3. Retorno visual</span>
+                        </div>
+                    </div>
+
+                    <div class="file-picker">
+                        <label for="versionCompareFilePage">Extrato do cliente</label>
+                        <input id="versionCompareFilePage" type="file" accept=".log,.txt"
+                            (change)="onVersionCompareSelected($event)" />
+                        <span class="helper-text">O backend lê o arquivo, compara versões e devolve os dados para esta
+                            tela.</span>
+                    </div>
+
+                    <div class="upload-summary">
+                        <div class="upload-summary__item">
+                            <span class="upload-summary__label">Arquivo selecionado</span>
+                            <strong>{{ versionCompareFile?.name || uploadedFilename || 'Nenhum arquivo selecionado'
+                                }}</strong>
+                        </div>
+                        <div class="upload-summary__item">
+                            <span class="upload-summary__label">Última análise</span>
+                            <strong>{{ analyzedAt ? analyzedAt : '-' }}</strong>
+                        </div>
+                    </div>
+
+                    <div class="action-row">
+                        <po-button p-label="Recarregar índice" (p-click)="reloadVersionIndex()"
+                            [p-disabled]="versionCompareLoading"></po-button>
+                        <po-button p-kind="primary" p-label="Ler extrato" (p-click)="runVersionCompare()"
+                            [p-disabled]="versionCompareLoading || !versionCompareFile"></po-button>
+                        <po-button p-label="Limpar resultado" (p-click)="clearVersionCompareSession()"
+                            [p-disabled]="versionCompareLoading || !hasResult"></po-button>
+                    </div>
+
+                    @if (versionCompareLoading) {
+                    <po-loading-overlay [p-screen-lock]="false"></po-loading-overlay>
+                    }
+                </div>
+            </po-widget>
+
+            <po-widget p-title="Retorno do backend">
+                @if (effectiveIndexStatus; as status) {
+                <div class="status-panel">
+                    <div class="status-panel__path">
+                        <span class="upload-summary__label">Diretório base / índice</span>
+                        <strong>{{ status.base_lib_directory }}</strong>
+                    </div>
+
+                    <div class="status-grid">
+                        <div class="status-card">
+                            <span class="status-card__label">Bases indexadas</span>
+                            <strong>{{ status.indexed_bases }}</strong>
+                        </div>
+                        <div class="status-card">
+                            <span class="status-card__label">Fixes indexadas</span>
+                            <strong>{{ status.indexed_fixes }}</strong>
+                        </div>
+                        <div class="status-card">
+                            <span class="status-card__label">Versões indexadas</span>
+                            <strong>{{ status.indexed_program_versions }}</strong>
+                        </div>
+                        <div class="status-card">
+                            <span class="status-card__label">Última leitura local</span>
+                            <strong>{{ analyzedAt ? analyzedAt : '-' }}</strong>
+                        </div>
+                    </div>
+
+                    @if (backendReturnCards.length > 0) {
+                    <div class="backend-return-grid">
+                        @for (card of backendReturnCards; track card.label) {
+                        <div class="status-card status-card--accent">
+                            <span class="status-card__label">{{ card.label }}</span>
+                            <strong>{{ card.value }}</strong>
+                        </div>
+                        }
+                    </div>
+                    }
+                </div>
+                } @else if (backendReturnCards.length > 0) {
+                <div class="status-panel">
+                    <div class="section-intro section-intro--compact">
+                        O status do índice não foi carregado separadamente, mas o retorno do backend da última leitura
+                        está disponível abaixo.
+                    </div>
+
+                    <div class="backend-return-grid">
+                        @for (card of backendReturnCards; track card.label) {
+                        <div class="status-card status-card--accent">
+                            <span class="status-card__label">{{ card.label }}</span>
+                            <strong>{{ card.value }}</strong>
+                        </div>
+                        }
+                    </div>
+                </div>
+                } @else {
+                <div class="empty-state">
+                    Faça a leitura do extrato para preencher aqui o retorno do backend e os dados do ambiente interno.
+                </div>
+                }
+            </po-widget>
+        </div>
+
+        @if (hasResult) {
+        <div class="cards-grid cards-grid--summary">
+            @for (card of summaryCards; track card.label) {
+            <po-widget [p-title]="card.label">
+                <div class="summary-card">
+                    <div class="widget-stat summary-card__value">{{ card.value }}</div>
+                </div>
+            </po-widget>
+            }
+        </div>
+
+        <po-widget p-title="Resumo da leitura">
+            <div class="section-intro section-intro--compact">
+                O backend compara o arquivo lido com o ambiente interno, identifica programas desatualizados, itens
+                OK, não encontrados e ocorrências de UPC.
+            </div>
+
+            <div class="highlights-grid">
+                <div class="highlight-item highlight-item--warning">
+                    <span class="highlight-item__label">Desatualizados</span>
+                    <strong>{{ versionCompareRows.length }}</strong>
+                    <small>Itens que exigem atualização no cliente.</small>
+                </div>
+                <div class="highlight-item highlight-item--success">
+                    <span class="highlight-item__label">OK</span>
+                    <strong>{{ versionCompareOkRows.length }}</strong>
+                    <small>Itens alinhados com a referência interna.</small>
+                </div>
+                <div class="highlight-item highlight-item--neutral">
+                    <span class="highlight-item__label">Não encontrados</span>
+                    <strong>{{ versionCompareNotFoundRows.length }}</strong>
+                    <small>Programas sem correspondência na base indexada.</small>
+                </div>
+                <div class="highlight-item highlight-item--accent">
+                    <span class="highlight-item__label">UPC</span>
+                    <strong>{{ versionCompareUpcRows.length }}</strong>
+                    <small>Ocorrências com tratamento separado por UPC.</small>
+                </div>
+            </div>
+        </po-widget>
+
+        <po-widget p-title="Resultado detalhado da comparação">
+            <po-tabs>
+                <po-tab [p-label]="outdatedTabLabel">
+                    <po-table [p-columns]="versionCompareColumns" [p-items]="versionCompareRows"></po-table>
+                </po-tab>
+
+                <po-tab [p-label]="okTabLabel">
+                    <po-table [p-columns]="versionCompareColumns" [p-items]="versionCompareOkRows"></po-table>
+                </po-tab>
+
+                <po-tab [p-label]="notFoundTabLabel">
+                    <po-table [p-columns]="versionCompareColumns" [p-items]="versionCompareNotFoundRows"></po-table>
+                </po-tab>
+
+                <po-tab [p-label]="upcTabLabel">
+                    <po-table [p-columns]="upcColumns" [p-items]="versionCompareUpcRows"></po-table>
+                </po-tab>
+            </po-tabs>
+        </po-widget>
+        } @else {
+        <po-widget p-title="Sem extrato processado">
+            <div class="empty-state">
+                Envie o arquivo pelo modal da análise principal ou carregue um extrato nesta tela para exibir o retorno
+                do backend.
+            </div>
+        </po-widget>
+        }
+    </div>
+</po-page-default>

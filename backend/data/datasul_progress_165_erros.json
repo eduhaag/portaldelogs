@@ -1,0 +1,1652 @@
+[
+  {
+    "pattern": "\\(210\\)\\s*Cannot\\s*read\\s*BLOB",
+    "description": "Falha ao ler BLOB/CLOB.",
+    "category": "OpenEdge/DB",
+    "severity": "Médio",
+    "example": "Cannot read BLOB field (210)",
+    "solution": "Validar LOB-dir, permissões e mapeamento no schema holder.",
+    "tag": "LOB",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "\\(1104\\)\\s*Shared\\s*memory\\s*conflict",
+    "description": "Conflito de memória compartilhada.",
+    "category": "OpenEdge/DB",
+    "severity": "Crítico",
+    "example": "Shared memory conflict detected (1104)",
+    "solution": "Reiniciar DB com parâmetros coerentes; checar -B/-L/-n e SO.",
+    "tag": "Memória",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "\\(1211\\)\\s*After-imaging\\s*is\\s*enabled\\s*but\\s*no\\s*extents",
+    "description": "AI habilitado sem extents.",
+    "category": "OpenEdge/DB",
+    "severity": "Alto",
+    "example": "After-imaging is enabled but no extents (1211)",
+    "solution": "Criar/ativar extents de AI e política de rotação.",
+    "tag": "After-Image",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "\\(5511\\)\\s*Latch\\s*timeout",
+    "description": "Timeout de latch no DB.",
+    "category": "OpenEdge/DB",
+    "severity": "Crítico",
+    "example": "Latch timeout (5511)",
+    "solution": "Analisar gargalo de buffer/cpct; ajustar -B/-spin; avaliar patches.",
+    "tag": "Latch",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "\\(1087\\)\\s*No\\s*schema\\s*holder\\s*table",
+    "description": "Tabela ausente no schema holder.",
+    "category": "DataServer/Schema",
+    "severity": "Alto",
+    "example": "No schema holder table for ext. table (1087)",
+    "solution": "Regerar schema holder; sincronizar com DB externo.",
+    "tag": "Schema Holder",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "Unknown\\s*table\\s*tt\\-\\w+",
+    "description": "Temp-table referenciada inexistente.",
+    "category": "OpenEdge/ABL",
+    "severity": "Médio",
+    "example": "Unknown table tt-itens",
+    "solution": "Definir TT antes do uso; verificar includes e scoping.",
+    "tag": "Temp-Table",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "Invalid\\s*subscript",
+    "description": "Subscript inválido em array.",
+    "category": "OpenEdge/ABL",
+    "severity": "Baixo",
+    "example": "Invalid subscript [0]",
+    "solution": "Validar EXTENT e índices; iniciar em 1.",
+    "tag": "Array",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "Query\\s*is\\s*not\\s*prepared",
+    "description": "Query ABL não preparada.",
+    "category": "OpenEdge/ABL",
+    "severity": "Baixo",
+    "example": "Query is not prepared",
+    "solution": "Executar QUERY-PREPARE antes do OPEN/GET.",
+    "tag": "Query",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "java\\.sql\\.SQLIntegrityConstraintViolationException",
+    "description": "Violação de integridade/constraint via JDBC.",
+    "category": "Infra/Tomcat",
+    "severity": "Alto",
+    "example": "SQLIntegrityConstraintViolationException: FK_CLIENTE",
+    "solution": "Tratar PK/FK/UK antes de persistir; validar transações.",
+    "tag": "SQL",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "Pool\\s*exhausted|HikariPool\\-\\d+.*timeout",
+    "description": "Pool de conexões esgotado.",
+    "category": "Infra/Tomcat",
+    "severity": "Alto",
+    "example": "HikariPool-1 - Timeout",
+    "solution": "Aumentar pool, revisar vazamentos e TTL; otimizar consultas.",
+    "tag": "Pool",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "Broken\\s*pipe|Connection\\s*reset\\s*by\\s*peer",
+    "description": "Conexão quebrada/cliente resetou.",
+    "category": "Infra/Conectividade",
+    "severity": "Baixo",
+    "example": "java.io.IOException: Broken pipe",
+    "solution": "Implementar retry/backoff; revisar timeouts e keep-alive.",
+    "tag": "Rede",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "Too\\s*many\\s*open\\s*files",
+    "description": "Muitos arquivos abertos (ulimit).",
+    "category": "Infra/SO",
+    "severity": "Alto",
+    "example": "Too many open files",
+    "solution": "Aumentar nofile/ulimit; fechar streams/sockets corretamente.",
+    "tag": "SO",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "CFOP\\s*da\\s*remessa\\s*inv(á|a)lido",
+    "description": "CFOP de remessa inválido para operação.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "CFOP de remessa divergente",
+    "solution": "Selecionar CFOP adequado (remessa/retorno) por UF/regra.",
+    "tag": "CFOP",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "Natureza\\s*da\\s*opera(ç|c)ão\\s*n(ã|a)o\\s*coerente",
+    "description": "Natureza da operação inconsistente.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Natureza não condizente com CFOP",
+    "solution": "Ajustar natureza; revisar CFOP e finalidade.",
+    "tag": "Natureza",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "Base\\s*ICMS\\s*de\\s*ST\\s*inv(á|a)lida",
+    "description": "Base de ICMS-ST inválida.",
+    "category": "FAT/NFe",
+    "severity": "Médio",
+    "example": "Base de ST zerada",
+    "solution": "Configurar MVA/BC e ajustar regra fiscal.",
+    "tag": "ICMS-ST",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "FT7394\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Estoque",
+    "severity": "Crítico",
+    "example": "FT7394 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "AR4029\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Integração",
+    "severity": "Crítico",
+    "example": "AR4029 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EF3578\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "FAT/NFe",
+    "severity": "Crítico",
+    "example": "EF3578 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "CD1441\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "OpenEdge/DB",
+    "severity": "Médio",
+    "example": "CD1441 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EE3946\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "OpenEdge/ABL",
+    "severity": "Médio",
+    "example": "EE3946 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EE4894\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Financeiro",
+    "severity": "Alto",
+    "example": "EE4894 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "FT5493\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "OpenEdge/DB",
+    "severity": "Médio",
+    "example": "FT5493 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "CTE3756\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "FAT/NFe",
+    "severity": "Alto",
+    "example": "CTE3756 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "MRP7463\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Integração",
+    "severity": "Alto",
+    "example": "MRP7463 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "AR3748\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Integração",
+    "severity": "Crítico",
+    "example": "AR3748 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EF5390\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "OpenEdge/ABL",
+    "severity": "Alto",
+    "example": "EF5390 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EF5204\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Financeiro",
+    "severity": "Crítico",
+    "example": "EF5204 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "AR8873\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Estoque",
+    "severity": "Médio",
+    "example": "AR8873 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "CD7191\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Financeiro",
+    "severity": "Alto",
+    "example": "CD7191 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EF4749\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "OpenEdge/DB",
+    "severity": "Crítico",
+    "example": "EF4749 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "CD8321\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "PCP",
+    "severity": "Crítico",
+    "example": "CD8321 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "MDFe4628\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "OpenEdge/ABL",
+    "severity": "Crítico",
+    "example": "MDFe4628 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "AP9662\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Integração",
+    "severity": "Médio",
+    "example": "AP9662 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "AR1990\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Financeiro",
+    "severity": "Crítico",
+    "example": "AR1990 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "MDFe1141\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Financeiro",
+    "severity": "Médio",
+    "example": "MDFe1141 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "MDFe4358\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "OpenEdge/ABL",
+    "severity": "Baixo",
+    "example": "MDFe4358 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EF4559\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Infra",
+    "severity": "Alto",
+    "example": "EF4559 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "AP3660\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Integração",
+    "severity": "Crítico",
+    "example": "AP3660 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "FT9273\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "OpenEdge/ABL",
+    "severity": "Crítico",
+    "example": "FT9273 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EF4647\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Financeiro",
+    "severity": "Crítico",
+    "example": "EF4647 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "QLD5860\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Integração",
+    "severity": "Crítico",
+    "example": "QLD5860 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "IMB3486\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "OpenEdge/ABL",
+    "severity": "Baixo",
+    "example": "IMB3486 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EE1811\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "FAT/NFe",
+    "severity": "Baixo",
+    "example": "EE1811 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "AP4657\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Estoque",
+    "severity": "Crítico",
+    "example": "AP4657 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EE6153\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Integração",
+    "severity": "Alto",
+    "example": "EE6153 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EF8495\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "PCP",
+    "severity": "Baixo",
+    "example": "EF8495 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "AR5041\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Contábil",
+    "severity": "Baixo",
+    "example": "AR5041 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "QLD4048\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Financeiro",
+    "severity": "Alto",
+    "example": "QLD4048 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "QLD2177\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Estoque",
+    "severity": "Médio",
+    "example": "QLD2177 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "MRP7114\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Financeiro",
+    "severity": "Médio",
+    "example": "MRP7114 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EF4044\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "FAT/NFe",
+    "severity": "Baixo",
+    "example": "EF4044 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "AP3795\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Infra",
+    "severity": "Alto",
+    "example": "AP3795 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "MRP8251\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "OpenEdge/ABL",
+    "severity": "Médio",
+    "example": "MRP8251 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EF2650\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Estoque",
+    "severity": "Crítico",
+    "example": "EF2650 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "AR9194\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "PCP",
+    "severity": "Baixo",
+    "example": "AR9194 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "AR7381\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "FAT/NFe",
+    "severity": "Crítico",
+    "example": "AR7381 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "AR3126\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Estoque",
+    "severity": "Crítico",
+    "example": "AR3126 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "FT6439\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "OpenEdge/DB",
+    "severity": "Baixo",
+    "example": "FT6439 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "MDFe3698\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "OpenEdge/ABL",
+    "severity": "Crítico",
+    "example": "MDFe3698 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "CTE8042\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Estoque",
+    "severity": "Médio",
+    "example": "CTE8042 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "CTE9088\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "PCP",
+    "severity": "Médio",
+    "example": "CTE9088 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "IMB4904\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Contábil",
+    "severity": "Baixo",
+    "example": "IMB4904 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "QLD5913\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Contábil",
+    "severity": "Médio",
+    "example": "QLD5913 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EF2361\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Estoque",
+    "severity": "Baixo",
+    "example": "EF2361 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EE6226\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Infra",
+    "severity": "Crítico",
+    "example": "EE6226 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EE2766\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Financeiro",
+    "severity": "Baixo",
+    "example": "EE2766 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EE1088\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "PCP",
+    "severity": "Médio",
+    "example": "EE1088 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "FT7688\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "OpenEdge/DB",
+    "severity": "Alto",
+    "example": "FT7688 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "QLD9739\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Estoque",
+    "severity": "Crítico",
+    "example": "QLD9739 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "FT8279\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "OpenEdge/ABL",
+    "severity": "Alto",
+    "example": "FT8279 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "FT3434\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Financeiro",
+    "severity": "Crítico",
+    "example": "FT3434 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "AR5257\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "PCP",
+    "severity": "Crítico",
+    "example": "AR5257 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "QLD8156\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "PCP",
+    "severity": "Alto",
+    "example": "QLD8156 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "IMB1148\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Contábil",
+    "severity": "Crítico",
+    "example": "IMB1148 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "MDFe2984\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Contábil",
+    "severity": "Médio",
+    "example": "MDFe2984 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "FT6565\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "OpenEdge/DB",
+    "severity": "Crítico",
+    "example": "FT6565 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "AR4899\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Contábil",
+    "severity": "Baixo",
+    "example": "AR4899 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EF1866\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "OpenEdge/DB",
+    "severity": "Alto",
+    "example": "EF1866 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "CTE9157\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "OpenEdge/DB",
+    "severity": "Alto",
+    "example": "CTE9157 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EE2458\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Estoque",
+    "severity": "Alto",
+    "example": "EE2458 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EF1386\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Contábil",
+    "severity": "Alto",
+    "example": "EF1386 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "MRP2272\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Contábil",
+    "severity": "Baixo",
+    "example": "MRP2272 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EE5447\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Financeiro",
+    "severity": "Crítico",
+    "example": "EE5447 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "CD3011\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Estoque",
+    "severity": "Médio",
+    "example": "CD3011 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "IMB5723\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Contábil",
+    "severity": "Médio",
+    "example": "IMB5723 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "IMB8933\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Financeiro",
+    "severity": "Baixo",
+    "example": "IMB8933 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "IMB1611\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Financeiro",
+    "severity": "Crítico",
+    "example": "IMB1611 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EF4655\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "PCP",
+    "severity": "Médio",
+    "example": "EF4655 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "MDFe5928\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Contábil",
+    "severity": "Crítico",
+    "example": "MDFe5928 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "AP9865\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "OpenEdge/ABL",
+    "severity": "Baixo",
+    "example": "AP9865 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EF4138\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "PCP",
+    "severity": "Baixo",
+    "example": "EF4138 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "AP6984\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Integração",
+    "severity": "Médio",
+    "example": "AP6984 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "MRP5286\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "FAT/NFe",
+    "severity": "Alto",
+    "example": "MRP5286 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EF8887\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Estoque",
+    "severity": "Médio",
+    "example": "EF8887 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "MRP6146\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Integração",
+    "severity": "Médio",
+    "example": "MRP6146 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "IMB1231\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "PCP",
+    "severity": "Baixo",
+    "example": "IMB1231 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EF2961\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Financeiro",
+    "severity": "Crítico",
+    "example": "EF2961 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "MDFe6742\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Integração",
+    "severity": "Baixo",
+    "example": "MDFe6742 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "AP6628\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "OpenEdge/DB",
+    "severity": "Baixo",
+    "example": "AP6628 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "QLD7948\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Contábil",
+    "severity": "Alto",
+    "example": "QLD7948 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "CD3109\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "OpenEdge/DB",
+    "severity": "Médio",
+    "example": "CD3109 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EF9016\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "OpenEdge/DB",
+    "severity": "Alto",
+    "example": "EF9016 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EF2252\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Infra",
+    "severity": "Alto",
+    "example": "EF2252 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "QLD3737\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Financeiro",
+    "severity": "Alto",
+    "example": "QLD3737 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "QLD9304\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Infra",
+    "severity": "Crítico",
+    "example": "QLD9304 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "CTE2780\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "FAT/NFe",
+    "severity": "Alto",
+    "example": "CTE2780 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EF4824\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Integração",
+    "severity": "Médio",
+    "example": "EF4824 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "MDFe9099\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Contábil",
+    "severity": "Crítico",
+    "example": "MDFe9099 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "QLD5270\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Financeiro",
+    "severity": "Baixo",
+    "example": "QLD5270 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "IMB7549\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Contábil",
+    "severity": "Baixo",
+    "example": "IMB7549 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "QLD6118\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Contábil",
+    "severity": "Crítico",
+    "example": "QLD6118 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EF4304\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "OpenEdge/ABL",
+    "severity": "Alto",
+    "example": "EF4304 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "FT7481\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Financeiro",
+    "severity": "Crítico",
+    "example": "FT7481 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "MRP1629\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Financeiro",
+    "severity": "Baixo",
+    "example": "MRP1629 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "CTE4739\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "PCP",
+    "severity": "Crítico",
+    "example": "CTE4739 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "CD5074\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Infra",
+    "severity": "Médio",
+    "example": "CD5074 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "CTE7729\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Estoque",
+    "severity": "Baixo",
+    "example": "CTE7729 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "CTE9241\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "OpenEdge/ABL",
+    "severity": "Alto",
+    "example": "CTE9241 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EF4651\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Contábil",
+    "severity": "Baixo",
+    "example": "EF4651 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "CD3431\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "FAT/NFe",
+    "severity": "Crítico",
+    "example": "CD3431 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "AR5374\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Integração",
+    "severity": "Alto",
+    "example": "AR5374 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "CTE3975\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "FAT/NFe",
+    "severity": "Baixo",
+    "example": "CTE3975 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EE6510\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Infra",
+    "severity": "Alto",
+    "example": "EE6510 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "MDFe4907\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Financeiro",
+    "severity": "Baixo",
+    "example": "MDFe4907 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "AR2362\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "OpenEdge/DB",
+    "severity": "Médio",
+    "example": "AR2362 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EE2206\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "FAT/NFe",
+    "severity": "Crítico",
+    "example": "EE2206 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "QLD1698\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Estoque",
+    "severity": "Crítico",
+    "example": "QLD1698 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "IMB7592\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "FAT/NFe",
+    "severity": "Crítico",
+    "example": "IMB7592 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EF9837\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "FAT/NFe",
+    "severity": "Baixo",
+    "example": "EF9837 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "CD5109\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Contábil",
+    "severity": "Alto",
+    "example": "CD5109 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "MDFe6490\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Contábil",
+    "severity": "Médio",
+    "example": "MDFe6490 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "FT8436\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Infra",
+    "severity": "Crítico",
+    "example": "FT8436 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "QLD1017\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "OpenEdge/ABL",
+    "severity": "Alto",
+    "example": "QLD1017 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "FT1187\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Financeiro",
+    "severity": "Baixo",
+    "example": "FT1187 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "CD5115\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Contábil",
+    "severity": "Baixo",
+    "example": "CD5115 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "MDFe8527\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Financeiro",
+    "severity": "Médio",
+    "example": "MDFe8527 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "CD8171\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "PCP",
+    "severity": "Médio",
+    "example": "CD8171 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "MDFe1072\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Integração",
+    "severity": "Crítico",
+    "example": "MDFe1072 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "FT5841\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Integração",
+    "severity": "Médio",
+    "example": "FT5841 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "MRP9973\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Estoque",
+    "severity": "Médio",
+    "example": "MRP9973 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "IMB6423\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "OpenEdge/DB",
+    "severity": "Alto",
+    "example": "IMB6423 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "FT5839\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Estoque",
+    "severity": "Médio",
+    "example": "FT5839 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "FT3367\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Financeiro",
+    "severity": "Baixo",
+    "example": "FT3367 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EE8182\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Contábil",
+    "severity": "Alto",
+    "example": "EE8182 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "FT3317\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Contábil",
+    "severity": "Crítico",
+    "example": "FT3317 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EE6006\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "FAT/NFe",
+    "severity": "Crítico",
+    "example": "EE6006 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "CD7064\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Contábil",
+    "severity": "Crítico",
+    "example": "CD7064 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "QLD8588\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Integração",
+    "severity": "Médio",
+    "example": "QLD8588 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EF5878\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Contábil",
+    "severity": "Baixo",
+    "example": "EF5878 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "FT7040\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "OpenEdge/DB",
+    "severity": "Crítico",
+    "example": "FT7040 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "IMB1912\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "OpenEdge/DB",
+    "severity": "Baixo",
+    "example": "IMB1912 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EE9343\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "FAT/NFe",
+    "severity": "Baixo",
+    "example": "EE9343 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "MRP6426\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Integração",
+    "severity": "Baixo",
+    "example": "MRP6426 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "FT3670\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Financeiro",
+    "severity": "Baixo",
+    "example": "FT3670 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "EF6354\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Estoque",
+    "severity": "Baixo",
+    "example": "EF6354 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "CTE4392\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "PCP",
+    "severity": "Baixo",
+    "example": "CTE4392 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "MDFe8324\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Integração",
+    "severity": "Alto",
+    "example": "MDFe8324 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "FT1512\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Contábil",
+    "severity": "Baixo",
+    "example": "FT1512 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "QLD3808\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Contábil",
+    "severity": "Alto",
+    "example": "QLD3808 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "FT9156\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Contábil",
+    "severity": "Alto",
+    "example": "FT9156 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "AP4573\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Integração",
+    "severity": "Crítico",
+    "example": "AP4573 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "IMB8456\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Contábil",
+    "severity": "Alto",
+    "example": "IMB8456 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "MRP6867\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Contábil",
+    "severity": "Baixo",
+    "example": "MRP6867 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "MRP7958\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Infra",
+    "severity": "Crítico",
+    "example": "MRP7958 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  },
+  {
+    "pattern": "MRP5476\\s*\\-\\s*(Falha|Erro)\\s*(execu(ç|c)ão|processamento|valida(ç|c)ão)",
+    "description": "Erro de rotina identificado no log.",
+    "category": "Integração",
+    "severity": "Crítico",
+    "example": "MRP5476 - Erro processamento",
+    "solution": "Validar parâmetros, dados de entrada e regras; consultar log detalhado e reprocessar.",
+    "tag": "Programa",
+    "source": "Datasul/Progress 4GL catalog (extra)"
+  }
+]

@@ -1,0 +1,317 @@
+<po-page-default p-title="Análise do Profiler"
+    p-subtitle="Dashboard visual da sessão para localizar gargalos, pressão de chamadas e pontos quentes do código.">
+    <div class="page-grid">
+        @if (errorMessage) {
+        <div class="feedback feedback--error">{{ errorMessage }}</div>
+        }
+
+        @if (successMessage) {
+        <div class="feedback feedback--success">{{ successMessage }}</div>
+        }
+
+        <div class="top-layout">
+            <po-widget p-title="Carregar sessão do profiler">
+                <div class="page-grid">
+                    <div class="hero-box">
+                        <div>
+                            <span class="eyebrow">Profiler Progress</span>
+                            <h3>Leitura rápida da sessão</h3>
+                            <p>Envie o arquivo .out e a tela organiza automaticamente os dados em visão executiva,
+                                gargalos prioritários e detalhes operacionais.</p>
+                        </div>
+
+                        <div class="compact-steps">
+                            <span>1. Upload</span>
+                            <span>2. Análise</span>
+                            <span>3. Prioridades</span>
+                        </div>
+                    </div>
+
+                    <div class="file-picker">
+                        <label for="profilerAnalysisFile">Arquivo .out do Progress Profiler</label>
+                        <input #profilerFileInput class="file-picker__native" id="profilerAnalysisFile" type="file"
+                            accept=".out,.txt,.log" (change)="onProfilerSelected($event)" />
+                        <div class="file-picker__control">
+                            <po-button p-label="Selecionar arquivo" (p-click)="profilerFileInput.click()"></po-button>
+                            <span class="file-picker__filename">{{ profilerFile?.name || uploadedFilename || 'Nenhum arquivo selecionado' }}</span>
+                        </div>
+                        <span class="helper-text">Carregue o arquivo .out do Progress Profiler conforme a lógica do backend.</span>
+                    </div>
+
+                    
+                    <div class="upload-summary">
+                        <div class="upload-summary__item">
+                            <span class="upload-summary__label">Arquivo selecionado</span>
+                            <strong>{{ profilerFile?.name || uploadedFilename || 'Nenhum arquivo selecionado' }}</strong>
+                        </div>
+                        <div class="upload-summary__item">
+                            <span class="upload-summary__label">Última análise</span>
+                            <strong>{{ analyzedAt ? analyzedAt : '-' }}</strong>
+                        </div>
+                    </div>
+
+                    <div class="action-row">
+                        <po-button p-kind="primary" p-label="Analisar profiler" (p-click)="analyzeProfiler()"
+                            [p-disabled]="profilerLoading || !profilerFile"></po-button>
+                        <po-button p-label="Limpar resultado" (p-click)="clearProfilerSession()"
+                            [p-disabled]="profilerLoading || !hasResult"></po-button>
+                    </div>
+
+                    @if (profilerLoading) {
+                    <po-loading-overlay [p-screen-lock]="false"></po-loading-overlay>
+                    }
+                </div>
+            </po-widget>
+
+            <po-widget p-title="Pulso da sessão">
+                @if (hasResult) {
+                <div class="session-pulse">
+                    <div class="score-orb" [class.score-orb--warning]="healthTagType === TAG_WARNING"
+                        [class.score-orb--danger]="healthTagType === TAG_DANGER"
+                        [class.score-orb--success]="healthTagType === TAG_SUCCESS">
+                        <span>Saúde</span>
+                        <strong>{{ healthScore.toFixed(0) }}</strong>
+                    </div>
+
+                    <div class="pulse-summary">
+                        <po-tag [p-type]="healthTagType" [p-value]="healthLabel"></po-tag>
+                        @for (fact of sessionFacts.slice(0, 3); track fact.label) {
+                        <po-info [p-label]="fact.label" [p-value]="fact.value"></po-info>
+                        }
+                    </div>
+                </div>
+                } @else {
+                <div class="empty-state">
+                    Carregue um arquivo para preencher a leitura rápida da sessão e o score de saúde.
+                </div>
+                }
+            </po-widget>
+        </div>
+
+        @if (hasResult) {
+        <div class="metrics-grid">
+            @for (metric of headlineMetrics; track metric.label) {
+            <div class="metric-card" [ngClass]="'metric-card--' + metric.accent">
+                <span class="metric-card__label">{{ metric.label }}</span>
+                <strong class="metric-card__value">{{ metric.value }}</strong>
+                <span class="metric-card__helper">{{ metric.helper }}</span>
+            </div>
+            }
+        </div>
+
+        <div class="dashboard-banner">
+            <div>
+                <span class="eyebrow">Resumo da sessão</span>
+                <h3>O que olhar primeiro</h3>
+                <p>Comece pelos gargalos prioritários, valide se há padrão N+1 e só depois abra detalhes de linhas e
+                    árvore de chamadas.</p>
+            </div>
+
+            <div class="banner-tags">
+                <po-tag [p-type]="healthTagType" [p-value]="healthLabel"></po-tag>
+                <po-tag [p-type]="nPlusOneSuspects.length > 0 ? TAG_WARNING : TAG_SUCCESS"
+                    [p-value]="nPlusOneSuspects.length > 0 ? (nPlusOneSuspects.length + ' suspeitas N+1') : 'Sem N+1 relevante'"></po-tag>
+            </div>
+        </div>
+
+        <div class="dashboard-grid dashboard-grid--main">
+            <po-widget p-title="Gargalos prioritários">
+                @if (topBottleneckCards.length > 0) {
+                <div class="stack-list">
+                    @for (item of topBottleneckCards; track item.name) {
+                    <div class="stack-card">
+                        <div class="stack-card__header">
+                            <strong>{{ item.name }}</strong>
+                            <po-tag [p-type]="item.severityType" [p-value]="item.severityLabel"></po-tag>
+                        </div>
+
+                        <div class="stack-card__meta">
+                            <span>{{ item.totalTime }}</span>
+                            <span>{{ item.calls }} chamadas</span>
+                            <span>{{ item.percent }}</span>
+                        </div>
+
+                        <div class="stack-card__footer">
+                            <span>Tempo médio: {{ item.avgTime }}</span>
+                            <span>Impacto: {{ item.impactScore }}</span>
+                        </div>
+                    </div>
+                    }
+                </div>
+                } @else {
+                <div class="empty-state">Nenhum gargalo prioritário foi retornado pelo backend.</div>
+                }
+            </po-widget>
+
+            <po-widget p-title="Leituras rápidas">
+                <div class="facts-grid">
+                    @for (fact of sessionFacts; track fact.label) {
+                    <po-info [p-label]="fact.label" [p-value]="fact.value"></po-info>
+                    }
+                </div>
+
+                <po-divider></po-divider>
+
+                <div class="insight-block">
+                    <h4>Recomendações automáticas</h4>
+                    @if (recommendations.length > 0) {
+                    <div class="tag-cloud">
+                        @for (recommendation of recommendations; track recommendation) {
+                        <po-tag [p-type]="TAG_INFO" [p-value]="recommendation"></po-tag>
+                        }
+                    </div>
+                    } @else {
+                    <div class="empty-state">Sem recomendações adicionais.</div>
+                    }
+                </div>
+
+                <div class="insight-block">
+                    <h4>Suspeitas de N+1</h4>
+                    @if (nPlusOneSuspects.length > 0) {
+                    <div class="suspect-list">
+                        @for (suspect of nPlusOneSuspects; track $index) {
+                        <div class="suspect-row">
+                            <strong>{{ suspect['procedure'] || suspect['module'] || '-' }}</strong>
+                            <span>{{ suspect['calls'] || 0 }} chamadas</span>
+                            <span>{{ suspect['avg_time'] || suspect['time_avg_ms'] || 0 }} ms médios</span>
+                        </div>
+                        }
+                    </div>
+                    } @else {
+                    <div class="empty-state">Nenhum padrão N+1 forte foi identificado.</div>
+                    }
+                </div>
+            </po-widget>
+        </div>
+
+        <div class="dashboard-grid">
+            <po-widget p-title="Procedures mais pesadas">
+                <div class="spotlight-section">
+                    <div class="spotlight-group">
+                        <h4>Por tempo total</h4>
+                        <div class="spotlight-list">
+                            @for (item of topModulesByTime; track item.module) {
+                            <div class="spotlight-card">
+                                <strong>{{ item.module }}</strong>
+                                <div class="spotlight-card__metrics">
+                                    <span>{{ item.metricLabel }}: {{ item.metricValue }}</span>
+                                    <span>{{ item.secondaryLabel }}: {{ item.secondaryValue }}</span>
+                                </div>
+                                <small>{{ item.percent }}</small>
+                            </div>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="spotlight-group">
+                        <h4>Por chamadas</h4>
+                        <div class="spotlight-list">
+                            @for (item of topModulesByCalls; track item.module) {
+                            <div class="spotlight-card">
+                                <strong>{{ item.module }}</strong>
+                                <div class="spotlight-card__metrics">
+                                    <span>{{ item.metricLabel }}: {{ item.metricValue }}</span>
+                                    <span>{{ item.secondaryLabel }}: {{ item.secondaryValue }}</span>
+                                </div>
+                                <div class="spotlight-card__caller">
+                                    <span>Executada por</span>
+                                    <strong>{{ item.callerSummary }}</strong>
+                                </div>
+                                <small>{{ item.percent }}</small>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </po-widget>
+
+            <po-widget p-title="Mapa de chamadas">
+                <div class="facts-grid facts-grid--compact">
+                    @for (fact of callTreeSummary; track fact.label) {
+                    <po-info [p-label]="fact.label" [p-value]="fact.value"></po-info>
+                    }
+                </div>
+
+                <div class="stack-list stack-list--compact">
+                    @for (node of callTreeHighlights; track node.name) {
+                    <div class="stack-card stack-card--soft">
+                        <div class="stack-card__header">
+                            <strong>{{ node.name }}</strong>
+                            <span>{{ node.percent }}</span>
+                        </div>
+                        <div class="stack-card__meta">
+                            <span>{{ node.totalTime }}</span>
+                            <span>{{ node.calls }} chamadas</span>
+                            <span>{{ node.childrenCount }} dependências</span>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </po-widget>
+        </div>
+
+        <div class="dashboard-grid">
+            <po-widget p-title="Tempo médio por module">
+                @if (topAvgModules.length > 0) {
+                <div class="spotlight-list">
+                    @for (item of topAvgModules; track item.module) {
+                    <div class="spotlight-card spotlight-card--accent">
+                        <strong>{{ item.module }}</strong>
+                        <div class="spotlight-card__metrics">
+                            <span>{{ item.metricLabel }}: {{ item.metricValue }}</span>
+                            <span>{{ item.secondaryLabel }}: {{ item.secondaryValue }}</span>
+                        </div>
+                        <small>{{ item.percent }}</small>
+                    </div>
+                    }
+                </div>
+                } @else {
+                <div class="empty-state">Sem dados consolidados de tempo médio.</div>
+                }
+            </po-widget>
+
+            <po-widget p-title="Módulos com indício de gargalo">
+                @if (problematicModules.length > 0) {
+                <div class="issue-list">
+                    @for (item of problematicModules; track item.module) {
+                    <div class="issue-card">
+                        <div class="issue-card__header">
+                            <strong>{{ item.module }}</strong>
+                            <span>{{ item.calls || 0 }} chamadas</span>
+                        </div>
+
+                        <div class="tag-cloud">
+                            @for (issue of item.issues; track issue) {
+                            <po-tag [p-type]="issueTagType(issue)" [p-value]="issue"></po-tag>
+                            }
+                        </div>
+
+                        <div class="issue-card__footer">
+                            <span>Tempo total: {{ item.time_total_ms || 0 }} ms</span>
+                            <span>Tempo médio: {{ item.time_avg_ms || 0 }} ms</span>
+                        </div>
+                    </div>
+                    }
+                </div>
+                } @else {
+                <div class="empty-state">Nenhum módulo crítico foi marcado pelo backend.</div>
+                }
+            </po-widget>
+        </div>
+
+        <po-widget p-title="Linhas mais caras da sessão">
+            @if (hotLineRows.length > 0) {
+            <po-table [p-columns]="hotLineColumns" [p-items]="hotLineRows"></po-table>
+            } @else {
+            <div class="empty-state">Sem linhas consolidadas para exibir.</div>
+            }
+        </po-widget>
+        } @else {
+        <po-widget p-title="Sem análise carregada">
+            <div class="empty-state">
+                Envie um arquivo nesta tela para montar o dashboard do profiler com foco em gargalos e prioridades.
+            </div>
+        </po-widget>
+        }
+    </div>
+</po-page-default>

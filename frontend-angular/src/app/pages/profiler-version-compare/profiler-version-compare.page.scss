@@ -1,0 +1,60 @@
+:host {
+    display: block;
+}
+
+.file-picker {
+    position: relative;
+    display: grid;
+    gap: 0.5rem;
+}
+
+.file-picker__native {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.file-picker__control {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    min-height: 44px;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #d4dced;
+    border-radius: 12px;
+    background: #f8fbff;
+}
+
+.file-picker__filename {
+    flex: 1 1 220px;
+    min-width: 0;
+    color: #5f738a;
+    word-break: break-word;
+}
+
+.loading-panel {
+    display: grid;
+    gap: 0.75rem;
+    padding-top: 0.5rem;
+}
+
+.loading-panel__copy {
+    display: grid;
+    gap: 0.3rem;
+    text-align: center;
+    color: #64748b;
+}
+
+.loading-panel__copy strong {
+    color: #0f172a;
+}
+
+.table-shell {
+    overflow-x: auto;
+}

@@ -1,0 +1,161 @@
+<po-modal #informationalReviewModal p-title="Linhas informativas sugeridas">
+    <div class="modal-grid informational-modal">
+        <div class="modal-hero">
+            <div class="modal-hero__icon modal-hero__icon--blue">
+                <po-icon p-icon="an-info-circle"></po-icon>
+            </div>
+            <div>
+                <strong>Revise as sugestões informativas</strong>
+                <p>Quando o programa identificar uma linha como informativa, você pode decidir com um clique se ela
+                    deve ser mantida como erro ou salva como não-erro para as próximas análises.</p>
+            </div>
+        </div>
+
+        @if (informationalLines.length > 0) {
+        <div class="informational-review-list">
+            @for (item of informationalLines; track item.line + item.message) {
+            <div class="informational-review-card">
+                <div class="informational-review-card__top">
+                    <div class="informational-review-card__meta">
+                        <po-tag [p-value]="'Linha ' + item.line"></po-tag>
+                        <span class="helper-text">{{ item.timestamp }}</span>
+                    </div>
+
+                    <div class="action-row informational-review-card__actions">
+                        <po-button p-label="É erro" (p-click)="keepInformationalAsError(item)"
+                            [p-disabled]="savingInformationalLine === item.line"></po-button>
+                        <po-button p-kind="primary" p-label="Não é erro"
+                            (p-click)="markInformationalAsNonError(item)"
+                            [p-disabled]="savingInformationalLine === item.line"></po-button>
+                    </div>
+                </div>
+
+                <div class="informational-review-card__message">{{ item.message }}</div>
+                <div class="helper-text"><strong>Sugestão do programa:</strong> {{ item.suggestion }}</div>
+            </div>
+            }
+        </div>
+        } @else {
+        <div class="success-box">Nenhuma linha informativa pendente de revisão.</div>
+        }
+
+        <div class="action-row informational-modal__footer">
+            <po-button p-label="Fechar" (p-click)="informationalReviewModal.close()"></po-button>
+            <po-button p-kind="primary" p-label="Abrir resultado completo" (p-click)="goToResults()"
+                [p-disabled]="!hasAnalysisResult"></po-button>
+        </div>
+
+        @if (savingInformationalLine !== null) {
+        <po-loading-overlay [p-screen-lock]="false"></po-loading-overlay>
+        }
+    </div>
+</po-modal>
+
+<div class="page-grid analyze-log-page">
+    @if (errorMessage) {
+    <div class="error-box">{{ errorMessage }}</div>
+    }
+
+    @if (successMessage) {
+    <div class="success-box">{{ successMessage }}</div>
+    }
+
+    <section class="analyze-log-shell">
+        <div class="analyze-log-shell__title-row">
+            <button type="button" class="analyze-log-shell__back-button" (click)="goBack()"
+                aria-label="Voltar ao painel" title="Voltar ao painel">
+                <po-icon p-icon="an-arrow-left"></po-icon>
+            </button>
+            <div>
+                <h2>Analisar logs</h2>
+                <p>Carregue o log principal, faça a prévia e execute a análise completa.</p>
+            </div>
+        </div>
+
+        <div class="modal-grid modal-grid--analysis-page">
+            <div class="two-columns modal-section-grid">
+                <div class="file-picker">
+                    <label for="logFilePage">Arquivo principal de log</label>
+                    <input #logFileInput class="file-picker__native" id="logFilePage" type="file"
+                        accept=".log,.txt,.out" (change)="onLogFileSelected($event)" />
+                    <div class="file-picker__control">
+                        <po-button p-label="Selecionar arquivo" (p-click)="logFileInput.click()"></po-button>
+                        <span class="file-picker__filename">{{ logFile?.name || 'Nenhum arquivo selecionado' }}</span>
+                    </div>
+                    <span class="helper-text">Use o arquivo principal que será processado conforme as regras do
+                        backend.</span>
+                </div>
+
+                <div class="file-picker">
+                    <label for="patternsFilePage">Arquivo extra de padrões</label>
+                    <input #patternsFileInput class="file-picker__native" id="patternsFilePage" type="file"
+                        accept=".txt,.json,.log" (change)="onPatternsFileSelected($event)" />
+                    <div class="file-picker__control">
+                        <po-button p-label="Selecionar arquivo" (p-click)="patternsFileInput.click()"></po-button>
+                        <span class="file-picker__filename">{{ patternsFile?.name || 'Nenhum arquivo selecionado'
+                            }}</span>
+                    </div>
+                    <span class="helper-text">Opcional. Complementa o matcher do backend no endpoint de análise.</span>
+                </div>
+            </div>
+
+            <div class="action-row">
+                <po-button p-label="Pré-analisar" (p-click)="previewLog()"
+                    [p-disabled]="loading || !logFile"></po-button>
+                <po-button p-kind="primary" p-label="Analisar log" (p-click)="analyzeLog()"
+                    [p-disabled]="loading || !logFile"></po-button>
+            </div>
+
+            @if (previewInfo; as preview) {
+            <div class="modal-preview-box">
+                <div><strong>Arquivo:</strong> {{ preview.file_info.filename }}</div>
+                <div><strong>Linhas:</strong> {{ preview.file_info.line_count }}</div>
+                <div><strong>Tamanho:</strong> {{ preview.file_info.size_mb }} MB</div>
+                <div><strong>Processamento:</strong> {{ preview.file_info.processing_type }}</div>
+                <div><strong>Tempo estimado:</strong> {{ preview.processing_estimate.estimated_time_human }}</div>
+            </div>
+            }
+
+            @if (loading) {
+            <po-loading-overlay [p-screen-lock]="false"></po-loading-overlay>
+            }
+        </div>
+    </section>
+
+    @if (hasAnalysisResult && analysisResult; as result) {
+    <section class="analyze-log-shell analyze-log-shell--results">
+        <div class="analyze-log-shell__title-row analyze-log-shell__title-row--results">
+            <div class="analysis-feedback__headline">
+                <h2>Retorno imediato da análise</h2>
+                <p>O resultado principal continua disponível na tela completa, enquanto as linhas informativas ficam em
+                    revisão separada.</p>
+            </div>
+
+            <div class="action-row analysis-feedback__actions">
+                @if (informationalSuggestionCount > 0) {
+                <po-button p-label="Revisar linhas informativas" (p-click)="openInformationalReview()"></po-button>
+                }
+                <po-button p-kind="primary" p-label="Abrir resultado completo" (p-click)="goToResults()"></po-button>
+            </div>
+        </div>
+
+        <div class="analysis-feedback-grid">
+            <po-widget p-title="Tipo de log">
+                <div class="analysis-feedback-card__value">{{ result.log_type || 'Não identificado' }}</div>
+            </po-widget>
+
+            <po-widget p-title="Resultados encontrados">
+                <div class="analysis-feedback-card__value">{{ result.total_results }}</div>
+            </po-widget>
+
+            <po-widget p-title="Linhas informativas">
+                <div class="analysis-feedback-card__value">{{ informationalSuggestionCount }}</div>
+            </po-widget>
+
+            <po-widget p-title="Pontos de atenção">
+                <div class="analysis-feedback-card__value">{{ result.total_attention_points ?? (result.attention_points?.length ?? 0) }}</div>
+            </po-widget>
+        </div>
+    </section>
+    }
+</div>

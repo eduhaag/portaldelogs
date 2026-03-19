@@ -1,0 +1,60 @@
+<div class="register-screen">
+    <div class="register-shell">
+        <div class="register-topbar">
+            <po-button p-kind="tertiary" p-label="Voltar para login" (p-click)="goToLogin()"></po-button>
+        </div>
+
+        <div class="register-intro">
+            <p>Crie sua conta e comece a usar a plataforma.</p>
+        </div>
+
+        <div class="register-layout">
+            <po-widget>
+                <div class="register-header">
+
+                </div>
+
+                <div class="register-form">
+                    @if (errorMessage) {
+                    <div class="register-feedback register-feedback--error">{{ errorMessage }}</div>
+                    }
+
+                    @if (successMessage) {
+                    <div class="register-feedback register-feedback--success">{{ successMessage }}</div>
+                    }
+
+                    <po-input name="username" [(ngModel)]="username" p-label="Usuário"
+                        p-placeholder="Digite seu usuário"></po-input>
+
+                    <po-email name="email" [(ngModel)]="email" p-label="Email"
+                        p-placeholder="Digite seu email"></po-email>
+
+                    <po-email name="confirmEmail" [(ngModel)]="confirmEmail" p-label="Confirmar Email"
+                        p-placeholder="Confirme seu email"></po-email>
+
+                    <div class="register-grid register-grid--passwords">
+                        <po-password name="password" [(ngModel)]="password" p-label="Senha"
+                            p-placeholder="Digite sua senha"></po-password>
+                        <po-password name="confirmPassword" [(ngModel)]="confirmPassword" p-label="Confirmar senha"
+                            p-placeholder="Confirme sua senha"></po-password>
+                    </div>
+
+                    <div class="register-footer">
+                        <ul class="password-rules">
+                            <li [class.password-rules__item--ok]="hasMinLength">mínimo 8 caracteres</li>
+                            <li [class.password-rules__item--ok]="hasUppercase">letra maiúscula</li>
+                            <li [class.password-rules__item--ok]="hasNumber">número</li>
+                            <li [class.password-rules__item--ok]="hasSpecialCharacter">caractere especial</li>
+                        </ul>
+
+                       
+                        <div class="register-actions">
+                            <po-button p-kind="primary" p-label="Cadastrar usuário" [p-loading]="loading"
+                                [p-disabled]="loading || !canRegister" (p-click)="register()"></po-button>
+                        </div>
+                    </div>
+                </div>
+            </po-widget>
+        </div>
+    </div>
+</div>
