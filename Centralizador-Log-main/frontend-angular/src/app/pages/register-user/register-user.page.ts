@@ -31,6 +31,46 @@ export class RegisterUserPageComponent {
     protected successMessage = '';
     protected loading = false;
 
+    protected get hasValidUsername(): boolean {
+        return /^[A-Za-z0-9._-]{3,}$/.test(this.username.trim());
+    }
+
+    protected get hasValidEmail(): boolean {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email.trim());
+    }
+
+    protected get hasMatchingEmails(): boolean {
+        return !!this.email.trim()
+            && !!this.confirmEmail.trim()
+            && this.email.trim().toLowerCase() === this.confirmEmail.trim().toLowerCase();
+    }
+
+    protected get hasMatchingPasswords(): boolean {
+        return !!this.password && !!this.confirmPassword && this.password === this.confirmPassword;
+    }
+
+    protected get hasValidPassword(): boolean {
+        return this.hasMinLength && this.hasUppercase && this.hasNumber && this.hasSpecialCharacter;
+    }
+
+    protected get canRegister(): boolean {
+        return !!this.username.trim()
+            && !!this.email.trim()
+            && !!this.confirmEmail.trim()
+            && !!this.password
+            && !!this.confirmPassword
+            && this.hasValidUsername
+            && this.hasValidEmail;
+            
+    }
+
+    protected get canSubmitRegister(): boolean {
+        return this.canRegister
+            && this.hasMatchingEmails
+            && this.hasMatchingPasswords
+            && this.hasValidPassword;
+    }
+
     protected get hasMinLength(): boolean {
         return this.password.length >= 8;
     }
@@ -56,6 +96,16 @@ export class RegisterUserPageComponent {
             return;
         }
 
+        if (!this.hasValidUsername) {
+            this.errorMessage = 'O usuário deve ter ao menos 3 caracteres e usar apenas letras, números, ponto, traço ou sublinhado.';
+            return;
+        }
+
+        if (!this.hasValidEmail) {
+            this.errorMessage = 'Informe um e-mail válido para concluir o cadastro.';
+            return;
+        }
+
         if (this.email.trim().toLowerCase() !== this.confirmEmail.trim().toLowerCase()) {
             this.errorMessage = 'A confirmação de e-mail não confere.';
             return;
@@ -73,9 +123,9 @@ export class RegisterUserPageComponent {
 
         this.loading = true;
         this.auth.registerUser({
-            displayName: this.username,
-            username: this.username,
-            email: this.email,
+            displayName: this.username.trim(),
+            username: this.username.trim(),
+            email: this.email.trim(),
             password: this.password
         }).subscribe((created) => {
             this.loading = false;

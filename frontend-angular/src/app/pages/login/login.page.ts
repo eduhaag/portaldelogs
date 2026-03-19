@@ -1,3 +1,9 @@
+// ===============================
+// Componente de Login
+// Responsável pela autenticação do usuário no sistema.
+// Demonstra uso de formulários, navegação e integração com serviços de autenticação.
+// Comentários didáticos para facilitar o entendimento!
+// ===============================
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -13,7 +19,9 @@ import { AuthSessionService } from '../../core/services/auth-session.service';
     styleUrl: './login.page.scss'
 })
 export class LoginPageComponent implements OnInit {
+    // Serviço de autenticação para login/logout
     private readonly auth = inject(AuthSessionService);
+    // Serviços de rota para navegação entre páginas
     private readonly route = inject(ActivatedRoute);
     private readonly router = inject(Router);
     private readonly rememberedCredentialsKey = 'central-suporte:remembered-credentials';
@@ -38,26 +46,31 @@ export class LoginPageComponent implements OnInit {
         }
 
         this.loadRememberedCredentials();
+        // Ao inicializar, verifica se o usuário já está autenticado e carrega credenciais salvas.
     }
 
     protected onLoginChange(value: string): void {
         this.username = value;
         this.loginErrors = [];
         this.infoMessage = '';
+        // Limpa mensagens de erro ao alterar o login.
     }
 
     protected onPasswordChange(value: string): void {
         this.password = value;
         this.passwordErrors = [];
         this.infoMessage = '';
+        // Limpa mensagens de erro ao alterar a senha.
     }
 
     protected togglePasswordVisibility(): void {
         this.showPassword = !this.showPassword;
+        // Alterna a visibilidade da senha no campo de input.
     }
 
     protected requestNewUser(): void {
         void this.router.navigateByUrl('/novo-usuario');
+        // Redireciona para a página de cadastro de novo usuário.
     }
 
     protected onRememberPasswordChange(event: Event): void {
@@ -67,6 +80,7 @@ export class LoginPageComponent implements OnInit {
         if (!this.rememberPassword) {
             this.clearRememberedCredentials();
         }
+        // Salva ou limpa as credenciais lembradas conforme a escolha do usuário.
     }
 
     protected login(): void {

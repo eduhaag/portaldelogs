@@ -1,3 +1,9 @@
+// ===============================
+// Componente de Registro de Evidências
+// Permite ao usuário registrar informações de tickets e anexar evidências.
+// Demonstra uso de formulários, widgets e integração com PO UI.
+// Comentários didáticos para facilitar o entendimento!
+// ===============================
 import { Component, inject, ViewChild, TemplateRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -14,6 +20,7 @@ interface UploadedFile {
     size: number;
 }
 
+// O componente principal do registro de evidências
 @Component({
     selector: 'app-evidence-register',
     standalone: true,
@@ -78,6 +85,10 @@ interface UploadedFile {
                     </div>
                 </po-widget>
             </div>
+            <!--
+                O formulário acima permite ao usuário inserir dados do ticket, cliente e emails para notificação.
+                O uso de widgets PO UI facilita a criação de layouts responsivos e bonitos.
+            -->
 
             <div class="po-row po-mt-3">
                 <po-widget class="po-md-12" p-title="Configuracao Tecnica">

@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """
-Validador de padrões para garantir que novos padrões funcionem corretamente
-com busca parcial e detecção de logs
+===============================
+Pattern Validator - O fiscal de padrões!
+===============================
+Aqui a gente confere se o padrão está certinho, se não vai dar bug e se vai pegar aquele erro maroto no log.
+Comentários didáticos e bem humorados para quem gosta de regex e validação!
 """
 
 import re
@@ -12,7 +15,10 @@ import logging
 logger = logging.getLogger(__name__)
 
 def normalize_text(text: str) -> str:
-    """Remove acentos e normaliza texto para busca insensível a acentos."""
+    """
+    Remove acentos e normaliza texto para busca insensível a acentos.
+    (Porque erro com acento é igual a erro sem acento: só muda o drama!)
+    """
     if not text:
         return text
     # Normalizar unicode e remover acentos
@@ -21,7 +27,10 @@ def normalize_text(text: str) -> str:
     return without_accents.lower()
 
 def create_partial_pattern(pattern: str) -> str:
-    """Cria padrão regex para busca parcial, escapando caracteres especiais."""
+    """
+    Cria padrão regex para busca parcial, escapando caracteres especiais.
+    (Aqui a gente foge dos perigos do regex selvagem, mas deixa o usuário buscar do jeito que quiser)
+    """
     if not pattern:
         return pattern
     # Escapar caracteres especiais do regex, mas permitir busca parcial
@@ -29,7 +38,10 @@ def create_partial_pattern(pattern: str) -> str:
     return escaped
 
 class PatternValidator:
-    """Validador para padrões de erro com teste de funcionalidade"""
+    """
+    Validador para padrões de erro com teste de funcionalidade
+    (Tipo um professor de regex: dá bronca, mas ensina!)
+    """
     
     def __init__(self):
         self.test_cases = []

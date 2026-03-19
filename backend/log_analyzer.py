@@ -1,3 +1,22 @@
+"""
+===============================
+Analisador de Logs - Aqui a diversão começa!
+===============================
+Este arquivo é o Sherlock Holmes dos logs: detecta, categoriza, faz gráficos e ainda encontra aquele erro escondido no rodapé.
+Prepare-se para comentários didáticos, piadinhas e dicas para quem for manter ou aprender!
+"""
+
+# =============================
+# Configuração de logging global (porque até bug gosta de aparecer no log!)
+# =============================
+# Compila padrões originais e normalizados para busca turbo!
+# Padrões específicos do Datasul (porque todo sistema tem seu jeitinho)
+# Deixa os gráficos bonitos, porque até erro merece um visual legal!
+# Carregadores de padrões do MongoDB (serão inicializados no servidor, tipo "robôs ajudantes")
+# Padrões compilados para busca turbo (original e normalizado)
+# Padrões para pontos de atenção (tipo "olha aqui!")
+# OTIMIZAÇÕES DE PERFORMANCE: porque ninguém gosta de esperar!
+# =============================
 import re
 import csv
 import matplotlib

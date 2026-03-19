@@ -633,6 +633,8 @@ export interface VersionCompareHeader {
 export interface VersionCompareResponse {
     success: boolean;
     product_version: string;
+    product_version_missing?: boolean;
+    product_version_warning?: string;
     header: VersionCompareHeader;
     summary: Record<string, number>;
     desatualizados: VersionCompareEntry[];

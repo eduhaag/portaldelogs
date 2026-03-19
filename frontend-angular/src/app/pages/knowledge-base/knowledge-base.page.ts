@@ -1,3 +1,9 @@
+// ===============================
+// Componente de Base de Conhecimento
+// Permite pesquisar e visualizar padrões conhecidos de erros e mensagens.
+// Demonstra uso de tabelas, filtros e integração com PO UI.
+// Comentários didáticos para facilitar o entendimento!
+// ===============================
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -40,6 +46,7 @@ interface KnowledgeTableItem {
     styleUrl: './knowledge-base.page.scss'
 })
 export class KnowledgeBasePageComponent {
+    // Serviço de API para comunicação com o backend
     private readonly api = inject(BackendApiService);
 
     protected searchTerm = '';
@@ -57,6 +64,7 @@ export class KnowledgeBasePageComponent {
     protected sourceFilter = 'all';
     protected severityFilter = 'all';
     protected recentTerms: string[] = [];
+    // Termos rápidos para facilitar a busca do usuário
     protected readonly quickTerms = ['DataServer', 'Rejeição 999', '18215', 'AppServer', 'PASOE'];
 
     protected readonly columns: PoTableColumn[] = [
@@ -78,6 +86,7 @@ export class KnowledgeBasePageComponent {
             { label: 'Todas', value: 'all' },
             ...this.availableSources.map((source) => ({ label: source, value: source }))
         ];
+        // O filtro acima permite ao usuário selecionar a origem dos padrões exibidos na tabela.
     }
 
     protected get severityFilterOptions(): PoSelectOption[] {

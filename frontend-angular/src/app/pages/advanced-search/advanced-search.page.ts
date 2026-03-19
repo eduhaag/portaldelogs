@@ -1,3 +1,9 @@
+// ===============================
+// Componente de Busca Avançada
+// Aqui o usuário pode pesquisar padrões específicos em arquivos de log.
+// Este componente demonstra como integrar formulários, tabelas e ações com PO UI e Angular.
+// Comentários didáticos foram adicionados para facilitar o entendimento!
+// ===============================
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -39,13 +45,16 @@ interface SearchTableItem {
     styleUrl: './advanced-search.page.scss'
 })
 export class AdvancedSearchPageComponent {
+    // Serviço de API para comunicação com o backend
     private readonly api = inject(BackendApiService);
+    // Descrições dos tipos de busca disponíveis
     private readonly searchTypeDescriptions: Record<string, string> = {
         procedure: 'Busca literal orientada a procedures e trechos conhecidos.',
         literal: 'Busca texto puro no arquivo.',
         custom: 'Usa expressão regular livre.'
     };
 
+    // Variáveis de estado protegidas para uso no template
     protected logFile: File | null = null;
     protected searchPattern = '';
     protected caseSensitive = false;
@@ -57,14 +66,17 @@ export class AdvancedSearchPageComponent {
     protected selectedMatch: SearchLogMatch | null = null;
     protected resultSummary: Array<{ label: string; value: string | number }> = [];
     protected recentPatterns: string[] = [];
+    // Padrões rápidos para facilitar a busca do usuário
     protected readonly quickPatterns = ['Procedure:', 'AppServer', 'PASOE', 'DataServer', 'ERROR'];
 
+    // Opções de tipo de busca exibidas no select
     protected readonly searchTypeOptions: PoSelectOption[] = [
         { label: 'Procedure', value: 'procedure' },
         { label: 'Literal', value: 'literal' },
         { label: 'Regex customizada', value: 'custom' }
     ];
 
+    // Ações disponíveis no dropdown de busca
     protected get searchActions(): PoDropdownAction[] {
         return [
             {

@@ -1,3 +1,9 @@
+// ===============================
+// Componente de Controle de Issues
+// Permite gerenciar, editar e filtrar issues relacionadas a tickets e clientes.
+// Demonstra uso de tabelas, modais e integração com PO UI.
+// Comentários didáticos para facilitar o entendimento!
+// ===============================
 import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -23,25 +29,31 @@ import { IssueItem, IssueCreatePayload } from '../../core/models/api.models';
     styleUrl: './issue-control.page.scss'
 })
 export class IssueControlPageComponent implements OnInit {
+    // Serviço de API para comunicação com o backend
     private readonly api = inject(BackendApiService);
+    // Serviço de notificação para exibir mensagens ao usuário
     private readonly notification = inject(PoNotificationService);
 
     @ViewChild('editModal') editModal!: PoModalComponent;
     @ViewChild('newModal') newModal!: PoModalComponent;
     @ViewChild('csvInput') csvInput?: ElementRef<HTMLInputElement>;
 
+    // Lista de issues carregadas do backend
     issues: IssueItem[] = [];
+    // Lista filtrada de issues para exibição
     filteredIssues: IssueItem[] = [];
     isLoading = false;
     filterText = '';
     filterStatus = '';
 
+    // Objetos para edição e criação de issues
     editingIssue: Partial<IssueItem> = {};
     newIssue: IssueCreatePayload = {
         ticket: '', issue: '', cliente: '', rotina: '',
         situacao: '', status: 'Aberto', liberado_versoes: ''
     };
 
+    // Definição das colunas da tabela de issues
     readonly columns: PoTableColumn[] = [
         { property: 'data_criacao', label: 'Data', width: '120px' },
         { property: 'ticket', label: 'Ticket', width: '150px' },
@@ -62,11 +74,13 @@ export class IssueControlPageComponent implements OnInit {
         { property: 'liberado_versoes', label: 'Versoes', width: '190px' },
     ];
 
+    // Ações disponíveis na tabela de issues
     readonly tableActions = [
         { action: (row: IssueItem) => this.openEditModal(row), icon: 'po-icon-edit', label: 'Editar' },
         { action: (row: IssueItem) => this.deleteIssue(row), icon: 'po-icon-delete', label: 'Excluir' },
     ];
 
+    // Opções de status para seleção e filtro
     readonly statusOptions = [
         { label: 'Aberto', value: 'Aberto' },
         { label: 'Em Andamento', value: 'Em Andamento' },

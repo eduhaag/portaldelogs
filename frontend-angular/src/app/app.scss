@@ -1,13 +1,13 @@
 :host {
     display: block;
-    min-height: 100vh;
+    min-height: 100dvh;
 }
 
 .app-shell {
     --sidebar-width: 270px;
     display: grid;
     grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
-    min-height: 100vh;
+    min-height: 100dvh;
     background: #f5f7fa;
 }
 
@@ -230,18 +230,20 @@
 
 .main-panel {
     min-width: 0;
-    overflow: hidden;
+    overflow-x: clip;
+    overflow-y: visible;
     display: grid;
     align-content: start;
     gap: 0;
 }
 
 .main-panel--auth {
-    min-height: 100vh;
+    min-height: 100dvh;
 }
 
 .main-panel__content {
     padding: 24px;
+    min-width: 0;
 }
 
 .main-panel__content--auth {

@@ -66,9 +66,15 @@
             </div>
         </po-widget>
 
-        @if (result && result.index_warning) {
+        @if (productVersionWarning) {
+        <div class="feedback feedback--warning" data-testid="missing-product-version-warning">
+            {{ productVersionWarning }}
+        </div>
+        }
+
+        @if (genericIndexWarning) {
         <div class="feedback feedback--warning" data-testid="index-warning">
-            {{ result.index_warning }}
+            {{ genericIndexWarning }}
         </div>
         }
 
@@ -206,7 +212,7 @@
                         <div class="header-grid">
                             <div class="header-item">
                                 <span class="header-item__label">Versao produto</span>
-                                <strong>{{ result?.header?.versao_produto_completa || result?.header?.versao_produto || result?.product_version || '-' }}</strong>
+                                <strong>{{ productVersionDisplay }}</strong>
                             </div>
                             <div class="header-item">
                                 <span class="header-item__label">Empresa</span>

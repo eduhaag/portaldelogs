@@ -1,3 +1,11 @@
+"""
+===============================
+Version Compare Service - O Sherlock Holmes das versões!
+===============================
+Aqui a gente compara versões, encontra diferenças e resolve mistérios de patch como um verdadeiro detetive.
+Comentários didáticos e bem humorados para quem gosta de investigação e código limpo!
+"""
+
 import logging
 import os
 import re
@@ -49,6 +57,10 @@ SKIP_PROGRAMS_WITHOUT_EMBEDDED_VERSION = {
 
 
 class VersionCompareService:
+    """
+    Serviço de comparação de versões
+    (Detecta diferenças, resolve mistérios e evita bugs fantasma)
+    """
     def __init__(self, base_lib_directory: str | None = None, progress_lib_directory: str | None = None):
         self.base_lib_directory = base_lib_directory or DEFAULT_LIB_DIRECTORY
         self.progress_lib_directory = progress_lib_directory or DEFAULT_PROGRESS_LIB_DIRECTORY
@@ -1147,9 +1159,11 @@ class VersionCompareService:
         version_start = monotonic()
         product_version = ""
         version_warning: str | None = None
+        product_version_missing = False
         try:
             product_version = self.extract_product_version(content)
         except ValueError as exc:
+            product_version_missing = True
             version_warning = (
                 f"{exc} A comparacao de versoes nao foi executada, mas os dados extras do extrato foram carregados."
             )
@@ -1219,6 +1233,8 @@ class VersionCompareService:
 
         return {
             "product_version": product_version,
+            "product_version_missing": product_version_missing,
+            "product_version_warning": version_warning,
             "header": header,
             "summary": summary,
             **comparison,

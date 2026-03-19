@@ -1,9 +1,10 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+
 """
-Parser de logs estruturados integrado ao analisador Datasul existente
-Suporta: Apache/Tomcat access, JBoss/Fluig Java logs, Progress/OpenEdge
-Baseado na lógica fornecida pelo usuário, integrado com análise de padrões existente
+===============================
+Structured Log Parser - O poliglota dos logs!
+===============================
+Aqui a gente entende log de tudo quanto é tipo: Apache, Tomcat, Java, Progress... Se for log, a gente decifra!
+Comentários didáticos e bem humorados para quem gosta de regex, parsing e mistério!
 """
 
 import re

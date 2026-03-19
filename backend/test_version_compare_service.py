@@ -222,6 +222,11 @@ SPP_LOCALIZ_SUL_AMERICA                   no
     result = service.compare_content(extrato)
 
     assert result["product_version"] == ""
+    assert result["product_version_missing"] is True
+    assert result["product_version_warning"] == (
+        "Extrato nao possui versao no cabecalho. "
+        "A comparacao de versoes nao foi executada, mas os dados extras do extrato foram carregados."
+    )
     assert result["summary"]["total_programas_cliente"] == 1
     assert result["summary"]["total_comparados"] == 0
     assert result["summary"]["com_upc"] == 1

@@ -1,3 +1,9 @@
+// ===============================
+// Componente de Comparação de Profiler
+// Permite comparar resultados de profiler entre diferentes versões.
+// Demonstra uso de tabelas, arquivos e integração com PO UI.
+// Comentários didáticos para facilitar o entendimento!
+// ===============================
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, inject } from '@angular/core';
 import {
@@ -34,6 +40,7 @@ interface RecommendationRow {
     styleUrl: './profiler-version-compare.page.scss'
 })
 export class ProfilerVersionComparePageComponent {
+    // Serviço de API para comunicação com o backend
     private readonly api = inject(BackendApiService);
 
     protected profilerFile: File | null = null;
@@ -48,12 +55,14 @@ export class ProfilerVersionComparePageComponent {
     protected versionCompareLoadingMessage = 'Processando extrato de versao...';
     protected compactViewport = this.isCompactViewport();
 
+    // Colunas da tabela de profiler para visualização desktop
     private readonly desktopProfilerColumns: PoTableColumn[] = [
         { property: 'program', label: 'Programa' },
         { property: 'duration', label: 'Duração' },
         { property: 'calls', label: 'Chamadas' }
     ];
 
+    // Colunas da tabela de profiler para visualização compacta
     private readonly compactProfilerColumns: PoTableColumn[] = [
         { property: 'program', label: 'Programa' },
         { property: 'duration', label: 'Duração' }

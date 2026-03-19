@@ -1,3 +1,9 @@
+// ===============================
+// Componente de Comparação de Versões
+// Permite comparar extratos de versões de sistemas para identificar diferenças.
+// Demonstra uso de tabelas, tabs e integração com PO UI.
+// Comentários didáticos para facilitar o entendimento!
+// ===============================
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { Component, HostListener, OnInit, inject } from '@angular/core';
 import {
@@ -67,12 +73,17 @@ interface DetailSection {
     styleUrl: './version-compare.page.scss'
 })
 export class VersionComparePageComponent implements OnInit {
+    // Serviço de API para comunicação com o backend
     private readonly api = inject(BackendApiService);
+    // Serviço de sessão para armazenar dados temporários da comparação
     private readonly session = inject(VersionCompareSessionService);
+    // Referência ao objeto document para manipulação do DOM
     private readonly document = inject(DOCUMENT);
 
+    // Quantidade de linhas exibidas no preview e nos detalhes
     private readonly previewRowCount = 8;
     private readonly detailBatchSize = 10;
+    // Identificadores de seções de detalhes para navegação
     private readonly detailSectionIds: Record<DetailSectionKey, string> = {
         product: 'version-compare-product-details',
         programasExtrato: 'version-compare-programas-extrato',
@@ -249,7 +260,7 @@ export class VersionComparePageComponent implements OnInit {
         return [
             {
                 label: 'Versao do produto',
-                value: r.header?.versao_produto_completa || r.product_version || '-',
+                value: this.productVersionDisplay,
                 section: 'product'
             },
             {
@@ -354,6 +365,30 @@ export class VersionComparePageComponent implements OnInit {
         return this.desatualizadosRows.length + this.okRows.length + this.adiantadoRows.length;
     }
 
+    protected get productVersionDisplay(): string {
+        if (!this.result) {
+            return '-';
+        }
+
+        return this.result.header?.versao_produto_completa
+            || this.result.header?.versao_produto
+            || this.result.product_version
+            || (this.result.product_version_missing ? 'Nao informada no extrato' : '-');
+    }
+
+    protected get productVersionWarning(): string {
+        return this.result?.product_version_warning || '';
+    }
+
+    protected get genericIndexWarning(): string {
+        const indexWarning = this.result?.index_warning || '';
+        if (!indexWarning || indexWarning === this.productVersionWarning) {
+            return '';
+        }
+
+        return indexWarning;
+    }
+
     protected get comparedRows(): TableRow[] {
         return [
             ...(this.result?.desatualizados ?? []).map((item) => this.mapComparedRow(item, 'Desatualizado')),
@@ -448,7 +483,9 @@ export class VersionComparePageComponent implements OnInit {
                 kind: 'table',
                 columns: this.comparedColumns,
                 rows: this.comparedRows,
-                emptyMessage: 'Nenhum programa comparado para exibir.'
+                emptyMessage: this.result?.product_version_missing
+                    ? 'A comparacao de versoes nao foi executada porque o extrato nao informa a versao do cliente.'
+                    : 'Nenhum programa comparado para exibir.'
             },
             {
                 key: 'desatualizados',
@@ -458,7 +495,9 @@ export class VersionComparePageComponent implements OnInit {
                 kind: 'table',
                 columns: this.comparedColumns,
                 rows: (this.result?.desatualizados ?? []).map((item) => this.mapComparedRow(item, 'Desatualizado')),
-                emptyMessage: 'Nenhum programa desatualizado encontrado.'
+                emptyMessage: this.result?.product_version_missing
+                    ? 'Sem comparacao de versao: o extrato nao informa a versao do cliente.'
+                    : 'Nenhum programa desatualizado encontrado.'
             },
             {
                 key: 'ok',
@@ -468,7 +507,9 @@ export class VersionComparePageComponent implements OnInit {
                 kind: 'table',
                 columns: this.comparedColumns,
                 rows: (this.result?.ok ?? []).map((item) => this.mapComparedRow(item, 'OK')),
-                emptyMessage: 'Nenhum programa com versao OK para exibir.'
+                emptyMessage: this.result?.product_version_missing
+                    ? 'Sem comparacao de versao: o extrato nao informa a versao do cliente.'
+                    : 'Nenhum programa com versao OK para exibir.'
             },
             {
                 key: 'adiantado',
@@ -478,7 +519,9 @@ export class VersionComparePageComponent implements OnInit {
                 kind: 'table',
                 columns: this.comparedColumns,
                 rows: (this.result?.adiantado_customizado ?? []).map((item) => this.mapComparedRow(item, 'Adiantado/Custom.')),
-                emptyMessage: 'Nenhum programa adiantado ou customizado.'
+                emptyMessage: this.result?.product_version_missing
+                    ? 'Sem comparacao de versao: o extrato nao informa a versao do cliente.'
+                    : 'Nenhum programa adiantado ou customizado.'
             },
             {
                 key: 'upc',
@@ -553,7 +596,9 @@ export class VersionComparePageComponent implements OnInit {
                     this.analyzedAt = new Date().toLocaleString('pt-BR');
                     this.resetDetailPagination();
                     this.session.save(response, this.uploadedFilename);
-                    this.successMessage = 'Extrato processado com sucesso.';
+                    this.successMessage = response.product_version_missing
+                        ? 'Extrato processado com sucesso. A versao do cliente nao foi informada no cabecalho; os demais dados foram carregados.'
+                        : 'Extrato processado com sucesso.';
                 },
                 error: (error: { error?: { detail?: string } }) => {
                     this.loading = false;

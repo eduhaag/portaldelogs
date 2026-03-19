@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, timeout } from 'rxjs/operators';
 
 import { AuthResponse, AuthUserProfile } from '../models/api.models';
 import { BackendApiService } from './backend-api.service';
@@ -20,6 +20,8 @@ interface AuthActionResult {
     success: boolean;
     message: string;
 }
+
+const AUTH_REQUEST_TIMEOUT_MS = 8000;
 
 @Injectable({ providedIn: 'root' })
 export class AuthSessionService {
@@ -46,6 +48,7 @@ export class AuthSessionService {
             email: user.email.trim(),
             password: user.password
         }).pipe(
+            timeout(AUTH_REQUEST_TIMEOUT_MS),
             map((response) => ({ success: response.success, message: response.message })),
             catchError((error) => of({ success: false, message: this.extractErrorMessage(error) }))
         );
@@ -150,6 +153,10 @@ export class AuthSessionService {
             if (typeof detail === 'string' && detail.trim()) {
                 return detail;
             }
+        }
+
+        if (error && typeof error === 'object' && 'name' in error && error.name === 'TimeoutError') {
+            return 'O cadastro demorou mais do que o esperado. Tente novamente em alguns segundos.';
         }
 
         return 'Não foi possível concluir a solicitação.';

@@ -1,3 +1,11 @@
+"""
+===============================
+Portal do Suporte - Backend Principal
+===============================
+Aqui é onde a mágica acontece! Este arquivo é o maestro que orquestra APIs, autenticação, conexão com banco, análise de logs e até exportação de relatórios bonitos.
+Prepare-se para encontrar endpoints, modelos, integrações e um toque de bom humor nos comentários!
+"""
+
 import asyncio
 import fastapi
 from fastapi.responses import JSONResponse, StreamingResponse, FileResponse, Response
@@ -42,7 +50,10 @@ from lxml import html as lxml_html
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-# MongoDB connection
+
+# ===============================
+# MongoDB: onde os logs vão para serem analisados e julgados!
+# ===============================
 mongo_url = os.environ['MONGO_URL']
 mongo_server_selection_timeout_ms = int(os.environ.get('MONGO_SERVER_SELECTION_TIMEOUT_MS', '1500'))
 mongo_connect_timeout_ms = int(os.environ.get('MONGO_CONNECT_TIMEOUT_MS', '1500'))
@@ -54,6 +65,10 @@ client = AsyncIOMotorClient(
     socketTimeoutMS=mongo_socket_timeout_ms,
 )
 db = client[os.environ['DB_NAME']]
+
+# ===============================
+# Segurança: tokens JWT para proteger seu precioso backend
+# ===============================
 JWT_SECRET_KEY = os.environ.get('JWT_SECRET_KEY', 'central-suporte-dev-secret-change-me')
 JWT_ALGORITHM = 'HS256'
 JWT_EXPIRE_MINUTES = int(os.environ.get('JWT_ACCESS_TOKEN_EXPIRE_MINUTES', '480'))
@@ -64,14 +79,20 @@ PUBLIC_API_PATHS = {
     '/api/status',
 }
 
-# Create the main app without a prefix
+
+# ===============================
+# FastAPI: o chefão das rotas!
+# ===============================
 app = fastapi.FastAPI()
 
-# Create a router with the /api prefix
+# Roteador com prefixo /api para organizar a bagunça
 api_router = fastapi.APIRouter(prefix="/api")
 
 
-# Define Models
+
+# ===============================
+# Modelos Pydantic: porque até os dados precisam de regras!
+# ===============================
 class StatusCheck(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     client_name: str

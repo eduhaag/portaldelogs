@@ -1,3 +1,9 @@
+// =============================
+// Bem-vindo ao coração do frontend!
+// Aqui começa a jornada da análise de logs, com Angular + PO UI.
+// Cada bloco de código tem um propósito e uma dica para quem está aprendendo!
+// =============================
+// Importando módulos essenciais para a mágica do Angular acontecer!
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -52,7 +58,7 @@ import { AnalysisSessionService } from '../../core/services/analysis-session.ser
 import { BackendApiService } from '../../core/services/backend-api.service';
 import { VersionCompareSessionService } from '../../core/services/version-compare-session.service';
 
-interface ActionCard {
+    // Cartão de ação: cada um é um superpoder do dashboard!
     title: string;
     description: string;
     icon: string;
@@ -150,6 +156,11 @@ interface CustomPatternFormValue {
     solution: string;
 }
 
+// Componente principal da página de análise: aqui começa a diversão!
+//
+// DICA: O Angular usa decorators (@Component) para transformar classes em componentes de tela.
+//       O PO UI traz componentes prontos para dashboards, tabelas e formulários bonitos.
+//       Use o 'inject' para acessar serviços e APIs sem precisar de construtor!
 @Component({
     selector: 'app-analysis-page',
     standalone: true,
@@ -157,6 +168,12 @@ interface CustomPatternFormValue {
     templateUrl: './analysis.page.html',
     styleUrl: './analysis.page.scss'
 })
+// Aqui é onde a mágica da análise de logs acontece!
+//
+// O ciclo de vida do Angular começa com ngOnInit (inicialização) e AfterViewInit (após renderizar a tela).
+// Use @ViewChild para acessar elementos do template (HTML) diretamente.
+//
+// DICA: Os protected são visíveis no template, os private só no TypeScript.
 export class AnalysisPageComponent implements OnInit, AfterViewInit {
     @ViewChild('dashboardStart') dashboardStart?: ElementRef<HTMLDivElement>;
     @ViewChild('patternModal') patternModal?: PoModalComponent;
@@ -169,6 +186,10 @@ export class AnalysisPageComponent implements OnInit, AfterViewInit {
     private readonly router = inject(Router);
     private readonly versionCompareSession = inject(VersionCompareSessionService);
 
+    // Cartões de ação do dashboard: escolha seu superpoder!
+    //
+    // Cada card representa uma funcionalidade principal do sistema.
+    // Você pode adicionar, remover ou customizar cards para guiar o usuário!
     protected readonly actionCards: ActionCard[] = [
         {
             title: 'Analisar log',
@@ -200,6 +221,8 @@ export class AnalysisPageComponent implements OnInit, AfterViewInit {
         }
     ];
 
+    // Variáveis protegidas: acessíveis no HTML, mas não fora do componente.
+    // Use elas para controlar o estado da tela, arquivos enviados, resultados, etc.
     protected logFile: File | null = null;
     protected patternsFile: File | null = null;
     protected cleanerFile: File | null = null;
@@ -268,12 +291,16 @@ export class AnalysisPageComponent implements OnInit, AfterViewInit {
     protected nonErrorReason = '';
     protected manualChangeNotes = '';
     protected errorMessage = '';
+    // Dicas rápidas para quem quer ir além!
+    //
+    // DICA: Adicione suas próprias dicas para ajudar colegas ou você mesmo no futuro!
     protected readonly quickInsights = [
         'Use a pré-análise para estimar custo antes do processamento completo.',
         'O arquivo opcional de padrões complementa o matcher do backend.',
         'Os gráficos usam `chart_data`, `error_counts` e `severity_counts` do FastAPI.'
     ];
 
+    // Getter: calcula estatísticas do dashboard em tempo real para exibir no HTML.
     protected get dashboardStats(): Array<{ label: string; value: string | number; detail: string }> {
         return [
             {
@@ -294,6 +321,8 @@ export class AnalysisPageComponent implements OnInit, AfterViewInit {
         ];
     }
 
+    // Definição das colunas da tabela de resultados.
+    // DICA: Você pode customizar as colunas para mostrar só o que faz sentido para o usuário!
     protected readonly resultColumns: PoTableColumn[] = [
         { property: 'lineNumber', label: 'Linha', width: '90px' },
         { property: 'severity', label: 'Severidade', width: '120px' },
@@ -405,6 +434,7 @@ export class AnalysisPageComponent implements OnInit, AfterViewInit {
         { label: 'PASOE / Tomcat', value: 'pasoe' },
         { label: 'AppServer Progress', value: 'appserver' },
         { label: 'LOGIX', value: 'logix' },
+        { label: 'Protheus / ADVPL', value: 'protheus' },
         { label: 'JBoss / WildFly', value: 'jboss' },
         { label: 'Acesso HTTP / Web', value: 'access' },
         { label: 'Genérico', value: 'generic' }

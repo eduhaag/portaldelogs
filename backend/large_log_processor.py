@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """
-Processador otimizado para logs de grande escala (80k+ linhas)
-Processa em chunks para evitar sobrecarga de memória e CPU
+===============================
+Processador de Logs Gigantes - O Hulk do backend!
+===============================
+Aqui processamos logs tão grandes que fariam um Excel chorar. Chunk a chunk, sem travar sua máquina!
+Comentários didáticos e piadinhas para quem for encarar logs de 80 mil linhas ou mais.
 """
 
 import asyncio
@@ -16,14 +19,18 @@ import logging
 logger = logging.getLogger(__name__)
 
 class LargeLogProcessor:
-    """Processador otimizado para logs corporativos de grande escala"""
+    """
+    Processador otimizado para logs corporativos de grande escala
+    (Ideal para quem acha que 10 mil linhas é pouco!)
+    """
     
     def __init__(self, chunk_size: int = 1000, max_results: int = 10000):
         """
         Args:
             chunk_size: Número de linhas por chunk (padrão: 1000)
+                (Se aumentar muito, só tente se tiver muita RAM e coragem)
             max_results: Máximo de resultados a retornar para o frontend (padrão: 10000)
-                       OBS: Isso não para o processamento, apenas limita o que é enviado ao frontend
+                (Não se preocupe, o processamento continua, só não entope a tela do usuário)
         """
         self.chunk_size = chunk_size
         self.max_results = max_results
@@ -31,12 +38,18 @@ class LargeLogProcessor:
         self.structured_parser = StructuredLogParser()
         
     async def initialize(self, db):
-        """Inicializa o analisador com MongoDB"""
+        """
+        Inicializa o analisador com MongoDB
+        (Sim, até logs gigantes precisam de um banco para chamar de lar)
+        """
         await self.analyzer.initialize_datasul_loader(db)
-        logger.info("Large log processor initialized")
+        logger.info("Large log processor initialized - pronto para a pancadaria de logs!")
     
     def chunk_lines(self, content: str) -> Generator[List[str], None, None]:
-        """Divide o conteúdo em chunks otimizados"""
+        """
+        Divide o conteúdo em chunks otimizados
+        (Divide e conquista: estratégia milenar para logs gigantes)
+        """
         lines = content.split('\n')
         total_lines = len(lines)
         

@@ -9,7 +9,7 @@ import logging
 import hashlib
 from pathlib import Path
 from pydantic import BaseModel, Field
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 import uuid
 from datetime import datetime, timedelta
 import io
@@ -516,6 +516,56 @@ async def find_auth_user_by_email(email: str) -> Optional[Dict[str, Any]]:
             None,
         )
 
+
+async def find_existing_auth_identities(username: str, email: str) -> Tuple[Optional[Dict[str, Any]], Optional[Dict[str, Any]], str]:
+    normalized_username = _normalize_auth_username(username).lower()
+    normalized_email = _normalize_auth_email(email)
+
+    def find_matches(users: List[Dict[str, Any]]) -> Tuple[Optional[Dict[str, Any]], Optional[Dict[str, Any]]]:
+        username_match = next(
+            (
+                user for user in users
+                if str(user.get("username_normalized", "")).lower() == normalized_username
+            ),
+            None,
+        )
+        email_match = next(
+            (
+                user for user in users
+                if str(user.get("email_normalized", "")).lower() == normalized_email
+            ),
+            None,
+        )
+        return username_match, email_match
+
+    if await _ensure_auth_store_ready():
+        users = list_records("auth_users", {"active": True}, sort_field="created_at", descending=True)
+        username_match, email_match = find_matches(users)
+        return username_match, email_match, "local"
+
+    if force_local_store:
+        users = list_records("auth_users", {"active": True}, sort_field="created_at", descending=True)
+        username_match, email_match = find_matches(users)
+        return username_match, email_match, "local"
+
+    try:
+        users = await db.auth_users.find({
+            "active": True,
+            "$or": [
+                {"username_normalized": normalized_username},
+                {"email_normalized": normalized_email},
+            ],
+        }).to_list(2)
+        username_match, email_match = find_matches(users)
+        return username_match, email_match, "mongo"
+    except Exception as e:
+        if not _should_use_local_store(e):
+            raise
+        logger.warning(f"Searching auth identities in local fallback store: {e}")
+        users = list_records("auth_users", {"active": True}, sort_field="created_at", descending=True)
+        username_match, email_match = find_matches(users)
+        return username_match, email_match, "local"
+
     if force_local_store:
         users = list_records("auth_users", {"active": True}, sort_field="created_at", descending=True)
         return next(
@@ -547,6 +597,7 @@ async def find_auth_user_by_email(email: str) -> Optional[Dict[str, Any]]:
 
 @api_router.post("/auth/register", response_model=AuthResult)
 async def register_auth_user(payload: AuthUserCreate):
+    request_start = monotonic()
     display_name = payload.display_name.strip()
     username = _normalize_auth_username(payload.username)
     email = _normalize_auth_email(payload.email)
@@ -559,11 +610,14 @@ async def register_auth_user(payload: AuthUserCreate):
     if password_error:
         raise fastapi.HTTPException(status_code=400, detail=password_error)
 
-    existing_username = await find_auth_user_by_username(username)
+    validation_finished_at = monotonic()
+
+    existing_username, existing_email, auth_store_backend = await find_existing_auth_identities(username, email)
+    duplicate_check_finished_at = monotonic()
+
     if existing_username:
         raise fastapi.HTTPException(status_code=409, detail="Já existe um usuário cadastrado com esse login.")
 
-    existing_email = await find_auth_user_by_email(email)
     if existing_email:
         raise fastapi.HTTPException(status_code=409, detail="Já existe um usuário cadastrado com esse e-mail.")
 
@@ -580,6 +634,21 @@ async def register_auth_user(payload: AuthUserCreate):
     }
 
     saved_user = await save_auth_user_record(record)
+    save_finished_at = monotonic()
+
+    total_ms = (save_finished_at - request_start) * 1000
+    validation_ms = (validation_finished_at - request_start) * 1000
+    duplicate_check_ms = (duplicate_check_finished_at - validation_finished_at) * 1000
+    save_ms = (save_finished_at - duplicate_check_finished_at) * 1000
+    log_message = (
+        "Auth register timing | backend=%s | username=%s | total=%.1fms | validation=%.1fms | "
+        "duplicate_check=%.1fms | save=%.1fms"
+    )
+    if total_ms >= 1000:
+        logger.warning(log_message, auth_store_backend, username, total_ms, validation_ms, duplicate_check_ms, save_ms)
+    else:
+        logger.info(log_message, auth_store_backend, username, total_ms, validation_ms, duplicate_check_ms, save_ms)
+
     return {
         "success": True,
         "message": "Usuário cadastrado com sucesso.",

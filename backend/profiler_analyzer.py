@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-ProfilerAnalyzer
-Parser do .out do Progress Profiler alinhado à estrutura do fonte legado.
+===============================
+ProfilerAnalyzer - O detetive dos .out!
+===============================
+Aqui a gente investiga arquivos de profiler, faz contas, organiza tudo e ainda deixa pronto para análise.
+Comentários didáticos e um toque de humor para quem for encarar o legado Progress.
 
 Baseado principalmente em:
 - importTTProfileSessionProf

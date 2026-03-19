@@ -1,3 +1,9 @@
+// =============================
+// Resultados da análise: aqui os logs ganham vida!
+// Este componente mostra tabelas, gráficos e insights para o usuário.
+// Comentários didáticos para quem está aprendendo Angular ou PO UI.
+// =============================
+// Importando tudo que é necessário para mostrar resultados incríveis!
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, OnInit, ViewChild, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -122,6 +128,11 @@ interface AnalysisViewOption {
     count?: number;
 }
 
+// Componente de resultados: aqui os logs ganham vida!
+//
+// DICA: Use @Component para criar componentes reutilizáveis.
+//       O PO UI facilita a criação de tabelas, gráficos e modais sem dor de cabeça.
+//       O ciclo de vida do Angular começa com ngOnInit.
 @Component({
     selector: 'app-analysis-results-page',
     standalone: true,
@@ -144,6 +155,11 @@ interface AnalysisViewOption {
     templateUrl: './analysis-results.page.html',
     styleUrl: './analysis-results.page.scss'
 })
+// Aqui é onde os resultados aparecem e surpreendem!
+//
+// DICA: Use getters para calcular dados em tempo real para o template.
+//       Separe variáveis de estado (loading, error, etc) para facilitar manutenção.
+//       Use protected para expor só o necessário ao HTML.
 export class AnalysisResultsPageComponent implements OnInit {
     @ViewChild('nonErrorModal', { static: true }) nonErrorModal!: PoModalComponent;
 
@@ -216,6 +232,10 @@ export class AnalysisResultsPageComponent implements OnInit {
     protected nonErrorReason = '';
     protected nonErrorSelectionMode: NonErrorSelectionMode = 'auto';
 
+    // Colunas da tabela de resultados: cada linha é uma história do log!
+    //
+    // DICA: Customize as colunas conforme o tipo de análise ou perfil do usuário.
+    //       O PO UI permite tabelas responsivas e fáceis de usar.
     protected readonly resultColumns: PoTableColumn[] = [
         { property: 'lineNumber', label: 'Linha', width: '90px' },
         { property: 'severity', label: 'Severidade', width: '120px' },
@@ -1221,6 +1241,9 @@ export class AnalysisResultsPageComponent implements OnInit {
             broker_name: 'Broker',
             agent_name: 'Agente',
             analysis_type: 'Tipo de análise',
+            missing_variable: 'Variável ausente',
+            class_name: 'Classe',
+            method_name: 'Método',
             table_name: 'Tabela',
             index_name: 'Índice',
             record_count: 'Registros',
@@ -1234,6 +1257,9 @@ export class AnalysisResultsPageComponent implements OnInit {
             key_name: 'Chave',
             parameters: 'Parâmetros',
             return_type: 'Retorno',
+            source_routine: 'Rotina origem',
+            source_file: 'Arquivo fonte',
+            missing_file: 'Arquivo ausente',
             sequence_flag: 'Sequência',
             global_flag: 'Global',
             shared_flag: 'Shared',

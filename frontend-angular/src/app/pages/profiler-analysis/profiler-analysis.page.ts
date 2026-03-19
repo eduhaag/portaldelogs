@@ -1,3 +1,9 @@
+// ===============================
+// Componente de Análise de Profiler
+// Permite analisar arquivos de profiler para identificar gargalos de desempenho.
+// Demonstra uso de tabelas, métricas e integração com PO UI.
+// Comentários didáticos para facilitar o entendimento!
+// ===============================
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import {
@@ -96,9 +102,12 @@ interface HotLineRow {
     styleUrl: './profiler-analysis.page.scss'
 })
 export class ProfilerAnalysisPageComponent implements OnInit {
+    // Serviço de API para comunicação com o backend
     private readonly api = inject(BackendApiService);
+    // Serviço de sessão do profiler para armazenar dados temporários
     private readonly profilerSession = inject(ProfilerSessionService);
 
+    // Variáveis de estado protegidas para uso no template
     protected profilerFile: File | null = null;
     protected profilerResult: ProfilerResponse | null = null;
     protected profilerLoading = false;
@@ -106,11 +115,13 @@ export class ProfilerAnalysisPageComponent implements OnInit {
     protected successMessage = '';
     protected analyzedAt = '';
     protected uploadedFilename = '';
+    // Tipos de tags para exibir status visual
     protected readonly TAG_INFO = PoTagType.Info;
     protected readonly TAG_WARNING = PoTagType.Warning;
     protected readonly TAG_DANGER = PoTagType.Danger;
     protected readonly TAG_SUCCESS = PoTagType.Success;
 
+    // Colunas da tabela de linhas críticas do profiler
     protected readonly hotLineColumns: PoTableColumn[] = [
         { property: 'module', label: 'Módulo / fonte' },
         { property: 'line', label: 'Linha', width: '90px' },
@@ -122,8 +133,10 @@ export class ProfilerAnalysisPageComponent implements OnInit {
     ngOnInit(): void {
         this.profilerLoading = false;
         this.restoreSession();
+        // Ao inicializar, restaura a sessão anterior se houver.
     }
 
+    // Verifica se já existe resultado de análise carregado
     protected get hasResult(): boolean {
         return !!this.profilerResult;
     }

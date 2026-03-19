@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-Identifica categorias em logs Progress sem excluir nada.
-- Streaming (bom p/ arquivos grandes)
-- Suporta .gz, UTF-8 e fallback Latin-1
-- Retorna contagens + amostras por categoria
+===============================
+Log Cleaner - O Marie Kondo dos logs!
+===============================
+Aqui a gente organiza, categoriza e deixa tudo limpinho, mas sem jogar nada fora (nem aquele erro esquecido).
+Didático, bem humorado e pronto para logs grandes, compactados ou bagunçados.
 """
 
 from __future__ import annotations
@@ -12,8 +13,10 @@ from dataclasses import dataclass, field
 from typing import Any, Dict, Iterable, List, Optional
 
 def _rx(p: str) -> re.Pattern:
+    # Compila regex ignorando maiúsculas/minúsculas (porque erro não tem caps lock)
     return re.compile(p, re.IGNORECASE)
 
+    # Dicionário de categorias: cada uma com sua coleção de regex
 CATEGORIES: Dict[str, List[re.Pattern]] = {
     # ============================================================
     # CATEGORIAS DATASUL/PROGRESS (ORIGINAIS)
@@ -161,6 +164,29 @@ CATEGORIES: Dict[str, List[re.Pattern]] = {
     ],
 
     # ============================================================
+    # CATEGORIAS PROTHEUS / ADVPL
+    # ============================================================
+    "protheus_runtime": [
+        _rx(r"\bTHREAD ERROR\b"),
+        _rx(r"\bvariable does not exist\b"),
+        _rx(r"\bCannot find method\b"),
+        _rx(r"\bCalled from\b"),
+    ],
+    "protheus_repository": [
+        _rx(r"\bOPEN EMPTY RPO\b"),
+        _rx(r"\bFailed to read status of inifile\b"),
+        _rx(r"\bfail to open:\b"),
+        _rx(r"\blanguage\.ini\b"),
+    ],
+    "protheus_infra": [
+        _rx(r"\bInvalid ReadMSInt\b"),
+        _rx(r"\bMULTIPORT - error \d+ unrecognized client\b"),
+        _rx(r"\bunrecognized client\b"),
+        _rx(r"\bSmartClient\b"),
+        _rx(r"\b\[FATAL\]\[SERVER\]\b"),
+    ],
+
+    # ============================================================
     # CATEGORIAS JAVA / WEB
     # ============================================================
     "jboss": [
@@ -243,6 +269,13 @@ CATEGORY_DISPLAY_NAMES = {
     "logix_validacao": "LOGIX - Validação XML",
 
     # ============================================================
+    # CATEGORIAS PROTHEUS / ADVPL
+    # ============================================================
+    "protheus_runtime": "Protheus - Runtime/ADVPL",
+    "protheus_repository": "Protheus - RPO/Arquivos",
+    "protheus_infra": "Protheus - Infra/SmartClient",
+
+    # ============================================================
     # CATEGORIAS JAVA / WEB
     # ============================================================
     "jboss": "JBoss / WildFly",
@@ -276,6 +309,10 @@ CATEGORY_GROUPS = {
     "logix": {
         "name": "LOGIX",
         "categories": ["logix_framework", "logix_nfe", "logix_validacao"],
+    },
+    "protheus": {
+        "name": "Protheus / ADVPL",
+        "categories": ["protheus_runtime", "protheus_repository", "protheus_infra"],
     },
     "web_java": {
         "name": "Java / Web",
@@ -316,6 +353,10 @@ LOG_TYPE_OPTIONS = {
         "name": "LOGIX",
         "categories": CATEGORY_GROUPS["logix"]["categories"] + CATEGORY_GROUPS["generic"]["categories"],
     },
+    "protheus": {
+        "name": "Protheus / ADVPL",
+        "categories": CATEGORY_GROUPS["protheus"]["categories"] + CATEGORY_GROUPS["generic"]["categories"],
+    },
     "jboss": {
         "name": "JBoss / WildFly",
         "categories": ["jboss"] + CATEGORY_GROUPS["generic"]["categories"],
@@ -335,6 +376,13 @@ def normalize_cleaner_log_type(log_type: Optional[str]) -> str:
     normalized = (log_type or "auto").strip().lower()
     if not normalized:
         normalized = "auto"
+    aliases = {
+        "protheus/advpl": "protheus",
+        "protheus_advpl": "protheus",
+        "advpl": "protheus",
+        "totvs protheus": "protheus",
+    }
+    normalized = aliases.get(normalized, normalized)
     return normalized if normalized in LOG_TYPE_OPTIONS else "auto"
 
 
@@ -435,7 +483,20 @@ def detect_log_format(content: str) -> Dict[str, Any]:
     # Detectar tipo de log
     content_sample = '\n'.join(lines[:50]).lower()
     
-    if 'progress' in content_sample or 'openedge' in content_sample or '4gl' in content_sample:
+    if any(token in content_sample for token in [
+        'thread error',
+        'variable does not exist',
+        'cannot find method',
+        'invalid readmsint',
+        'open empty rpo',
+        'multiport - error',
+        'called from',
+        'protheus',
+        'advpl'
+    ]):
+        format_info["format"] = "protheus"
+        format_info["detected_patterns"].append("Protheus/ADVPL")
+    elif 'progress' in content_sample or 'openedge' in content_sample or '4gl' in content_sample:
         format_info["format"] = "progress"
         format_info["detected_patterns"].append("Progress/OpenEdge")
     elif 'pasoe' in content_sample or 'catalina' in content_sample or 'tomcat' in content_sample:

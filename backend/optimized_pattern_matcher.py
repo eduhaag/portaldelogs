@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """
-Otimização crítica para análise de padrões em larga escala
-Reduz complexidade de O(n*m) para O(n+m) usando técnicas avançadas
+===============================
+Optimized Pattern Matcher - O ninja dos padrões!
+===============================
+Aqui a gente faz análise de padrões em larga escala, rápido e sem perder a pose.
+Comentários didáticos e bem humorados para quem gosta de performance e truques de ninja!
 """
 
 import re
@@ -15,10 +18,10 @@ logger = logging.getLogger(__name__)
 class OptimizedPatternMatcher:
     """
     Matcher otimizado que usa múltiplas estratégias para acelerar análise:
-    1. Regex combinada única para todos os padrões
-    2. Pre-filtering baseado em palavras-chave
-    3. Priorização por severidade
-    4. Cache de resultados
+    1. Regex combinada única para todos os padrões (o famoso "tudo em um")
+    2. Pre-filtering baseado em palavras-chave (porque regex também gosta de atalho)
+    3. Priorização por severidade (erro grave vai pro VIP)
+    4. Cache de resultados (para não reinventar a roda)
     """
     
     def __init__(self):

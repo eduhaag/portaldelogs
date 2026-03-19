@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """
-Matcher de padrões ULTRA-RÁPIDO para restaurar performance original
-Usa regex combinada única para processar 331 padrões como se fossem 1
+===============================
+FastPatternMatcher - O Flash das regex!
+===============================
+Aqui a busca por padrões é tão rápida que até o Sonic ficaria com inveja.
+Comentários didáticos e piadinhas para quem gosta de performance e regex gigante.
 """
 
 import re
@@ -14,7 +17,7 @@ logger = logging.getLogger(__name__)
 class FastPatternMatcher:
     """
     Matcher extremamente otimizado usando regex única combinada
-    Reduz complexidade de O(n*m) para O(n) 
+    (Reduz complexidade de O(n*m) para O(n) - ou seja, mais rápido que café forte!)
     """
     
     def __init__(self):
@@ -26,6 +29,7 @@ class FastPatternMatcher:
         """
         Configura matcher com padrões Datasul
         Cria UMA ÚNICA regex que combina todos os 331 padrões
+        (Sim, é muita coisa, mas a vida é curta para loops lentos)
         """
         start_time = time.time()
         

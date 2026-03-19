@@ -1,3 +1,9 @@
+// ===============================
+// Componente de Cadastro de Usuário
+// Permite ao usuário criar uma nova conta no sistema.
+// Demonstra uso de formulários, validação e integração com PO UI.
+// Comentários didáticos para facilitar o entendimento!
+// ===============================
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -18,10 +24,14 @@ import { AuthSessionService } from '../../core/services/auth-session.service';
     styleUrl: './register-user.page.scss'
 })
 export class RegisterUserPageComponent {
+    // Serviço de autenticação para cadastro
     private readonly auth = inject(AuthSessionService);
+    // Serviço de navegação entre páginas
     private readonly router = inject(Router);
+    // Mensagem de política de senha exibida ao usuário
     private readonly passwordPolicyMessage = 'A senha deve ter no mínimo 8 caracteres, incluindo letra maiúscula, número e caractere especial.';
 
+    // Variáveis de estado protegidas para uso no template
     protected username = '';
     protected email = '';
     protected confirmEmail = '';
@@ -31,10 +41,12 @@ export class RegisterUserPageComponent {
     protected successMessage = '';
     protected loading = false;
 
+    // Validação do nome de usuário
     protected get hasValidUsername(): boolean {
         return /^[A-Za-z0-9._-]{3,}$/.test(this.username.trim());
     }
 
+    // Validação do email
     protected get hasValidEmail(): boolean {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email.trim());
     }

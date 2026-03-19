@@ -17,6 +17,7 @@ def test_log_cleaner_exposes_supported_category_groups():
     assert "pasoe" in info["groups"]
     assert "appserver" in info["groups"]
     assert "logix" in info["groups"]
+    assert "protheus" in info["groups"]
     assert "web_java" in info["groups"]
     assert "generic" in info["groups"]
 
@@ -24,6 +25,7 @@ def test_log_cleaner_exposes_supported_category_groups():
 def test_log_cleaner_filters_categories_by_selected_log_type():
     progress_categories = get_categories_for_log_type("progress")
     pasoe_categories = get_categories_for_log_type("pasoe")
+    protheus_categories = get_categories_for_log_type("protheus")
 
     assert "traducao" in progress_categories
     assert "4gltrace" in progress_categories
@@ -31,6 +33,10 @@ def test_log_cleaner_filters_categories_by_selected_log_type():
 
     assert "pasoe_catalina" in pasoe_categories
     assert "traducao" not in pasoe_categories
+
+    assert "protheus_runtime" in protheus_categories
+    assert "protheus_repository" in protheus_categories
+    assert "traducao" not in protheus_categories
 
 
 def test_log_cleaner_auto_uses_detected_type_and_keeps_progress_family():
@@ -44,6 +50,17 @@ def test_log_cleaner_auto_uses_detected_type_and_keeps_progress_family():
     assert "pasoe_catalina" not in info["categories"]
 
 
+def test_log_cleaner_auto_maps_protheus_advpl_alias_to_protheus_family():
+    selected_log_type, effective_log_type = resolve_cleaner_log_type("auto", "Protheus/ADVPL")
+    info = LogCleaner().get_category_info(effective_log_type)
+
+    assert selected_log_type == "auto"
+    assert effective_log_type == "protheus"
+    assert "protheus_runtime" in info["categories"]
+    assert "protheus_infra" in info["categories"]
+    assert "traducao" not in info["categories"]
+
+
 def test_log_cleaner_groups_supported_log_families():
     cleaner = LogCleaner()
     content = """
@@ -55,6 +72,7 @@ def test_log_cleaner_groups_supported_log_families():
 [25/11/24@10:22:11.200-0300] P-002448 T-013058 Agent process started
 TOTVS - FRW: Starting application
 [25/11/24@10:22:10.100-0300] P-002448 T-001164 2 4GL CONNECTS connection established
+THREAD ERROR ([275], TP|SD|HTTP@T1|TRUE_, 7C971194EB7C4AD3A009846577DE8711)   01/12/2025   19:57:14
 """.strip()
 
     analysis = cleaner.analyze_log(content)
@@ -65,8 +83,30 @@ TOTVS - FRW: Starting application
     assert grouped["pasoe"]["items"]["pasoe_webhandler"]["count"] >= 1
     assert grouped["appserver"]["items"]["appserver_agent"]["count"] >= 1
     assert grouped["logix"]["items"]["logix_framework"]["count"] >= 1
+    assert grouped["protheus"]["items"]["protheus_runtime"]["count"] >= 1
     assert grouped["web_java"]["items"]["jboss"]["count"] >= 1
     assert grouped["web_java"]["items"]["web_access"]["count"] >= 1
+
+
+def test_log_cleaner_detects_and_removes_protheus_categories():
+    cleaner = LogCleaner()
+    content = """
+THREAD ERROR ([275], TP|SD|HTTP@T1|TRUE_, 7C971194EB7C4AD3A009846577DE8711)   01/12/2025   19:57:14
+variable does not exist B2_MSIDENT
+Invalid ReadMSInt in file /usr/local/lib/memstream.hpp at line 657
+Linha funcional que deve permanecer no arquivo final.
+""".strip()
+
+    analysis = cleaner.analyze_log(content)
+    grouped = build_grouped_category_matches(analysis, allowed_categories=get_categories_for_log_type("protheus"))
+    result = cleaner.clean_log(content, ["protheus_runtime", "protheus_infra"])
+
+    assert analysis["format_info"]["format"] == "protheus"
+    assert grouped["protheus"]["items"]["protheus_runtime"]["count"] >= 1
+    assert grouped["protheus"]["items"]["protheus_infra"]["count"] >= 1
+    assert "THREAD ERROR" not in result["cleaned_content"]
+    assert "Invalid ReadMSInt" not in result["cleaned_content"]
+    assert "Linha funcional que deve permanecer" in result["cleaned_content"]
 
 
 def test_log_cleaner_removes_non_progress_supported_families():

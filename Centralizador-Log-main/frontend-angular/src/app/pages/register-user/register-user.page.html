@@ -32,12 +32,20 @@
                     <po-email name="confirmEmail" [(ngModel)]="confirmEmail" p-label="Confirmar Email"
                         p-placeholder="Confirme seu email"></po-email>
 
+                    @if (confirmEmail && !hasMatchingEmails) {
+                    <div class="register-feedback register-feedback--error">A confirmação de e-mail não confere.</div>
+                    }
+
                     <div class="register-grid register-grid--passwords">
                         <po-password name="password" [(ngModel)]="password" p-label="Senha"
                             p-placeholder="Digite sua senha"></po-password>
                         <po-password name="confirmPassword" [(ngModel)]="confirmPassword" p-label="Confirmar senha"
                             p-placeholder="Confirme sua senha"></po-password>
                     </div>
+
+                    @if (confirmPassword && !hasMatchingPasswords) {
+                    <div class="register-feedback register-feedback--error">A confirmação de senha não confere.</div>
+                    }
 
                     <div class="register-footer">
                         <ul class="password-rules">
@@ -47,14 +55,10 @@
                             <li [class.password-rules__item--ok]="hasSpecialCharacter">caractere especial</li>
                         </ul>
 
-                        <div class="register-feedback register-feedback--info">
-                            Regra aplicada no backend e no frontend: mínimo de 8 caracteres com letra maiúscula,
-                            número e caractere especial.
-                        </div>
-
+                        
                         <div class="register-actions">
                             <po-button p-kind="primary" p-label="Cadastrar usuário" [p-loading]="loading"
-                                (p-click)="register()"></po-button>
+                                [p-disabled]="loading || !canSubmitRegister" (p-click)="register()"></po-button>
                         </div>
                     </div>
                 </div>
