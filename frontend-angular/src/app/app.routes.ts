@@ -8,6 +8,7 @@ import { ProfilerAnalysisPageComponent } from './pages/profiler-analysis/profile
 import { RegisterUserPageComponent } from './pages/register-user/register-user.page';
 import { VersionComparePageComponent } from './pages/version-compare/version-compare.page';
 
+import { AnalysisHistoryPageComponent } from './pages/analysis-history/analysis-history.page';
 import { EvidenceRegisterPageComponent } from './pages/evidence-register/evidence-register.page';
 import { IssueControlPageComponent } from './pages/issue-control/issue-control.page';
 import { authGuard } from './core/guards/auth.guard';
@@ -46,6 +47,11 @@ export const routes: Routes = [
                 path: 'controle-issues',
                 title: 'Controle de Issues',
                 component: IssueControlPageComponent
+            },
+            {
+                path: 'analise/historico',
+                title: 'Histórico de análises',
+                component: AnalysisHistoryPageComponent
             },
             {
                 path: 'analise/upload',

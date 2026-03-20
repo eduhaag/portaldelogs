@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AdvancedSearchPageComponent } from './pages/advanced-search/advanced-search.page';
+import { AnalysisHistoryPageComponent } from './pages/analysis-history/analysis-history.page';
 import { AnalyzeLogPageComponent } from './pages/analyze-log/analyze-log.page';
 import { AnalysisPageComponent } from './pages/analysis/analysis.page';
 import { AnalysisResultsPageComponent } from './pages/analysis-results/analysis-results.page';
@@ -34,6 +35,11 @@ export const routes: Routes = [
                 path: 'analise',
                 title: 'Upload e análise de log',
                 component: AnalysisPageComponent
+            },
+            {
+                path: 'analise/historico',
+                title: 'Histórico de análises',
+                component: AnalysisHistoryPageComponent
             },
             {
                 path: 'analise/upload',

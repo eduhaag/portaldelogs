@@ -44,9 +44,7 @@ export class App {
       icon: 'an-upload-simple',
       children: [
         { label: 'Upload e análise', route: '/analise' },
-        { label: 'Histórico operacional', route: '/analise' },
-        { label: 'Exportação CSV', route: '/analise' },
-        { label: 'Revisão assistida', route: '/analise' }
+        { label: 'Histórico operacional', route: '/analise/historico' }
       ]
     },
     {
@@ -68,7 +66,7 @@ export class App {
     },
     {
       id: 'performance',
-      label: 'Profiler',
+      label: 'Profiler / Extrato',
       icon: 'an-chart-bar',
       children: [
         { label: 'Profiler', route: '/profiler' },
