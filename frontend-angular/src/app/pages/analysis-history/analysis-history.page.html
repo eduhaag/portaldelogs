@@ -1,15 +1,13 @@
 <po-page-default p-title="Histórico de análises" [p-actions]="pageActions">
   <po-widget>
-    @if (historyLoading) {
-      <po-loading-overlay [p-screen-lock]="false"></po-loading-overlay>
-    }
-
-    <po-table
-      [p-columns]="historyColumns"
-      [p-items]="historyRows"
-      [p-loading]="historyLoading"
-      [p-striped]="true"
-      p-no-data="Nenhuma análise registrada ainda.">
-    </po-table>
+    <div class="table-shell">
+      <po-table
+        [p-columns]="historyColumns"
+        [p-items]="historyRows"
+        [p-loading]="historyLoading"
+        [p-striped]="true"
+        p-no-data="Nenhuma análise registrada ainda.">
+      </po-table>
+    </div>
   </po-widget>
 </po-page-default>

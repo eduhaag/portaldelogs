@@ -35,8 +35,8 @@ export class AnalysisHistoryPageComponent implements OnInit {
     protected historyLoading = false;
 
     protected readonly historyColumns: PoTableColumn[] = [
-        { property: 'timestamp', label: 'Quando', width: '190px' },
-        { property: 'filename', label: 'Arquivo' },
+        { property: 'timestamp', label: 'Quando', width: '200px' },
+        { property: 'filename', label: 'Arquivo', width: '250px' },
         { property: 'totalResults', label: 'Resultados', width: '120px' },
         { property: 'mostCommonError', label: 'Erro mais comum' }
     ];
