@@ -425,8 +425,21 @@
 
 :host ::ng-deep .po-page-default .po-page-header { margin-bottom: 24px; }
 :host ::ng-deep .po-widget { border-radius: 18px; border: 1px solid rgba(16, 33, 63, 0.08); }
-:host ::ng-deep .po-modal .po-modal-content,
-:host ::ng-deep .po-modal .po-modal-container { border-radius: 22px; overflow: hidden; }
+.loading-overlay-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+:host ::ng-deep .loading-overlay-wrapper .po-loading-overlay {
+    z-index: 9999;
+}
 :host ::ng-deep .po-divider { margin: 8px 0; }
 
 @media (max-width: 768px) {

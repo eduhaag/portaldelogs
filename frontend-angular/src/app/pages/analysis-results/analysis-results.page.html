@@ -137,12 +137,14 @@
                     <div><strong>Tempo estimado:</strong> {{ preview.processing_estimate.estimated_time_human }}</div>
                 </div>
                 }
-
-                @if (loading) {
-                <po-loading-overlay [p-screen-lock]="false"></po-loading-overlay>
-                }
             </div>
         </section>
+
+        @if (loading) {
+        <div class="loading-overlay-wrapper">
+            <po-loading-overlay [p-screen-lock]="true"></po-loading-overlay>
+        </div>
+        }
 
         @if (hasAnalysisResult) {
 
