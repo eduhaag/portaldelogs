@@ -1,7 +1,9 @@
 import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, throwError } from 'rxjs';
+import { TimeoutError, catchError, throwError, timeout } from 'rxjs';
+
+const API_REQUEST_TIMEOUT_MS = 15000;
 
 const sessionStorageKey = 'log-analyzer:auth-session';
 
@@ -50,6 +52,13 @@ function isApiRequest(url: string): boolean {
     return url.includes('/api/');
 }
 
+function isLongRunningApiRequest(url: string): boolean {
+    return url.includes('/api/analyze-log')
+        || url.includes('/api/analyze-info')
+        || url.includes('/api/download-csv')
+        || url.includes('/api/version-compare');
+}
+
 function isPublicAuthRequest(url: string): boolean {
     return url.endsWith('/api/auth/login') || url.endsWith('/api/auth/register');
 }
@@ -67,8 +76,23 @@ export const authTokenInterceptor: HttpInterceptorFn = (req, next) => {
         })
         : req;
 
-    return next(request).pipe(
+    const requestStream = isApiRequest(req.url) && !isLongRunningApiRequest(req.url)
+        ? next(request).pipe(timeout(API_REQUEST_TIMEOUT_MS))
+        : next(request);
+
+    return requestStream.pipe(
         catchError((error: unknown) => {
+            if (error instanceof TimeoutError) {
+                return throwError(() => new HttpErrorResponse({
+                    status: 408,
+                    statusText: 'Request Timeout',
+                    url: req.url,
+                    error: {
+                        detail: 'A requisicao demorou mais do que o esperado. Tente novamente em alguns segundos.'
+                    }
+                }));
+            }
+
             if (
                 error instanceof HttpErrorResponse
                 && error.status === 401

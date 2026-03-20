@@ -58,6 +58,7 @@ import { AnalysisSessionService } from '../../core/services/analysis-session.ser
 import { BackendApiService } from '../../core/services/backend-api.service';
 import { VersionCompareSessionService } from '../../core/services/version-compare-session.service';
 
+interface ActionCard {
     // Cartão de ação: cada um é um superpoder do dashboard!
     title: string;
     description: string;

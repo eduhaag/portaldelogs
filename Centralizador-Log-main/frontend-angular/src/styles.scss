@@ -51,6 +51,23 @@
      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
      gap: 16px;
      min-width: 0;
+
+    /* Let the application shell own page scrolling instead of each PO UI page body. */
+    .po-page,
+    .po-page-default,
+    .po-page,
+    .po-page-default {
+        height: auto !important;
+        min-height: 0 !important;
+        overflow: visible !important;
+    }
+
+    .po-page-content,
+    .po-page-content {
+        height: auto !important;
+        max-height: none !important;
+        overflow: visible !important;
+    }
  }
 
  .two-columns {

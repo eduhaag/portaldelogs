@@ -776,7 +776,7 @@ export class AnalysisResultsPageComponent implements OnInit {
 
     private mapResultRow(item: AnalysisResultItem): AnalysisDetailRow {
         const lineValue = item.line_number ?? item.line ?? '-';
-        const preview = String(item.message ?? item.clean_message ?? item.content ?? item.line_text ?? '-');
+        const preview = this.resolveResultPreview(item);
         const type = String(item.type ?? item.error_type ?? '-');
         const description = String(item.description ?? this.buildFallbackDescription(type, preview));
         const solution = String(item.solution ?? this.buildFallbackSolution(type, item.severity ?? '-', preview));
@@ -1453,9 +1453,13 @@ export class AnalysisResultsPageComponent implements OnInit {
 
     private matchesResultRow(item: AnalysisResultItem, row: AnalysisDetailRow): boolean {
         const lineValue = item.line_number ?? item.line ?? '-';
-        const preview = String(item.message ?? item.clean_message ?? item.content ?? item.line_text ?? '-');
+        const preview = this.resolveResultPreview(item);
 
         return String(lineValue) === String(row.lineNumber) && preview === row.preview;
+    }
+
+    private resolveResultPreview(item: AnalysisResultItem): string {
+        return String(item.line_text ?? item.content ?? item.message ?? item.clean_message ?? '-');
     }
 
     private matchesPotentialErrorRow(item: PotentialNewErrorItem, row: PotentialErrorTableItem): boolean {

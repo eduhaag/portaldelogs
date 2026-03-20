@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { finalize } from 'rxjs/operators';
 
 import { AuthSessionService } from '../../core/services/auth-session.service';
 
@@ -86,41 +87,46 @@ export class LoginPageComponent implements OnInit {
         }
 
         this.loading = true;
-        this.auth.login(username, password).subscribe((result) => {
-            this.loading = false;
-
-            if (!result.success) {
-                this.passwordErrors = [result.message];
-                return;
-            }
-
-            this.loginErrors = [];
-            this.passwordErrors = [];
-
-            if (this.rememberPassword) {
-                this.persistRememberedCredentials();
-            } else {
-                this.clearRememberedCredentials();
-            }
-
-            const redirectTo = this.getRedirectTarget();
-            void this.router.navigateByUrl(redirectTo).then((navigated) => {
-                if (navigated) {
-                    return;
-                }
-
-                const fallbackTarget = redirectTo !== '/analise' ? '/analise' : redirectTo;
-                void this.router.navigateByUrl(fallbackTarget).then((fallbackNavigated) => {
-                    if (!fallbackNavigated && typeof window !== 'undefined') {
-                        window.location.assign(fallbackTarget);
+        this.auth.login(username, password)
+            .pipe(finalize(() => (this.loading = false)))
+            .subscribe({
+                next: (result) => {
+                    if (!result.success) {
+                        this.passwordErrors = [result.message];
+                        return;
                     }
-                });
-            }).catch(() => {
-                if (typeof window !== 'undefined') {
-                    window.location.assign('/analise');
+
+                    this.loginErrors = [];
+                    this.passwordErrors = [];
+
+                    if (this.rememberPassword) {
+                        this.persistRememberedCredentials();
+                    } else {
+                        this.clearRememberedCredentials();
+                    }
+
+                    const redirectTo = this.getRedirectTarget();
+                    void this.router.navigateByUrl(redirectTo).then((navigated) => {
+                        if (navigated) {
+                            return;
+                        }
+
+                        const fallbackTarget = redirectTo !== '/analise' ? '/analise' : redirectTo;
+                        void this.router.navigateByUrl(fallbackTarget).then((fallbackNavigated) => {
+                            if (!fallbackNavigated && typeof window !== 'undefined') {
+                                window.location.assign(fallbackTarget);
+                            }
+                        });
+                    }).catch(() => {
+                        if (typeof window !== 'undefined') {
+                            window.location.assign('/analise');
+                        }
+                    });
+                },
+                error: () => {
+                    this.passwordErrors = ['Nao foi possivel concluir o login. Tente novamente.'];
                 }
             });
-        });
     }
 
     private getRedirectTarget(): string {

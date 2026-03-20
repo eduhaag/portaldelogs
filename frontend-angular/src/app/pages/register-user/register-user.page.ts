@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { finalize } from 'rxjs/operators';
 import {
     PoButtonModule,
     PoFieldModule,
@@ -117,21 +118,26 @@ export class RegisterUserPageComponent {
             username: this.username.trim(),
             email: this.email.trim(),
             password: this.password
-        }).subscribe((created) => {
-            this.loading = false;
+        })
+            .pipe(finalize(() => (this.loading = false)))
+            .subscribe({
+                next: (created) => {
+                    if (!created.success) {
+                        this.errorMessage = created.message;
+                        return;
+                    }
 
-            if (!created.success) {
-                this.errorMessage = created.message;
-                return;
-            }
-
-            this.successMessage = 'Usuário cadastrado com sucesso. Faça login para acessar o analisador.';
-            this.username = '';
-            this.email = '';
-            this.confirmEmail = '';
-            this.password = '';
-            this.confirmPassword = '';
-        });
+                    this.successMessage = 'Usuário cadastrado com sucesso. Faça login para acessar o analisador.';
+                    this.username = '';
+                    this.email = '';
+                    this.confirmEmail = '';
+                    this.password = '';
+                    this.confirmPassword = '';
+                },
+                error: () => {
+                    this.errorMessage = 'Nao foi possivel concluir o cadastro. Tente novamente.';
+                }
+            });
     }
 
     protected goToLogin(): void {
