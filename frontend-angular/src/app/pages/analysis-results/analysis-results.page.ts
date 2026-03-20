@@ -534,12 +534,10 @@ export class AnalysisResultsPageComponent implements OnInit {
         this.api.analyzeLog(this.logFile, this.patternsFile)
             .pipe(finalize(() => (this.loading = false)))
             .subscribe({
-                next: (response) => {
                     this.loading = false;
                     const filename = this.logFile?.name ?? this.previewInfo?.file_info.filename ?? 'log';
                     const analyzedAt = new Date().toISOString();
                     this.applyAnalysisResult(response, filename, analyzedAt);
-                    this.successMessage = response.informational_lines?.length
                         ? 'Análise concluída. As linhas informativas ficaram separadas na seção Informativas.'
                         : 'Análise concluída com sucesso.';
                 },
@@ -745,7 +743,6 @@ export class AnalysisResultsPageComponent implements OnInit {
             return 'result-card__severity--medium';
         }
         return 'result-card__severity--low';
-    }
 
     protected severityTagType(severity: string): PoTagType {
         const value = (severity || '').toLowerCase();
@@ -754,7 +751,6 @@ export class AnalysisResultsPageComponent implements OnInit {
         }
         if (value.includes('méd') || value.includes('med')) {
             return PoTagType.Warning;
-        }
         if (value.includes('baix') || value.includes('low')) {
             return PoTagType.Success;
         }
